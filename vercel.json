@@ -2,5 +2,27 @@
   "buildCommand": null,
   "devCommand": null,
   "installCommand": null,
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "rewrites": [
+    {
+      "source": "/home",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/growx",
+      "destination": "/crm-features.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/home",
+      "statusCode": 301
+    },
+    {
+      "source": "/crm-features.html",
+      "destination": "/growx",
+      "statusCode": 301
+    }
+  ]
 }
