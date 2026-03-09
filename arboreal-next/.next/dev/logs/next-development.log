@@ -1,0 +1,3 @@
+[00:19:42.981] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\Siddhant.Baliga\.gemini\antigravity\scratch\Arboreal Labs - Copy\arboreal-next\app'
+[00:19:42.986] Server  ERROR   ⨯ "unhandledRejection:" Error: ENOENT: no such file or directory, scandir 'C:\Users\Siddhant.Baliga\.gemini\antigravity\scratch\Arboreal Labs - Copy\arboreal-next\app'
+[00:19:42.988] Server  ERROR   ⨯ "unhandledRejection: " Error: ENOENT: no such file or directory, scandir 'C:\Users\Siddhant.Baliga\.gemini\antigravity\scratch\Arboreal Labs - Copy\arboreal-next\app'

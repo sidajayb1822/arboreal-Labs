@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arboreal Labs - AI Automation SaaS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #66d46a;
+            --primary-dark: #43763f;
+            --typography: #e8ede8;
+            --typography-muted: #7d9980;
+            --secondary: #8496ab;
+            --background: #090e0b;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 48px 0 rgba(102, 212, 106, 0.12);
+            --glow-primary: rgba(102, 212, 106, 0.28);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--background);
+            color: var(--typography);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 1001;
+            transition: width 0.1s linear;
+        }
+
+        /* Background Animated Blobs */
+        .blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(110px);
+            opacity: 0.45;
+            animation: float 10s infinite alternate ease-in-out;
+            border-radius: 50%;
+        }
+
+        .blob-1 {
+            width: 560px;
+            height: 560px;
+            background: radial-gradient(circle, #2d7a33 0%, rgba(43, 100, 48, 0.3) 100%);
+            top: -180px;
+            left: -120px;
+            animation-duration: 12s;
+        }
+
+        .blob-2 {
+            width: 650px;
+            height: 650px;
+            background: radial-gradient(circle, #0d4a5a 0%, rgba(13, 60, 74, 0.25) 100%);
+            bottom: -280px;
+            right: -180px;
+            animation-duration: 15s;
+        }
+
+        .blob-3 {
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(180, 140, 40, 0.55) 0%, rgba(160, 120, 30, 0.1) 100%);
+            top: 35%;
+            left: 38%;
+            animation-duration: 9s;
+            opacity: 0.35;
+        }
+
+        .blob-4 {
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, #1a3d5c 0%, rgba(26, 50, 80, 0.15) 100%);
+            top: 60%;
+            right: 18%;
+            animation-duration: 14s;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(40px, -30px) scale(1.15) rotate(180deg);
+            }
+
+            100% {
+                transform: translate(30px, 50px) scale(1.1) rotate(360deg);
+            }
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.4rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(9, 14, 11, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+            padding: 1rem 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-svg {
+            width: auto;
+            height: 90px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--typography);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 8px;
+            border: none;
+            background: transparent;
+            z-index: 200;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--typography);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile Nav Overlay */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(9, 14, 11, 0.97);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-nav.open {
+            display: flex;
+        }
+
+        .mobile-nav.visible {
+            opacity: 1;
+        }
+
+        .mobile-nav a {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--typography);
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--primary);
+            transform: translateX(6px);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 1.8rem;
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(67, 118, 63, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #4ea852;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px var(--glow-primary);
+        }
+
+        /* Liquid Glass Button */
+        .btn-liquid-glass {
+            position: relative;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--primary);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: var(--font-body);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-liquid-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow:
+                0 0 6px rgba(0, 0, 0, 0.06),
+                0 2px 6px rgba(0, 0, 0, 0.12),
+                inset 3px 3px 0.5px -3px rgba(0, 0, 0, 0.3),
+                inset -3px -3px 0.5px -3px rgba(0, 0, 0, 0.25),
+                inset 1px 1px 1px -0.5px rgba(0, 0, 0, 0.15),
+                inset -1px -1px 1px -0.5px rgba(0, 0, 0, 0.15),
+                inset 0 0 6px 6px rgba(0, 0, 0, 0.04),
+                inset 0 0 2px 2px rgba(0, 0, 0, 0.02),
+                0 0 24px var(--glow-primary),
+                0 0 48px rgba(102, 212, 106, 0.12);
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .btn-liquid-glass::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0.05) 100%);
+            opacity: 0.6;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .btn-liquid-glass:hover {
+            transform: scale(1.05);
+            color: var(--primary);
+        }
+
+        .btn-liquid-glass:hover::before {
+            box-shadow:
+                0 0 8px rgba(0, 0, 0, 0.08),
+                0 4px 12px rgba(0, 0, 0, 0.16),
+                inset 3px 3px 0.5px -3.5px rgba(0, 0, 0, 0.35),
+                inset -3px -3px 0.5px -3.5px rgba(0, 0, 0, 0.3),
+                inset 1px 1px 1px -0.5px rgba(0, 0, 0, 0.2),
+                inset -1px -1px 1px -0.5px rgba(0, 0, 0, 0.2),
+                inset 0 0 8px 8px rgba(0, 0, 0, 0.06),
+                inset 0 0 3px 3px rgba(0, 0, 0, 0.03),
+                0 0 40px var(--glow-primary),
+                0 0 70px rgba(102, 212, 106, 0.18);
+        }
+
+        .btn-liquid-glass:active {
+            transform: scale(0.98);
+        }
+
+        .btn-liquid-glass span {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section with Orbital Animation */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 4rem;
+            overflow: hidden;
+        }
+
+        /* Orbital Timeline Container */
+        .orbital-timeline {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Central Hub */
+        .central-hub {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 0 40px var(--glow-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            animation: pulse-hub 3s ease-in-out infinite;
+        }
+
+        .central-hub::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .central-hub::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite 0.5s;
+        }
+
+        .hub-inner {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Orbit Ring */
+        .orbit-ring {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Orbital Node */
+        .orbital-node {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), filter 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            left: 50%;
+            top: 50%;
+            margin-left: -30px;
+            margin-top: -30px;
+            will-change: transform;
+        }
+
+        .node-icon {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--background);
+            border: 2px solid rgba(102, 212, 106, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .orbital-node:hover .node-icon {
+            background: var(--primary);
+            color: var(--background);
+            border-color: var(--primary);
+            box-shadow: 0 0 30px var(--glow-primary);
+            transform: scale(1.2);
+        }
+
+        .node-label {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--typography);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .orbital-node:hover .node-label {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        /* Node Glow Effect */
+        .node-glow {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(102, 212, 106, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .orbital-node:hover .node-glow {
+            opacity: 1;
+        }
+
+        /* Liquid Glass Info Card */
+        .info-card {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 0 48px rgba(102, 212, 106, 0.15);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .info-card.active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .info-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .info-card-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(102, 212, 106, 0.2);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-card-close {
+            background: transparent;
+            border: none;
+            color: var(--typography);
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .info-card-close:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .info-card-content {
+            color: var(--typography);
+            opacity: 0.95;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-card-footer {
+            display: flex;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Text */
+        .hero-text {
+            text-align: center;
+            z-index: 5;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            color: var(--typography);
+            opacity: 0.85;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .ecosystem-header {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes pulse-hub {
+
+            0%,
+            100% {
+                box-shadow: 0 0 40px var(--glow-primary);
+            }
+
+            50% {
+                box-shadow: 0 0 60px var(--glow-primary);
+            }
+        }
+
+        @keyframes ping {
+
+            75%,
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Nav Dropdown */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--typography);
+            font-weight: 500;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            padding: 0;
+        }
+
+        .nav-dropdown-trigger:hover {
+            color: var(--primary);
+        }
+
+        .nav-dropdown-trigger svg {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-trigger svg {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            min-width: 220px;
+            background: rgba(15, 22, 17, 0.92);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(102, 212, 106, 0.15);
+            border-radius: 16px;
+            padding: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 200;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(102, 212, 106, 0.08);
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 1rem;
+            color: var(--typography);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(102, 212, 106, 0.1);
+            color: var(--primary);
+        }
+
+        .nav-dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(102, 212, 106, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .dropdown-label {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropdown-label small {
+            color: var(--typography-muted);
+            font-size: 0.72rem;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            margin-top: 3rem;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 46px;
+            height: 46px;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px var(--glow-primary);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 98;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--glow-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .orbit-ring {
+                width: 350px;
+                height: 350px;
+            }
+
+            .orbital-timeline {
+                height: 450px;
+            }
+
+            .hero {
+                padding-top: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .ecosystem-header {
+                font-size: 1.3rem;
+            }
+
+            .info-card {
+                max-width: 95%;
+                padding: 1.5rem;
+            }
+
+            .info-card-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#hero" onclick="closeMobileNav()">Home</a>
+        <a href="#about" onclick="closeMobileNav()">About Us</a>
+        <div style="text-align:center; margin: 0.5rem 0;">
+            <span
+                style="font-size:1rem; color: var(--typography-muted); text-transform:uppercase; letter-spacing:2px; font-weight:600;">Pre-Built
+                Tools</span>
+        </div>
+        <a href="crm-features.html" style="font-size:1.4rem;" onclick="closeMobileNav()">Growth CRM</a>
+        <a href="#" style="font-size:1.4rem; opacity:0.5; pointer-events:none;">Culture LMS</a>
+        <a href="#contact" class="btn-liquid-glass" onclick="closeMobileNav()"><span>Get Started</span></a>
+    </div>
+
+    <!-- Ambient background -->
+    <div class="blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="logo-container" style="text-decoration:none;">
+            <img src="1.svg" class="logo-svg" alt="Arboreal Labs Logo">
+        </a>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <div class="nav-dropdown">
+                <button class="nav-dropdown-trigger">
+                    Pre-Built Tools
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div class="nav-dropdown-menu">
+                    <a href="crm-features.html">
+                        <span class="dropdown-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7" rx="1" />
+                                <rect x="14" y="3" width="7" height="7" rx="1" />
+                                <rect x="3" y="14" width="7" height="7" rx="1" />
+                                <rect x="14" y="14" width="7" height="7" rx="1" />
+                            </svg>
+                        </span>
+                        <span class="dropdown-label">Growth CRM <small>Project management for agencies</small></span>
+                    </a>
+                    <a href="#" style="opacity:0.45; pointer-events:none;">
+                        <span class="dropdown-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                            </svg>
+                        </span>
+                        <span class="dropdown-label">Culture LMS <small>Coming soon</small></span>
+                    </a>
+                </div>
+            </div>
+            <a href="#about">About Us</a>
+        </div>
+        <div class="nav-actions">
+            <a href="#contact" class="btn-liquid-glass nav-cta"><span>Get Started</span></a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Orbital Animation -->
+    <section class="hero" id="hero">
+        <div class="hero-text">
+            <h1>Intelligent Automation<br>Rooted in Innovation</h1>
+            <p class="hero-description">Arboreal Labs empowers businesses with custom reporting, automation platforms
+                and enterprise-grade pre-built solutions. Streamline workflows, enhance learning, and supercharge your
+                operations.</p>
+        </div>
+
+        <h2 class="ecosystem-header">The Arboreal Universe</h2>
+
+        <div class="orbital-timeline" id="orbitalTimeline">
+            <!-- Central Hub -->
+            <div class="central-hub">
+                <div class="hub-inner"></div>
+            </div>
+
+            <!-- Orbit Ring -->
+            <div class="orbit-ring"></div>
+
+            <!-- Orbital Nodes will be injected here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Info Card Modal -->
+    <div class="info-card" id="infoCard">
+        <div class="info-card-header">
+            <div>
+                <div class="info-card-title" id="cardTitle"></div>
+                <span class="info-card-category" id="cardCategory"></span>
+            </div>
+            <button class="info-card-close" onclick="closeInfoCard()">×</button>
+        </div>
+        <div class="info-card-content" id="cardContent"></div>
+        <div class="info-card-footer">
+            <a href="#contact" class="btn" id="cardLink" onclick="closeInfoCard()">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h2 style="font-family: var(--font-heading); color: var(--typography); margin-bottom: 1rem;">Arboreal Labs</h2>
+        <p style="color: var(--secondary); font-size: 0.9rem;">&copy; 2026 Arboreal Labs. Growing smarter businesses.
+        </p>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+
+    <script>
+        // Orbital Timeline Data
+        const timelineData = [
+            {
+                id: 1,
+                title: "Growth CRM",
+                category: "Pre-Built Ecosystem",
+                icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
+                content: "A specialized Project Management CRM tailored for scaling marketing agencies. Automate client onboarding, campaign tracking, and ROI reporting through AI-driven insights.",
+                link: "crm-features.html"
+            },
+            {
+                id: 2,
+                title: "Culture LMS",
+                category: "Pre-Built Ecosystem",
+                icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+                content: "An intelligent Learning Management System designed for culture classes (Music, Art, Design). AI-assisted feedback, interactive modules, and progress tracking for creatives."
+            },
+            {
+                id: 3,
+                title: "Custom Platform",
+                category: "Custom Solutions",
+                icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`,
+                content: "We don't just build disconnected AI features. Arboreal Labs equips your business with a unified, custom SaaS platform designed to manage and automate your entire operations seamlessly."
+            }
+        ];
+
+        // Orbital Animation System
+        class OrbitalTimeline {
+            constructor(container, data) {
+                this.container = container;
+                this.data = data;
+                this.rotationAngle = 0;
+                this.autoRotate = true;
+                this.animationFrame = null;
+                this.radius = 250;
+                this.init();
+            }
+
+            init() {
+                this.createNodes();
+                // Set initial positions immediately so nodes appear on the orbit
+                // ring from the very first paint (no flash at center)
+                this.updateNodePositions();
+                this.startRotation();
+            }
+
+            createNodes() {
+                const total = this.data.length;
+
+                this.data.forEach((item, index) => {
+                    const angle = (index / total) * 360;
+
+                    const node = document.createElement('div');
+                    node.className = 'orbital-node';
+                    node.dataset.id = item.id;
+                    node.dataset.angle = angle;
+
+                    node.innerHTML = `
+                        <div class="node-glow"></div>
+                        <div class="node-icon">${item.icon}</div>
+                        <div class="node-label">${item.title}</div>
+                    `;
+
+                    node.addEventListener('click', () => this.showInfo(item));
+                    this.container.appendChild(node);
+                });
+            }
+
+            startRotation() {
+                const rotate = () => {
+                    if (this.autoRotate) {
+                        this.rotationAngle = (this.rotationAngle + 0.2) % 360;
+                        this.updateNodePositions();
+                    }
+                    this.animationFrame = requestAnimationFrame(rotate);
+                };
+                requestAnimationFrame(rotate);
+            }
+
+            updateNodePositions() {
+                const nodes = this.container.querySelectorAll('.orbital-node');
+
+                nodes.forEach((node) => {
+                    const baseAngle = parseFloat(node.dataset.angle);
+                    const currentAngle = (baseAngle + this.rotationAngle) % 360;
+                    const radian = (currentAngle * Math.PI) / 180;
+
+                    const x = this.radius * Math.cos(radian);
+                    const y = this.radius * Math.sin(radian);
+
+                    node.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            }
+
+            showInfo(item) {
+                this.autoRotate = false;
+                document.getElementById('cardTitle').textContent = item.title;
+                document.getElementById('cardCategory').textContent = item.category;
+                document.getElementById('cardContent').textContent = item.content;
+
+                // Set Learn More link — navigate to feature page if available
+                const cardLink = document.getElementById('cardLink');
+                if (item.link) {
+                    cardLink.href = item.link;
+                    cardLink.onclick = null; // allow normal navigation
+                } else {
+                    cardLink.href = '#contact';
+                    cardLink.onclick = () => { closeInfoCard(); return true; };
+                }
+
+                document.getElementById('infoCard').classList.add('active');
+            }
+
+            stopRotation() {
+                if (this.animationFrame) {
+                    cancelAnimationFrame(this.animationFrame);
+                }
+            }
+        }
+
+        // Close Info Card
+        function closeInfoCard() {
+            document.getElementById('infoCard').classList.remove('active');
+            // Resume orbital rotation
+            if (window.orbitalTimeline) {
+                window.orbitalTimeline.autoRotate = true;
+            }
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeInfoCard();
+            }
+        });
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('orbitalTimeline');
+            window.orbitalTimeline = new OrbitalTimeline(container, timelineData);
+
+            // Scroll-driven effects
+            const navbar = document.getElementById('navbar');
+            const scrollProgress = document.getElementById('scrollProgress');
+            const backToTop = document.getElementById('backToTop');
+
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const scrollTop = window.scrollY;
+                        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+                        scrollProgress.style.width = (scrollTop / docHeight * 100) + '%';
+                        navbar.classList.toggle('scrolled', scrollTop > 60);
+                        backToTop.classList.toggle('visible', scrollTop > 320);
+
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            // Back to top click
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Hamburger menu
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+
+            hamburger.addEventListener('click', () => {
+                const isOpen = hamburger.classList.toggle('open');
+                if (isOpen) {
+                    mobileNav.classList.add('open');
+                    requestAnimationFrame(() => mobileNav.classList.add('visible'));
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    closeMobileNav();
+                }
+            });
+        });
+
+        function closeMobileNav() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+            hamburger.classList.remove('open');
+            mobileNav.classList.remove('visible');
+            document.body.style.overflow = '';
+            setTimeout(() => mobileNav.classList.remove('open'), 300);
+        }
+    </script>
+</body>
+
+</html>
