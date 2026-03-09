@@ -417,7 +417,7 @@
             position: relative;
             padding: 1rem 2.5rem;
             background: transparent;
-            color: var(--primary);
+            color: var(--primary-dark);
             border: none;
             border-radius: 50px;
             font-weight: 700;
@@ -1029,6 +1029,18 @@
 </head>
 
 <body>
+    <!-- Local file navigator fallback script -->
+    <script>
+        if (window.location.protocol === 'file:') {
+            window.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('a').forEach(a => {
+                    const href = a.getAttribute('href');
+                    if (href === '/growx') a.href = 'crm-features.html';
+                    if (href === '/home' || href === '/') a.href = 'index.html';
+                });
+            });
+        }
+    </script>
 
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
