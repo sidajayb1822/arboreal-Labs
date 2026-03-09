@@ -860,39 +860,166 @@
                 display: flex;
             }
 
-            .orbit-ring {
-                width: 350px;
-                height: 350px;
-            }
-
-            .orbital-timeline {
-                height: 450px;
-            }
-
             .hero {
-                padding-top: 2rem;
+                padding-top: 1.5rem;
+                min-height: auto;
+            }
+
+            .hero-text {
+                padding: 0 1.2rem;
             }
 
             .hero-text h1 {
                 font-size: 2rem;
+                margin-bottom: 1rem;
             }
 
             .hero-description {
-                font-size: 1rem;
-                margin-bottom: 2rem;
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
             }
 
             .ecosystem-header {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 0.5rem;
+            }
+
+            .orbital-timeline {
+                height: 380px;
+                margin-top: 1rem;
+            }
+
+            .orbit-ring {
+                width: 280px;
+                height: 280px;
+            }
+
+            .central-hub {
+                width: 56px;
+                height: 56px;
+            }
+
+            .central-hub::before {
+                width: 70px;
+                height: 70px;
+            }
+
+            .central-hub::after {
+                width: 85px;
+                height: 85px;
+            }
+
+            .hub-inner {
+                width: 28px;
+                height: 28px;
+            }
+
+            .orbital-node {
+                width: 48px;
+                height: 48px;
+                margin-left: -24px;
+                margin-top: -24px;
+            }
+
+            .node-icon {
+                font-size: 18px;
+            }
+
+            .node-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .node-label {
+                top: 54px;
+                font-size: 0.65rem;
+            }
+
+            .node-glow {
+                width: 60px;
+                height: 60px;
             }
 
             .info-card {
-                max-width: 95%;
-                padding: 1.5rem;
+                max-width: 92%;
+                padding: 1.2rem;
+                border-radius: 16px;
             }
 
             .info-card-title {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
+            }
+
+            .info-card-content {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.7rem;
+            }
+
+            .hero-description {
+                font-size: 0.88rem;
+            }
+
+            .orbital-timeline {
+                height: 320px;
+            }
+
+            .orbit-ring {
+                width: 230px;
+                height: 230px;
+            }
+
+            .central-hub {
+                width: 46px;
+                height: 46px;
+            }
+
+            .central-hub::before {
+                width: 58px;
+                height: 58px;
+            }
+
+            .central-hub::after {
+                width: 70px;
+                height: 70px;
+            }
+
+            .hub-inner {
+                width: 24px;
+                height: 24px;
+            }
+
+            .orbital-node {
+                width: 42px;
+                height: 42px;
+                margin-left: -21px;
+                margin-top: -21px;
+            }
+
+            .node-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .node-label {
+                top: 48px;
+                font-size: 0.6rem;
+            }
+
+            .info-card {
+                max-width: 96%;
+                padding: 1rem;
             }
         }
     </style>
@@ -1066,8 +1193,21 @@
                 this.rotationAngle = 0;
                 this.autoRotate = true;
                 this.animationFrame = null;
-                this.radius = 250;
+                this.radius = this.getResponsiveRadius();
                 this.init();
+
+                // Update radius on resize
+                window.addEventListener('resize', () => {
+                    this.radius = this.getResponsiveRadius();
+                    this.updateNodePositions();
+                });
+            }
+
+            getResponsiveRadius() {
+                const w = window.innerWidth;
+                if (w <= 480) return 115;
+                if (w <= 768) return 140;
+                return 250;
             }
 
             init() {
