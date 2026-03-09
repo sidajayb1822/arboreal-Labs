@@ -417,7 +417,7 @@
             position: relative;
             padding: 1rem 2.5rem;
             background: transparent;
-            color: var(--primary-dark);
+            color: #1a3a1c;
             border: none;
             border-radius: 50px;
             font-weight: 700;
@@ -474,7 +474,7 @@
 
         .btn-liquid-glass:hover {
             transform: scale(1.05);
-            color: var(--primary);
+            color: #1a3a1c;
         }
 
         .btn-liquid-glass:hover::before {
@@ -1023,6 +1023,101 @@
 
             .hamburger {
                 display: flex;
+            }
+
+            .page-header {
+                padding: 3rem 1.2rem 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .sub-nav {
+                gap: 0.25rem;
+                padding: 0.6rem 2%;
+                flex-wrap: wrap;
+            }
+
+            .sub-nav a {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .container {
+                padding: 2rem 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 2rem;
+            }
+
+            .glass-panel {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .feature-item {
+                padding: 1.5rem;
+            }
+
+            .feature-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .pricing-card {
+                padding: 2rem 1.2rem;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+
+            .plan-price {
+                font-size: 2.2rem;
+            }
+
+            .pricing-toggle {
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .page-header p {
+                font-size: 0.9rem;
+            }
+
+            .sub-nav a {
+                font-size: 0.7rem;
+                padding: 0.35rem 0.6rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
             }
         }
     </style>
