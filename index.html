@@ -265,7 +265,7 @@
 
         .mobile-nav a {
             font-family: var(--font-heading);
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--typography);
             text-decoration: none;
@@ -275,6 +275,46 @@
         .mobile-nav a:hover {
             color: var(--primary);
             transform: translateX(6px);
+        }
+
+        /* Mobile Dropdown styles */
+        .mobile-nav-dropdown {
+            width: 100%;
+            text-align: center;
+        }
+
+        .mobile-nav-dropdown summary {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--typography);
+            cursor: pointer;
+            list-style: none;
+            transition: color 0.3s;
+        }
+
+        .mobile-nav-dropdown summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .mobile-nav-dropdown[open] summary {
+            color: var(--primary);
+        }
+
+        .mobile-dropdown-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .mobile-dropdown-content a {
+            font-size: 1.2rem !important;
+            transform: none !important;
         }
 
         /* Buttons */
@@ -947,11 +987,6 @@
                 height: 120px;
             }
 
-            .hub-inner {
-                width: 65px;
-                height: 65px;
-            }
-
             .orbital-node {
                 width: 48px;
                 height: 48px;
@@ -1036,11 +1071,6 @@
                 height: 95px;
             }
 
-            .hub-inner {
-                width: 52px;
-                height: 52px;
-            }
-
             .orbital-node {
                 width: 42px;
                 height: 42px;
@@ -1075,14 +1105,18 @@
     <div class="mobile-nav" id="mobileNav">
         <a href="#hero" onclick="closeMobileNav()">Home</a>
         <a href="#about" onclick="closeMobileNav()">About Us</a>
-        <div style="text-align:center; margin: 0.5rem 0;">
-            <span
-                style="font-size:1rem; color: var(--typography-muted); text-transform:uppercase; letter-spacing:2px; font-weight:600;">Pre-Built
-                Tools</span>
-        </div>
-        <a href="/growx" style="font-size:1.4rem;" onclick="closeMobileNav()">GrowX</a>
-        <a href="#" style="font-size:1.4rem; opacity:0.5; pointer-events:none;">Culture LMS</a>
-        <a href="#contact" class="btn-liquid-glass" onclick="closeMobileNav()"><span>Get Started</span></a>
+
+        <details class="mobile-nav-dropdown">
+            <summary>Pre-Built Tools ▾</summary>
+            <div class="mobile-dropdown-content">
+                <a href="/growx" onclick="closeMobileNav()">GrowX</a>
+                <a href="#" style="opacity:0.5; pointer-events:none;">Culture LMS</a>
+            </div>
+        </details>
+
+        <a href="#contact" class="btn-liquid-glass"
+            style="font-size:1.5rem; padding: 0.8rem 2.2rem; border-radius: 30px;" onclick="closeMobileNav()"><span>Get
+                Started</span></a>
     </div>
 
     <!-- Ambient background -->
