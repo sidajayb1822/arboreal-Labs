@@ -28,6 +28,8 @@
             --card-border: rgba(255, 255, 255, 0.1);
             --glass-shadow: 0 8px 48px 0 rgba(102, 212, 106, 0.12);
             --glow-primary: rgba(102, 212, 106, 0.28);
+            --accent-yellow: #f1c40f;
+            --glow-yellow: rgba(241, 196, 15, 0.35);
             --font-heading: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
         }
@@ -72,47 +74,61 @@
 
         .blob {
             position: absolute;
-            filter: blur(80px);
-            opacity: 0.4;
+            filter: blur(110px);
+            opacity: 0.45;
             animation: float 10s infinite alternate ease-in-out;
             border-radius: 50%;
         }
 
         .blob-1 {
-            width: 400px;
-            height: 400px;
+            width: 560px;
+            height: 560px;
             background: radial-gradient(circle, #2d7a33 0%, rgba(43, 100, 48, 0.3) 100%);
-            top: -100px;
-            left: -100px;
+            top: -180px;
+            left: -120px;
             animation-duration: 12s;
         }
 
         .blob-2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #0d4a5a 0%, rgba(13, 60, 74, 0.2) 100%);
-            bottom: -200px;
-            right: -100px;
+            width: 650px;
+            height: 650px;
+            background: radial-gradient(circle, #0d4a5a 0%, rgba(13, 60, 74, 0.25) 100%);
+            bottom: -280px;
+            right: -180px;
             animation-duration: 15s;
         }
 
         .blob-3 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(180, 140, 40, 0.4) 0%, rgba(160, 120, 30, 0.05) 100%);
-            top: 40%;
-            left: 40%;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(180, 140, 40, 0.55) 0%, rgba(160, 120, 30, 0.1) 100%);
+            top: 35%;
+            left: 38%;
             animation-duration: 9s;
-            opacity: 0.15;
+            opacity: 0.35;
+        }
+
+        .blob-4 {
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, #1a3d5c 0%, rgba(26, 50, 80, 0.15) 100%);
+            top: 60%;
+            right: 18%;
+            animation-duration: 14s;
+            animation-delay: 2s;
         }
 
         @keyframes float {
             0% {
-                transform: translate(0, 0) scale(1);
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(40px, -30px) scale(1.15) rotate(180deg);
             }
 
             100% {
-                transform: translate(30px, 50px) scale(1.1);
+                transform: translate(30px, 50px) scale(1.1) rotate(360deg);
             }
         }
 
@@ -315,7 +331,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(236, 236, 235, 0.97);
+            background: rgba(9, 14, 11, 0.97);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             z-index: 99;
@@ -379,8 +395,8 @@
             flex-direction: column;
             gap: 1.2rem;
             margin-top: 1.2rem;
-            background: rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 1.5rem;
             border-radius: 12px;
         }
@@ -388,6 +404,25 @@
         .mobile-dropdown-content a {
             font-size: 1.2rem !important;
             transform: none !important;
+        }
+
+        /* Override glass button inside mobile nav - use solid style */
+        .mobile-nav .btn-liquid-glass {
+            background: var(--primary) !important;
+            color: #fff !important;
+            border-radius: 30px;
+            padding: 0.8rem 2.2rem;
+            font-size: 1.1rem !important;
+            box-shadow: 0 4px 20px rgba(102, 212, 106, 0.3);
+        }
+
+        .mobile-nav .btn-liquid-glass::before,
+        .mobile-nav .btn-liquid-glass::after {
+            display: none !important;
+        }
+
+        .mobile-nav .btn-liquid-glass span {
+            color: #fff !important;
         }
 
         /* Buttons */
@@ -1162,6 +1197,7 @@
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
     </div>
 
     <!-- Navigation -->
@@ -1415,8 +1451,7 @@
                         <li>Priority Support</li>
                     </ul>
                 </div>
-                <a href="#contact" class="btn btn-full" style="background: var(--typography); color: white;">Contact
-                    Sales</a>
+                <a href="#contact" class="btn-liquid-glass btn-full"><span>Contact Sales</span></a>
             </div>
         </div>
     </section>

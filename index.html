@@ -317,6 +317,25 @@
             transform: none !important;
         }
 
+        /* Override glass button inside mobile nav - use solid style */
+        .mobile-nav .btn-liquid-glass {
+            background: var(--primary) !important;
+            color: #fff !important;
+            border-radius: 30px;
+            padding: 0.8rem 2.2rem;
+            font-size: 1.1rem !important;
+            box-shadow: 0 4px 20px rgba(102, 212, 106, 0.3);
+        }
+
+        .mobile-nav .btn-liquid-glass::before,
+        .mobile-nav .btn-liquid-glass::after {
+            display: none !important;
+        }
+
+        .mobile-nav .btn-liquid-glass span {
+            color: #fff !important;
+        }
+
         /* Buttons */
         .btn {
             padding: 0.8rem 1.8rem;
@@ -426,6 +445,18 @@
         .btn-liquid-glass span {
             position: relative;
             z-index: 10;
+            color: #1a3a1c;
+        }
+
+        /* Override glass button in info card modal */
+        .info-card-footer .btn {
+            background: var(--primary) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 15px rgba(67, 118, 63, 0.3) !important;
+        }
+
+        .info-card-footer .btn:hover {
+            background-color: #4ea852 !important;
         }
 
         /* Hero Section with Orbital Animation */
@@ -1266,7 +1297,7 @@
                 category: "Pre-Built Ecosystem",
                 icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>`,
                 content: "A specialized Project Management CRM tailored for scaling marketing agencies. Automate client onboarding, campaign tracking, and ROI reporting through AI-driven insights.",
-                link: "/growx",
+                link: window.location.protocol === 'file:' ? 'crm-features.html' : '/growx',
                 orbit: "outer"
             },
             {
