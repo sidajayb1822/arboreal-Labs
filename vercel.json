@@ -1,6 +1,6 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
+  "buildCommand": "cd arboreal-next && npm run build",
+  "outputDirectory": "arboreal-next/.next",
+  "installCommand": "cd arboreal-next && npm install",
   "framework": "nextjs"
 }
