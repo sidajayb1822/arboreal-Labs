@@ -60,7 +60,7 @@ export default function Navbar({ ctaHref = '#contact' }: { ctaHref?: string }) {
             alt="Arboreal Labs Logo"
             width={200}
             height={90}
-            style={{ width: 'auto', height: '90px' }}
+            style={{ width: 'auto' }}
             priority
           />
         </Link>

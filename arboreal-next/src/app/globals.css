@@ -897,7 +897,7 @@ footer {
   opacity: 0.82;
   line-height: 1.75;
   margin: 0;
-  max-width: 460px;
+  max-width: 100%;
 }
 
 .ocp-actions {
@@ -976,9 +976,15 @@ footer {
 
 @media (max-width: 768px) {
   .orbital-main { width: min(700px, 100vw); height: min(700px, 100vw); }
-  .orbital-content-panel { padding: 2rem; }
+  .orbital-content-panel { padding: 1.8rem; gap: 0.9rem; }
   .ocp-title { font-size: 1.4rem; }
   .orbital-node-sidebar.visible { margin-right: 0.75rem; }
+  /* Reduce blob sizes on mobile to save CPU/battery */
+  .blob { filter: blur(70px); opacity: 0.3; }
+  .blob-1 { width: 320px; height: 320px; }
+  .blob-2 { width: 380px; height: 380px; }
+  .blob-3 { width: 240px; height: 240px; }
+  .blob-4 { width: 220px; height: 220px; }
 }
 
 @keyframes pulse-hub {
@@ -1412,11 +1418,11 @@ input:checked + .slider:before { transform: translateX(26px); }
   .orbital-node { width: 48px; height: 48px; margin-left: -24px; margin-top: -24px; }
   .node-icon { font-size: 18px; }
   .node-icon svg { width: 20px; height: 20px; }
-  .node-label { top: 54px; font-size: 0.65rem; }
+  .node-label { top: 54px; font-size: 0.75rem; }
   .node-glow { width: 60px; height: 60px; }
-  .info-card { max-width: 92%; padding: 1.2rem; border-radius: 16px; }
-  .info-card-title { font-size: 1.2rem; }
-  .info-card-content { font-size: 0.9rem; line-height: 1.6; }
+  /* Mobile nav: scroll container so it never overflows viewport */
+  .mobile-nav { max-height: 100dvh; overflow-y: auto; padding: 2rem 1.5rem; }
+  .mobile-dropdown-content { max-width: 300px; margin: 0 auto; }
 
   .page-header { padding: 3rem 1.2rem 1rem; }
   .page-header h1 { font-size: 1.8rem; }
@@ -1447,13 +1453,50 @@ input:checked + .slider:before { transform: translateX(26px); }
   .central-hub { width: 64px; height: 64px; }
   .central-hub::before { width: 80px; height: 80px; }
   .central-hub::after { width: 95px; height: 95px; }
-  .hub-inner { width: 200px; height: 200px; }
-  .orbital-node { width: 42px; height: 42px; margin-left: -21px; margin-top: -21px; }
+  .hub-inner { width: 190px; height: 190px; }
+  /* 44px minimum touch target for accessibility */
+  .orbital-node { width: 44px; height: 44px; margin-left: -22px; margin-top: -22px; }
   .node-icon svg { width: 18px; height: 18px; }
-  .node-label { top: 48px; font-size: 0.6rem; }
-  .info-card { max-width: 96%; padding: 1rem; }
+  .node-label { top: 50px; font-size: 0.72rem; }
   .page-header h1 { font-size: 1.5rem; }
   .page-header p { font-size: 0.9rem; }
   .sub-nav a { font-size: 0.7rem; padding: 0.35rem 0.6rem; }
   .section-title { font-size: 1.3rem; }
+  .plan-price { font-size: 1.9rem; }
+  .popular-badge { font-size: 0.72rem; padding: 0.4rem 1.1rem; top: -12px; }
+  .feature-item h3 { font-size: 1.1rem; }
+  .logo-svg { height: 50px; }
+  .ocp-title { font-size: 1.2rem; }
+  .ocp-body { font-size: 0.88rem; }
+  .orbital-content-panel { padding: 1.4rem; }
+}
+
+/* Extra small screens — 375px and below */
+@media (max-width: 375px) {
+  .hero-text h1 { font-size: 1.45rem; }
+  .logo-svg { height: 44px; }
+  .orbital-timeline { height: 360px; }
+  .orbit-ring.inner-orbit { width: 160px; height: 160px; }
+  .orbit-ring.outer-orbit { width: 250px; height: 250px; }
+  .central-hub { width: 54px; height: 54px; }
+  .central-hub::before { width: 68px; height: 68px; }
+  .central-hub::after { width: 82px; height: 82px; }
+  .hub-inner { width: 155px; height: 155px; }
+  .orbital-node { width: 40px; height: 40px; margin-left: -20px; margin-top: -20px; }
+  .node-label { font-size: 0.65rem; }
+  .plan-price { font-size: 1.6rem; }
+  .ocp-title { font-size: 1.1rem; }
+  .orbital-content-panel { padding: 1.2rem; gap: 0.75rem; }
+  .section-title { font-size: 1.15rem; }
+  .feature-item h3 { font-size: 1rem; }
+  .page-header h1 { font-size: 1.3rem; }
+  .mobile-nav a { font-size: 1.25rem; }
+  .mobile-nav-dropdown summary { font-size: 1.25rem; }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none; }
+  .feature-icon-wrapper { animation: none; }
+  .back-to-top { transition: none; }
 }
