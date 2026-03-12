@@ -7,9 +7,116 @@ import BackToTop from '@/components/BackToTop'
 import SubNav from '@/components/SubNav'
 import PricingSection from '@/components/PricingSection'
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://arboreallabs.com'
+
 export const metadata: Metadata = {
-  title: 'GrowX - Arboreal Labs',
-  description: 'A specialized suite built for scaling agencies. Master your operations with integrated project management, financial tracking, and intelligent pipeline workflows.',
+  title: 'GrowX – Project Management CRM for Marketing Agencies',
+  description:
+    'GrowX by Arboreal Labs is a project management CRM built for scaling marketing agencies. Manage clients, track finances, automate onboarding, and close more deals. Try it free.',
+  alternates: {
+    canonical: `${SITE_URL}/growx`,
+  },
+  openGraph: {
+    title: 'GrowX – Project Management CRM for Marketing Agencies | Arboreal Labs',
+    description:
+      'GrowX is a project management CRM for scaling agencies. Manage clients, track finances, automate onboarding, and close more deals.',
+    url: `${SITE_URL}/growx`,
+    type: 'website',
+  },
+  twitter: {
+    title: 'GrowX – Project Management CRM for Marketing Agencies',
+    description:
+      'Project management CRM for scaling agencies. Manage clients, track finances, and close more deals with GrowX.',
+  },
+}
+
+const growxSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${SITE_URL}/growx#software`,
+      name: 'GrowX',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      url: `${SITE_URL}/growx`,
+      description:
+        'GrowX is a specialized Project Management CRM tailored for scaling marketing agencies. Automate client onboarding, manage projects and milestones, track finances, and manage your lead pipeline.',
+      offers: {
+        '@type': 'AggregateOffer',
+        priceCurrency: 'USD',
+        lowPrice: '0',
+        offerCount: '3',
+        offers: [
+          {
+            '@type': 'Offer',
+            name: 'Starter',
+            price: '0',
+            priceCurrency: 'USD',
+            description: 'Free plan for small teams',
+          },
+          {
+            '@type': 'Offer',
+            name: 'Pro',
+            price: '49',
+            priceCurrency: 'USD',
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              price: '49',
+              priceCurrency: 'USD',
+              billingIncrement: 1,
+              unitCode: 'MON',
+            },
+          },
+        ],
+      },
+      featureList: [
+        'Role-based access control',
+        'Project and milestone management',
+        'Client visibility controls',
+        'Financial cost tracker',
+        'Lead pipeline management',
+        'Team management and onboarding',
+        'Real-time analytics and reporting',
+      ],
+      publisher: {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'Arboreal Labs',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${SITE_URL}/home`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'GrowX',
+          item: `${SITE_URL}/growx`,
+        },
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}/growx#webpage`,
+      url: `${SITE_URL}/growx`,
+      name: 'GrowX – Project Management CRM for Marketing Agencies | Arboreal Labs',
+      isPartOf: {
+        '@type': 'WebSite',
+        url: SITE_URL,
+        name: 'Arboreal Labs',
+      },
+      inLanguage: 'en-US',
+      description:
+        'GrowX is a project management CRM for scaling marketing agencies. Manage clients, projects, finances, and leads in one platform.',
+    },
+  ],
 }
 
 const features = [
@@ -65,6 +172,10 @@ const features = [
 export default function GrowXPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(growxSchema) }}
+      />
       <ScrollProgress />
       <Blobs />
       <Navbar ctaHref="#pricing" />
