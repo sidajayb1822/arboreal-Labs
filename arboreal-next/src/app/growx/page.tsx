@@ -188,7 +188,7 @@ export default function GrowXPage() {
       </header>
 
       <section className="container" id="features">
-        <div className="glass-panel animate-on-scroll">
+        <div className="glass-panel">
           <h2 className="section-title">Core Platform Features</h2>
           <div className="feature-grid">
             {features.map(f => (

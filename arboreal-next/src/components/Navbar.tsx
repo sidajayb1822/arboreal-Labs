@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Navbar({ ctaHref = '#contact' }: { ctaHref?: string }) {
   const [scrolled, setScrolled] = useState(false)
