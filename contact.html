@@ -102,23 +102,23 @@
       <form id="contact-form" class="contact-form hero-fade" onsubmit="handleSubmit(event)">
         <div class="input-group">
           <label for="name">Full Name</label>
-          <input type="text" id="name" placeholder="John Doe" required />
+          <input type="text" id="name" name="Full Name" placeholder="John Doe" required />
         </div>
         <div class="input-group">
           <label for="company">Name of Company</label>
-          <input type="text" id="company" placeholder="Arboreal Systems Inc." required />
+          <input type="text" id="company" name="Company" placeholder="Arboreal Systems Inc." required />
         </div>
         <div class="input-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="john@company.com" required />
+          <input type="email" id="email" name="Email" placeholder="john@company.com" required />
         </div>
         <div class="input-group">
           <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" placeholder="+1 (555) 000-0000" required />
+          <input type="tel" id="phone" name="Phone" placeholder="+1 (555) 000-0000" required />
         </div>
         <div class="input-group">
           <label for="interest">What are you interested in?</label>
-          <select id="interest" required style="background: rgba(240, 242, 245, 0.02); border: 1px solid var(--glass-border); padding: 1rem; color: var(--lunar-white); font-family: var(--font-body); border-radius: 8px; outline: none; appearance: auto; transition: border-color 0.3s ease;">
+          <select id="interest" name="Interest" required style="background: rgba(240, 242, 245, 0.02); border: 1px solid var(--glass-border); padding: 1rem; color: var(--lunar-white); font-family: var(--font-body); border-radius: 8px; outline: none; appearance: auto; transition: border-color 0.3s ease;">
             <option value="" disabled selected style="color: #11131A">Select an area of interest...</option>
             <option value="GrowX" style="color: #11131A">GrowX</option>
             <option value="Athena" style="color: #11131A">Athena</option>
