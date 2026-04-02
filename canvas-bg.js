@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
             vec3 spaceCharcoal = vec3(0.066, 0.074, 0.102); // #11131A
             vec3 marsRed = vec3(0.65, 0.05, 0.05); // Deep Dark Red
             vec3 darkRed = vec3(0.15, 0.0, 0.0);   // Void Red
+            vec3 darkPurple = vec3(0.35, 0.0, 0.45); // Deep Flowing Purple
+            vec3 deepPurple = vec3(0.1, 0.0, 0.2); // Void Purple
 
             float hash(vec2 p) {
                 p = fract(p * vec2(123.34, 456.21));
@@ -99,7 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     vec3 p = ro + rd * t;
                     float density = map(p);
                     if (density > 0.0) {
-                        vec3 auroraColor = mix(darkRed, marsRed, sin(p.x * 2.0 + iTime) * 0.5 + 0.5);
+                        vec3 redMix = mix(darkRed, marsRed, sin(p.x * 2.0 + iTime) * 0.5 + 0.5);
+                        vec3 purpleMix = mix(deepPurple, darkPurple, cos(p.y * 2.0 - iTime * 0.8) * 0.5 + 0.5);
+                        vec3 auroraColor = mix(redMix, purpleMix, sin(p.z * 1.5 + p.x * 0.5 + iTime * 1.2) * 0.5 + 0.5);
                         col += auroraColor * density * 0.12 * uColorIntensity;
                     }
                     t += 0.12;

@@ -69,13 +69,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. Text Stagger Logic (Split string to words)
   const animTexts = document.querySelectorAll('.hero-anim-text');
   animTexts.forEach(textEl => {
-    // Basic text split to preserve space by explicitly applying &nbsp;
-    const text = textEl.innerHTML;
-    // We only process it if it doesn't contain complex inner HTML, but here we expect raw text or simple spans.
-    const words = textEl.innerText.split(" ").map(w => `<span class="word"><span class="char">${w}&nbsp;</span></span>`).join('');
-    // Notice: if there was inner HTML (e.g. <span class="span-red">) it will be stripped and replaced by innerText.
-    // For specific pages we will define colors directly via CSS or structure logic to bypass this simple parser safely.
-    textEl.innerHTML = words;
+    let resultHTML = "";
+    Array.from(textEl.childNodes).forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent;
+        const words = text.split(" ");
+        resultHTML += words.map((w, i) => {
+          if (w === "") return (i < words.length - 1) ? "&nbsp;" : "";
+          return `<span class="word"><span class="char">${w}</span></span>` + ((i < words.length - 1) ? "&nbsp;" : "");
+        }).join('');
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        const clone = node.cloneNode(true);
+        if(clone.innerText) {
+           const text = clone.innerText;
+           const words = text.split(" ");
+           clone.innerHTML = words.map((w, i) => {
+             if (w === "") return (i < words.length - 1) ? "&nbsp;" : "";
+             return `<span class="word"><span class="char">${w}</span></span>` + ((i < words.length - 1) ? "&nbsp;" : "");
+           }).join('');
+        }
+        resultHTML += clone.outerHTML;
+      }
+    });
+    textEl.innerHTML = resultHTML;
   });
 
   // 4. Preloader & Hero Timeline
