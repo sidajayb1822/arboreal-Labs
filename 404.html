@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Arboreal Labs</title>
+  <meta name="description" content="The digital environment you requested does not exist in our current architecture.">
+  <link rel="icon" href="/Light favicon.png" type="image/png">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+
+  <div class="custom-cursor"></div>
+  <div class="preloader">ARBOREAL_LABS /// The_Future_is_NOW!</div>
+  <div class="film-grain"></div>
+
+  <div class="canvas-container">
+    <div class="ambient-glow"></div>
+    <canvas id="shader-canvas"></canvas>
+    <canvas id="thermo-canvas"></canvas>
+    <div class="gradient-fade"></div>
+  </div>
+
+  <nav>
+    <div class="logo" style="display: flex; align-items: center;">
+      <a href="/" style="display: flex; align-items: center; border: none; text-decoration: none;"><img
+          src="/Light whole logo.png" alt="Arboreal Labs" style="height: 60px; width: auto; object-fit: contain;"></a>
+    </div>
+    <div class="hamburger-btn">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="nav-links">
+      <a href="/">Architecture</a>
+      <a href="/custom-solutions">Custom Systems</a>
+      <a href="/website-solutions">Web Deployment</a>
+      <div class="dropdown">
+        <a style="cursor: default;" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">Platforms <i
+            class="ph ph-caret-down"></i></a>
+        <div class="dropdown-content">
+          <a href="/growx">GrowX CRM</a>
+          <a href="/athenalms">Athena LMS</a>
+        </div>
+      </div>
+      <a href="/contact" class="btn-primary magnetic">Initialize</a>
+    </div>
+  </nav>
+
+  <main class="page-header container" style="display: flex; align-items: center; justify-content: center; min-height: 75vh; text-align: center;">
+    <div class="scroll-reveal" style="display: flex; flex-direction: column; align-items: center;">
+      <p class="tagline hero-fade" style="margin-bottom: 1rem;">System Error 404</p>
+      <h1 class="hero-anim-text" style="font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 0;">PAGE NOT <span class="span-red">FOUND</span></h1>
+      <p class="hero-fade" style="font-size: 1.25rem; max-width: 600px; margin: 2rem auto;">The digital environment you requested does not exist in our current architecture. It may have been relocated or removed.</p>
+      <div class="hero-fade">
+        <a href="/" class="btn-primary magnetic">Return to Main Architecture</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Arboreal Labs. Engineered for tomorrow's baseline.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/canvas-bg.js" defer></script>
+  <script src="/script.js" defer></script>
+</body>
+
+</html>
