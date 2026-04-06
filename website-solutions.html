@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>High-Performance Web Development | Arboreal Labs</title>
-  <meta name="description" content="Deploy high-conversion, search-optimized websites and landing environments engineered by Arboreal Labs for maximum acquisition.">
+  <meta name="description"
+    content="Deploy high-conversion, search-optimized websites and landing environments engineered by Arboreal Labs for maximum acquisition.">
   <link rel="canonical" href="https://arboreallabs.com/website-solutions">
 
   <!-- Open Graph -->
   <meta property="og:title" content="High-Performance Web Development | Arboreal Labs">
-  <meta property="og:description" content="Deploy high-conversion, search-optimized websites and landing environments engineered by Arboreal Labs for maximum acquisition.">
+  <meta property="og:description"
+    content="Deploy high-conversion, search-optimized websites and landing environments engineered by Arboreal Labs for maximum acquisition.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://arboreallabs.com/website-solutions">
   <meta property="og:image" content="https://arboreallabs.com/Light%20whole%20logo.png">
@@ -24,21 +27,23 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
+
 <body>
 
   <div class="custom-cursor"></div>
   <div class="film-grain"></div>
-  
+
   <div class="canvas-container">
     <div class="ambient-glow"></div>
     <canvas id="shader-canvas"></canvas>
     <canvas id="thermo-canvas"></canvas>
     <div class="gradient-fade"></div>
   </div>
-  
+
   <nav>
     <div class="logo" style="display: flex; align-items: center;">
-      <a href="index.html" style="display: flex; align-items: center; border: none; text-decoration: none;"><img src="Light whole logo.png" alt="Arboreal Labs" style="height: 60px; width: auto; object-fit: contain;"></a>
+      <a href="index.html" style="display: flex; align-items: center; border: none; text-decoration: none;"><img
+          src="Light whole logo.png" alt="Arboreal Labs" style="height: 60px; width: auto; object-fit: contain;"></a>
     </div>
     <div class="hamburger-btn">
       <span></span><span></span><span></span>
@@ -48,7 +53,8 @@
       <a href="/custom-solutions">Custom Systems</a>
       <a href="/website-solutions" class="span-red">Web Deployment</a>
       <div class="dropdown">
-        <a style="cursor: default;" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">Platforms <i class="ph ph-caret-down"></i></a>
+        <a style="cursor: default;" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">Platforms <i
+            class="ph ph-caret-down"></i></a>
         <div class="dropdown-content">
           <a href="/growx">GrowX CRM</a>
           <a href="/athenalms">Athena LMS</a>
@@ -65,7 +71,10 @@
         <span class="hero-anim-text" style="margin-bottom: 0;">HIGH-PERFORMANCE WEB</span>
         <span class="hero-anim-text span-red">ARCHITECTURE</span>
       </h1>
-      <p class="hero-fade" style="font-size: 1.25rem;">A digital presence must be more than aesthetic; it requires structural integrity and performance capability. Arboreal Labs engineers bespoke high-conversion websites and landing environments across diverse sectors. From focused acquisition pages to dynamic corporate infrastructures, we build digital experiences that generate measurable action.</p>
+      <p class="hero-fade" style="font-size: 1.25rem;">A digital presence must be more than aesthetic; it requires
+        structural integrity and performance capability. Arboreal Labs engineers bespoke high-conversion websites and
+        landing environments across diverse sectors. From focused acquisition pages to dynamic corporate
+        infrastructures, we build digital experiences that generate measurable action.</p>
     </div>
 
     <section class="scroll-reveal" style="padding: 4rem 0;">
@@ -73,17 +82,282 @@
       <div class="grid">
         <div class="glass-card">
           <h3 style="font-size: 1.2rem;"><i class="ph ph-target"></i> Acquisition Landing Pages</h3>
-          <p>Hyper-focused, high-velocity pages engineered to maximize data capture for your lead-generation operations.</p>
+          <p>Hyper-focused, high-velocity pages engineered to maximize data capture for your lead-generation operations.
+          </p>
         </div>
         <div class="glass-card">
           <h3 style="font-size: 1.2rem;"><i class="ph ph-buildings"></i> Corporate Infrastructures</h3>
-          <p>Premium digital platforms that project absolute authority, integrate natively with your operational backend, and clearly articulate your capabilities.</p>
+          <p>Premium digital platforms that project absolute authority, integrate natively with your operational
+            backend, and clearly articulate your capabilities.</p>
         </div>
         <div class="glass-card">
           <h3 style="font-size: 1.2rem;"><i class="ph ph-squares-four"></i> Sector-Specific Configs</h3>
-          <p>Tailored UX/UI systems optimized specifically for target demographics in real estate, education, eCommerce, and emerging tech.</p>
+          <p>Tailored UX/UI systems optimized specifically for target demographics in real estate, education, eCommerce,
+            and emerging tech.</p>
         </div>
       </div>
+    </section>
+
+    <section class="scroll-reveal" style="padding: 4rem 0; position: relative;">
+      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 2rem; text-align: center;">Continuous
+        Optimization Loop</h2>
+
+      <style>
+        .feedback-loop-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          overflow: visible;
+          padding: 2rem 0;
+          perspective: 1000px;
+        }
+
+        .loop-container {
+          position: relative;
+          width: 600px;
+          height: 400px;
+          max-width: 100%;
+          aspect-ratio: 1 / 1;
+          transform-style: preserve-3d;
+          transition: transform 0.1s ease-out;
+        }
+
+        .loop-svg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .loop-path-line {
+          fill: none;
+          stroke: rgba(240, 242, 245, 0.15);
+          /* Lunar white semi-transparent */
+          stroke-width: 2;
+          stroke-dasharray: 6 6;
+        }
+
+        .loop-node {
+          position: absolute;
+          width: calc(50% - 15px);
+          max-width: 280px;
+          z-index: 2;
+          background: rgba(17, 19, 26, 0.6);
+          /* Space Charcoal, Glassmorphism */
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(240, 242, 245, 0.1);
+          border-radius: 12px;
+          padding: 1.25rem;
+          transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .loop-node:hover {
+          transform: scale(1.02);
+          border-color: #FF3B3B;
+          /* Mars Red */
+        }
+
+        .loop-node-1 {
+          top: 30px;
+          left: 0;
+          box-shadow: 0 0 20px rgba(255, 59, 59, 0.15);
+          border-color: rgba(255, 59, 59, 0.3);
+        }
+
+        .loop-node-2 {
+          top: 30px;
+          right: 0;
+        }
+
+        .loop-node-3 {
+          bottom: 30px;
+          right: 0;
+        }
+
+        .loop-node-4 {
+          bottom: 30px;
+          left: 0;
+        }
+
+        .node-title {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 1.15rem;
+          color: #F0F2F5;
+          /* Lunar White */
+          margin-bottom: 0.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .node-subtitle {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.75rem;
+          color: #FF3B3B;
+          letter-spacing: 0.05em;
+          margin-bottom: 0.25rem;
+          text-transform: uppercase;
+        }
+
+        .node-desc {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.85rem;
+          color: rgba(240, 242, 245, 0.8);
+          line-height: 1.5;
+          margin-bottom: 0;
+        }
+
+        .indicator-dot {
+          width: 8px;
+          height: 8px;
+          background-color: #FF3B3B;
+          border-radius: 50%;
+          box-shadow: 0 0 8px #FF3B3B;
+          animation: pulseNode 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseNode {
+          0% {
+            opacity: 0.4;
+            box-shadow: 0 0 4px #FF3B3B;
+          }
+
+          50% {
+            opacity: 1;
+            box-shadow: 0 0 12px #FF3B3B;
+          }
+
+          100% {
+            opacity: 0.4;
+            box-shadow: 0 0 4px #FF3B3B;
+          }
+        }
+
+        @media (max-width: 850px) {
+          .loop-container {
+            height: auto;
+            aspect-ratio: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            padding: 1rem;
+          }
+
+          .loop-svg {
+            display: none;
+          }
+
+          .loop-node {
+            position: static;
+            width: 100%;
+            max-width: 100%;
+          }
+        }
+      </style>
+
+      <div class="feedback-loop-wrapper" id="loop-wrapper">
+        <div class="loop-container" id="loop-container">
+
+          <svg class="loop-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <filter id="glow-particle" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <rect x="140" y="110" width="320" height="380" rx="30" class="loop-path-line" />
+
+            <circle r="6" fill="#FF3B3B" filter="url(#glow-particle)">
+              <animateMotion dur="10s" repeatCount="indefinite"
+                path="M 170 110 L 430 110 A 30 30 0 0 1 460 140 L 460 460 A 30 30 0 0 1 430 490 L 170 490 A 30 30 0 0 1 140 460 L 140 140 A 30 30 0 0 1 170 110 Z" />
+            </circle>
+
+            <circle r="6" fill="#FF3B3B" filter="url(#glow-particle)">
+              <animateMotion dur="10s" repeatCount="indefinite" begin="-3.33s"
+                path="M 170 110 L 430 110 A 30 30 0 0 1 460 140 L 460 460 A 30 30 0 0 1 430 490 L 170 490 A 30 30 0 0 1 140 460 L 140 140 A 30 30 0 0 1 170 110 Z" />
+            </circle>
+
+            <circle r="6" fill="#FF3B3B" filter="url(#glow-particle)">
+              <animateMotion dur="10s" repeatCount="indefinite" begin="-6.66s"
+                path="M 170 110 L 430 110 A 30 30 0 0 1 460 140 L 460 460 A 30 30 0 0 1 430 490 L 170 490 A 30 30 0 0 1 140 460 L 140 140 A 30 30 0 0 1 170 110 Z" />
+            </circle>
+          </svg>
+
+          <div class="loop-node loop-node-1">
+            <div class="node-subtitle">LIVE BASELINE</div>
+            <h3 class="node-title" style="margin-bottom: 0;">Website</h3>
+          </div>
+
+          <div class="loop-node loop-node-2">
+            <h3 class="node-title">
+              <div class="indicator-dot"></div> Diagnostic Audit
+            </h3>
+            <p class="node-desc">Baseline health checks and performance monitoring to identify expansion opportunities.
+            </p>
+          </div>
+
+          <div class="loop-node loop-node-3">
+            <h3 class="node-title">
+              <div class="indicator-dot"></div> Strategic Tuning
+            </h3>
+            <p class="node-desc">Calibrating for high-reach AI ranking and traditional search engine dominance.</p>
+          </div>
+
+          <div class="loop-node loop-node-4">
+            <h3 class="node-title">
+              <div class="indicator-dot"></div> Iterative Tweaks
+            </h3>
+            <p class="node-desc">Precise adjustments that excel the website reach beyond standard metrics.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const wrapper = document.getElementById("loop-wrapper");
+          const container = document.getElementById("loop-container");
+
+          const isMobile = () => window.innerWidth <= 850;
+
+          if (wrapper && container) {
+            wrapper.addEventListener("mousemove", (e) => {
+              if (isMobile()) return;
+
+              const rect = wrapper.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+
+              const deltaX = (x - centerX) / centerX;
+              const deltaY = (y - centerY) / centerY;
+
+              container.style.transform = `translate(${deltaX * -20}px, ${deltaY * -20}px) rotateY(${deltaX * 5}deg) rotateX(${deltaY * -5}deg)`;
+            });
+
+            wrapper.addEventListener("mouseleave", () => {
+              if (isMobile()) return;
+              container.style.transform = `translate(0px, 0px) rotateY(0deg) rotateX(0deg)`;
+            });
+          }
+        });
+      </script>
     </section>
 
     <section class="scroll-reveal" style="padding: 4rem 0;">
@@ -91,15 +365,18 @@
       <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
         <div class="glass-card">
           <h3 style="font-size: 1.2rem; color: var(--mars-red);">Bespoke Design Systems</h3>
-          <p>No templates. Every environment is precision-crafted with structural typography, tactical layouts, and fluid micro-animations.</p>
+          <p>No templates. Every environment is precision-crafted with structural typography, tactical layouts, and
+            fluid micro-animations.</p>
         </div>
         <div class="glass-card">
           <h3 style="font-size: 1.2rem; color: var(--mars-red);">Conversion-Engineered UX</h3>
-          <p>Every interaction point and user journey is calculated to drive maximum engagement and lead acquisition.</p>
+          <p>Every interaction point and user journey is calculated to drive maximum engagement and lead acquisition.
+          </p>
         </div>
         <div class="glass-card">
           <h3 style="font-size: 1.2rem; color: var(--mars-red);">Maximum Velocity</h3>
-          <p>Constructed with lightweight, modern codebases. Flawless execution and instant load times across all mobile and desktop devices.</p>
+          <p>Constructed with lightweight, modern codebases. Flawless execution and instant load times across all mobile
+            and desktop devices.</p>
         </div>
         <div class="glass-card">
           <h3 style="font-size: 1.2rem; color: var(--mars-red);">Search-Optimized</h3>
@@ -121,4 +398,5 @@
   <script src="canvas-bg.js" defer></script>
   <script src="script.js" defer></script>
 </body>
+
 </html>
