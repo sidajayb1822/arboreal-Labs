@@ -157,7 +157,7 @@
 
       const form = document.getElementById('contact-form');
 
-      // Localhost bypass — FormSubmit blocks local origins
+      // Localhost bypass: FormSubmit blocks local origins
       const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
       if (isLocal) {
         setTimeout(() => showSuccess(btn), 600);

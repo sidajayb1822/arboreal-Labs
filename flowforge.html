@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowForge OS | Manufacturing & Inventory Operations Platform | Arboreal Labs</title>
+  <meta name="description" content="FlowForge OS unifies orders, inventory, BOMs, production planning, procurement and fulfilment in one real-time platform, with shortage intelligence, full stock traceability, and margin-aware sales.">
+  <meta name="keywords" content="manufacturing ERP, inventory management, BOM, production planning, goods receipt, work orders, shop floor, MRP, stock control">
+  <link rel="canonical" href="https://arboreallabs.com/flowforge">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="FlowForge OS | Manufacturing & Inventory Operations Platform">
+  <meta property="og:description" content="The operating system for the factory floor: one platform for orders, inventory, BOMs, production planning, procurement and fulfilment, with shortage intelligence and full traceability.">
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://arboreallabs.com/flowforge">
+  <meta property="og:image" content="https://arboreallabs.com/Light%20whole%20logo.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FlowForge OS | Manufacturing Operations">
+  <meta name="twitter:description" content="One platform for orders, inventory, BOMs, production planning, procurement and fulfilment: real-time, traceable, margin-aware.">
+  <meta name="twitter:image" content="https://arboreallabs.com/Light%20whole%20logo.png">
+
+  <link rel="icon" href="Light favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Schema.org SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "FlowForge OS",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Manufacturing & Inventory Operations Platform: orders, inventory, BOMs, production planning, procurement and fulfilment in one real-time platform.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Arboreal Labs"
+    }
+  }
+  </script>
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Arboreal Labs",
+    "url": "https://arboreallabs.com/",
+    "logo": "https://arboreallabs.com/Light%20whole%20logo.png"
+  }
+  </script>
+</head>
+<body>
+
+  <div class="custom-cursor"></div>
+  <div class="film-grain"></div>
+
+  <div class="canvas-container">
+    <div class="ambient-glow"></div>
+    <canvas id="shader-canvas"></canvas>
+    <canvas id="thermo-canvas"></canvas>
+    <div class="gradient-fade"></div>
+  </div>
+
+  <nav>
+    <div class="logo" style="display: flex; align-items: center;">
+      <a href="index.html" style="display: flex; align-items: center; border: none; text-decoration: none;"><img src="Light whole logo.png" alt="Arboreal Labs" style="height: 60px; width: auto; object-fit: contain;"></a>
+    </div>
+    <div class="hamburger-btn">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="nav-links">
+      <a href="/">Architecture</a>
+      <a href="/custom-solutions">Custom Systems</a>
+      <a href="/website-solutions">Web Deployment</a>
+      <div class="dropdown">
+        <a class="span-red" style="cursor: default;" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">Platforms <i class="ph ph-caret-down"></i></a>
+        <div class="dropdown-content">
+          <a href="/growx">GrowX CRM</a>
+          <a href="/athenalms">Athena LMS</a>
+          <a href="/flowforge" class="span-red">FlowForge OS</a>
+        </div>
+      </div>
+      <a href="/contact" class="btn-primary magnetic">Initialize</a>
+    </div>
+  </nav>
+
+  <main class="page-header container">
+
+    <!-- ============ HERO ============ -->
+    <div class="scroll-reveal" style="text-align: center;">
+      <p class="tagline hero-fade">Manufacturing &amp; Inventory Operations Platform</p>
+      <h1 class="hero-anim-text" style="font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 1.5rem;">FLOW<span class="span-red">FORGE</span> OS</h1>
+      <p class="hero-fade" style="margin: 0 auto; text-align: center; max-width: 820px;">The operating system for the factory floor. One platform for orders, inventory, BOMs, production planning, procurement and fulfilment, so you always know what you have, what you owe, what you're short, and what it's worth.</p>
+      <div class="hero-fade" style="margin-top: 2rem;">
+        <a href="/contact" class="btn-primary magnetic">Initialize</a>
+      </div>
+      <div class="ff-stats hero-fade">
+        <span class="ff-stat"><b>1</b> source of truth</span>
+        <span class="ff-sep"></span>
+        <span class="ff-stat"><b>10</b> modules</span>
+        <span class="ff-sep"></span>
+        <span class="ff-stat"><b>8</b> roles</span>
+        <span class="ff-sep"></span>
+        <span class="ff-stat"><b>Real-time</b> ledger</span>
+      </div>
+    </div>
+
+    <!-- ============ HERO MOCKUP (5.1 Command Center) ============ -->
+    <section class="scroll-reveal" style="padding: 3rem 0 1rem;">
+      <figure class="ff-shot">
+        <div class="ff-window">
+          <div class="ff-topbar">
+            <div class="ff-dots"><span></span><span></span><span></span></div>
+            <div class="ff-url">app.flowforge.os / command-center</div>
+          </div>
+          <div class="ff-app">
+            <aside class="ff-side">
+              <div class="ff-brand"><span class="ff-mark"></span><b>FlowForge</b></div>
+              <div class="ff-navgroup">Operations</div>
+              <div class="ff-nav is-active"><i class="ph ph-squares-four"></i> Command Center</div>
+              <div class="ff-nav"><i class="ph ph-clipboard-text"></i> Orders</div>
+              <div class="ff-navgroup">Inventory</div>
+              <div class="ff-nav"><i class="ph ph-stack"></i> Inventory</div>
+              <div class="ff-nav"><i class="ph ph-snowflake"></i> Master Inventory</div>
+              <div class="ff-navgroup">Production</div>
+              <div class="ff-nav"><i class="ph ph-calendar-check"></i> Planner</div>
+              <div class="ff-nav"><i class="ph ph-wrench"></i> Shop Floor</div>
+              <div class="ff-navgroup">Procurement</div>
+              <div class="ff-nav"><i class="ph ph-truck"></i> Goods Receipts</div>
+            </aside>
+            <div class="ff-main">
+              <div class="ff-head">
+                <h4>Command Center</h4>
+                <span class="ff-pill mut">Tuesday standup · live</span>
+              </div>
+              <div class="ff-kpis">
+                <div class="ff-kpi"><div class="ff-k-label">Active WOs</div><div class="ff-k-val">12</div><div class="ff-k-sub ff-pos">3 entering QC</div></div>
+                <div class="ff-kpi"><div class="ff-k-label">QC Queue</div><div class="ff-k-val">3</div><div class="ff-k-sub" style="color:var(--ff-warn)">2 awaiting sign-off</div></div>
+                <div class="ff-kpi"><div class="ff-k-label">Low Stock</div><div class="ff-k-val">7</div><div class="ff-k-sub ff-neg">2 critical</div></div>
+                <div class="ff-kpi"><div class="ff-k-label">Open PRs</div><div class="ff-k-val">5</div><div class="ff-k-sub" style="color:var(--ff-muted)">$48,200 inbound</div></div>
+              </div>
+              <table class="ff-table">
+                <thead><tr><th>Order</th><th>Product · Customer</th><th>Stage</th><th class="ff-num">Value</th></tr></thead>
+                <tbody>
+                  <tr class="ff-acc-amber"><td class="ff-mono">PI-2026-014</td><td>BMS 48V · Powervault</td><td><span class="ff-pill warn">WIP</span></td><td class="ff-num">$62,400</td></tr>
+                  <tr class="ff-acc-green"><td class="ff-mono">PI-2026-015</td><td>Battery pack · Northwind</td><td><span class="ff-pill ok">QC</span></td><td class="ff-num">$41,900</td></tr>
+                  <tr class="ff-acc-muted"><td class="ff-mono">PI-2026-016</td><td>Controller board · Meridian</td><td><span class="ff-pill mut">Draft</span></td><td class="ff-num">$28,750</td></tr>
+                  <tr class="ff-acc-green"><td class="ff-mono">PI-2026-017</td><td>Inverter module · Helios</td><td><span class="ff-pill ok">Dispatched</span></td><td class="ff-num">$33,100</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <figcaption><b>Command Center.</b> One screen for the morning stand-up: KPIs, live order lifecycle, and value at a glance.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ THE SHIFT ============ -->
+    <section class="scroll-reveal" style="padding: 4rem 0; text-align: center;">
+      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Kill the Spreadsheet Sprawl</h2>
+      <p style="margin: 0 auto;">Most manufacturers run production across a dozen disconnected spreadsheets and tools, and spend their days reconciling them. FlowForge OS ties every part, order, and stock movement to a single live record. From a customer order to a kitted work order to a posted goods receipt, every step is traceable, role-aware, and real-time.</p>
+    </section>
+
+    <!-- ============ CAPABILITIES - PLAN / MAKE / MOVE ============ -->
+    <section class="scroll-reveal" style="padding: 2rem 0;">
+      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 1rem;">One Platform, Ten Modules</h2>
+      <p style="margin-bottom: 1rem;">Grouped into three pillars: <strong style="color:#fff;">Plan</strong> what's coming, <strong style="color:#fff;">Make</strong> it on the floor, and <strong style="color:#fff;">Move</strong> stock in and out, all sharing one signed ledger.</p>
+
+      <span class="ff-pillar-label">Plan</span>
+      <div class="grid">
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-clipboard-text"></i> Orders &amp; Work Orders</h3>
+          <p>Run every order through a clean lifecycle: Draft → Confirmed → WIP → QC → Completed → Dispatched. Confirming auto-creates the work order, explodes the BOM, and locks stock. Capable-to-promise dates and planning holds flag lead-time risk before it bites.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-calendar-check"></i> Production Planner</h3>
+          <p>Define product lines, attach or import a BOM, and schedule daily, weekly or monthly output. The plan explodes into component-level shortage across the horizon you choose, netted against on-hand stock, so procurement gets ahead of the gaps.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-kanban"></i> Projects (Long-Term Supply)</h3>
+          <p>Track long-term customer commitments, allocate finished goods to each project, and see shortage per project silo and across the whole company. Manage shipments and logistics partners with live tracking links.</p>
+        </div>
+      </div>
+
+      <span class="ff-pillar-label" style="margin-top: 2.5rem;">Make</span>
+      <div class="grid">
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-tree-structure"></i> Parts &amp; Bill of Materials</h3>
+          <p>A master catalogue with company (CPN) and manufacturer (MPN) part numbers, cost, lead time and safety stock. Multi-level BOMs explode through sub-assemblies; import from CSV/XLSX, manage approved substitutes, and print barcodes.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-wrench"></i> Shop Floor</h3>
+          <p>A touch-optimised operator view: assigned work orders, barcode kitting, operations, scrap logging and QC checks, with manufacturing price variance rolled up automatically.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-chart-bar"></i> Analytics &amp; Control</h3>
+          <p>A command center for the morning stand-up, insights dashboards, a 21-report library with CSV export, and a full audit log. Plus a built-in wiki, so every screen explains itself.</p>
+        </div>
+      </div>
+
+      <span class="ff-pillar-label" style="margin-top: 2.5rem;">Move</span>
+      <div class="grid">
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-stack"></i> Inventory, Live</h3>
+          <p>On-hand, committed and available stock per location, with shortage forecasting, reorder alerts, scrap analysis, a warehouse map and barcode scanning. Stock value at a glance.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-snowflake"></i> Master Inventory</h3>
+          <p>Freeze a dated baseline of all stock, then watch it move: units in, units out, and net change since the freeze, reconstructed from the transaction ledger and filterable on the fly. Built for planning around a run or a stock-take.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-truck"></i> Procurement &amp; Goods Receipts</h3>
+          <p>Raise purchase requests, then receive whole inbound shipments in one multi-line goods receipt that books stock and reconciles the POs it covers. Partial and consolidated receipts supported. An order only reads "received" when there's real stock behind it.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-tag"></i> Stock Sales</h3>
+          <p>Sell surplus parts to a partner straight from inventory and capture the margin spread (cost vs sale price, per line) with a guard that stops you overselling.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREENS SHOWCASE ============ -->
+    <section class="scroll-reveal" style="padding: 4rem 0; border-top: 1px solid var(--glass-border);">
+      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 0.5rem;">See It Running</h2>
+      <p>Realistic sample data, one consistent dark dashboard. Real screenshots drop straight into these slots.</p>
+
+      <div class="ff-gallery">
+
+        <!-- 5.3 Master Inventory -->
+        <figure class="ff-shot">
+          <div class="ff-window">
+            <div class="ff-topbar"><div class="ff-dots"><span></span><span></span><span></span></div><div class="ff-url">app.flowforge.os / master-inventory</div></div>
+            <div class="ff-app">
+              <aside class="ff-side">
+                <div class="ff-brand"><span class="ff-mark"></span><b>FlowForge</b></div>
+                <div class="ff-navgroup">Inventory</div>
+                <div class="ff-nav"><i class="ph ph-stack"></i> Inventory</div>
+                <div class="ff-nav is-active"><i class="ph ph-snowflake"></i> Master Inventory</div>
+                <div class="ff-nav"><i class="ph ph-map-trifold"></i> Warehouse Map</div>
+                <div class="ff-navgroup">Analytics</div>
+                <div class="ff-nav"><i class="ph ph-chart-bar"></i> Reports</div>
+              </aside>
+              <div class="ff-main">
+                <div class="ff-head"><h4>Master Inventory</h4></div>
+                <div class="ff-chipline"><span class="ff-chip-sel">Baseline: Pre-run · Jun 12</span></div>
+                <div class="ff-kpis" style="grid-template-columns:repeat(3,1fr)">
+                  <div class="ff-kpi"><div class="ff-k-label">Stock Value</div><div class="ff-k-val">$284,910</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">Net Δ vs Baseline</div><div class="ff-k-val ff-neg">−1,240</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">Parts Changed</div><div class="ff-k-val">38</div></div>
+                </div>
+                <table class="ff-table">
+                  <thead><tr><th>Part</th><th class="ff-num">Baseline</th><th class="ff-num">In</th><th class="ff-num">Out</th><th class="ff-num">Net Δ</th><th class="ff-num">On Hand</th></tr></thead>
+                  <tbody>
+                    <tr><td class="ff-mono">BMS-48V-100A</td><td class="ff-num">1,200</td><td class="ff-num ff-pos">+300</td><td class="ff-num ff-neg">−820</td><td class="ff-num ff-neg">−520</td><td class="ff-num">680</td></tr>
+                    <tr><td class="ff-mono">CELL-21700</td><td class="ff-num">9,400</td><td class="ff-num ff-pos">+2,000</td><td class="ff-num ff-neg">−2,640</td><td class="ff-num ff-neg">−640</td><td class="ff-num">8,760</td></tr>
+                    <tr><td class="ff-mono">PCB-CTRL-v3</td><td class="ff-num">540</td><td class="ff-num ff-pos">+120</td><td class="ff-num ff-neg">−40</td><td class="ff-num ff-pos">+80</td><td class="ff-num">620</td></tr>
+                    <tr><td class="ff-mono">BUSBAR-CU</td><td class="ff-num">3,100</td><td class="ff-num ff-pos">+0</td><td class="ff-num ff-neg">−160</td><td class="ff-num ff-neg">−160</td><td class="ff-num">2,940</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>Master Inventory.</b> Freeze a baseline, then compare live: every unit in and out reconstructed from the ledger.</figcaption>
+        </figure>
+
+        <!-- 5.4 Production Planner - Component Shortage -->
+        <figure class="ff-shot">
+          <div class="ff-window">
+            <div class="ff-topbar"><div class="ff-dots"><span></span><span></span><span></span></div><div class="ff-url">app.flowforge.os / planner / shortage</div></div>
+            <div class="ff-app">
+              <aside class="ff-side">
+                <div class="ff-brand"><span class="ff-mark"></span><b>FlowForge</b></div>
+                <div class="ff-navgroup">Production</div>
+                <div class="ff-nav is-active"><i class="ph ph-calendar-check"></i> Planner</div>
+                <div class="ff-nav"><i class="ph ph-wrench"></i> Shop Floor</div>
+                <div class="ff-navgroup">Procurement</div>
+                <div class="ff-nav"><i class="ph ph-truck"></i> Goods Receipts</div>
+                <div class="ff-nav"><i class="ph ph-file-text"></i> Purchase Reqs</div>
+              </aside>
+              <div class="ff-main">
+                <div class="ff-head"><h4>Component Shortage</h4></div>
+                <div class="ff-tabs"><span>Next 30</span><span class="is-active">90 days</span><span>365</span></div>
+                <div class="ff-kpis" style="grid-template-columns:repeat(3,1fr)">
+                  <div class="ff-kpi"><div class="ff-k-label">Total Demand</div><div class="ff-k-val">18,600</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">On Hand</div><div class="ff-k-val">14,400</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">Shortage</div><div class="ff-k-val ff-neg">−4,200</div></div>
+                </div>
+                <table class="ff-table">
+                  <thead><tr><th>Component</th><th class="ff-num">Demand</th><th class="ff-num">On Hand</th><th class="ff-num">Shortage</th></tr></thead>
+                  <tbody>
+                    <tr><td class="ff-mono">CELL-21700</td><td class="ff-num">9,000</td><td class="ff-num">4,800</td><td class="ff-num ff-neg">−4,200</td></tr>
+                    <tr class="ff-sub-row"><td class="ff-mono">↳ Line 1 · Battery pack</td><td class="ff-num" colspan="3">500 × 6.0 = 3,000</td></tr>
+                    <tr class="ff-sub-row"><td class="ff-mono">↳ Line 2 · BMS 48V</td><td class="ff-num" colspan="3">1,000 × 6.0 = 6,000</td></tr>
+                    <tr><td class="ff-mono">PCB-CTRL-v3</td><td class="ff-num">1,500</td><td class="ff-num">1,560</td><td class="ff-num ff-pos">+60</td></tr>
+                    <tr><td class="ff-mono">BUSBAR-CU</td><td class="ff-num">2,200</td><td class="ff-num">2,940</td><td class="ff-num ff-pos">+740</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>Production Planner.</b> The plan explodes into component shortage across your horizon, with the lines driving demand.</figcaption>
+        </figure>
+
+        <!-- 5.6 Stock Sales (margin) -->
+        <figure class="ff-shot">
+          <div class="ff-window">
+            <div class="ff-topbar"><div class="ff-dots"><span></span><span></span><span></span></div><div class="ff-url">app.flowforge.os / stock-sales / new</div></div>
+            <div class="ff-app">
+              <aside class="ff-side">
+                <div class="ff-brand"><span class="ff-mark"></span><b>FlowForge</b></div>
+                <div class="ff-navgroup">Move</div>
+                <div class="ff-nav"><i class="ph ph-stack"></i> Inventory</div>
+                <div class="ff-nav is-active"><i class="ph ph-tag"></i> Stock Sales</div>
+                <div class="ff-nav"><i class="ph ph-truck"></i> Goods Receipts</div>
+                <div class="ff-navgroup">Analytics</div>
+                <div class="ff-nav"><i class="ph ph-chart-bar"></i> Reports</div>
+              </aside>
+              <div class="ff-main">
+                <div class="ff-head"><h4>Surplus Stock Sale</h4><span class="ff-btn go">Post Sale</span></div>
+                <div class="ff-kpis">
+                  <div class="ff-kpi"><div class="ff-k-label">Total Cost</div><div class="ff-k-val">$10,980</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">Sale Value</div><div class="ff-k-val">$14,100</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">Margin</div><div class="ff-k-val ff-pos">$3,120</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">Margin %</div><div class="ff-k-val ff-pos">28.4%</div></div>
+                </div>
+                <table class="ff-table">
+                  <thead><tr><th>Part</th><th>Location</th><th class="ff-num">Qty</th><th class="ff-num">Unit Cost</th><th class="ff-num">Sale</th><th class="ff-num">Margin</th></tr></thead>
+                  <tbody>
+                    <tr><td class="ff-mono">CELL-21700</td><td>WH-A · R3</td><td class="ff-num">2,000</td><td class="ff-num">$4.10</td><td class="ff-num">$5.20</td><td class="ff-num ff-pos">$2,200</td></tr>
+                    <tr><td class="ff-mono">BUSBAR-CU</td><td>WH-A · R7</td><td class="ff-num">600</td><td class="ff-num">$3.80</td><td class="ff-num">$5.00</td><td class="ff-num ff-pos">$720</td></tr>
+                    <tr><td class="ff-mono">PCB-CTRL-v3</td><td>WH-B · R1</td><td class="ff-num">40</td><td class="ff-num">$18.00</td><td class="ff-num">$23.00</td><td class="ff-num ff-pos">$200</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>Stock Sales.</b> Sell surplus straight from inventory and see the cost-vs-sale spread per line, instantly.</figcaption>
+        </figure>
+
+        <!-- 5.8 Shop Floor (tablet) -->
+        <figure class="ff-shot">
+          <div class="ff-tablet">
+            <div class="ff-topbar"><div class="ff-dots"><span></span><span></span><span></span></div><div class="ff-url" style="display:block">Shop Floor · Operator</div></div>
+            <div class="ff-t-body">
+              <div class="ff-head"><h4 style="font-size:0.95rem;">My Work Orders</h4><span class="ff-pill warn">Kitting</span></div>
+              <div class="ff-t-card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span class="ff-mono" style="font-size:0.82rem;">WO-1001</span>
+                  <span class="ff-pill mut">BMS-48V-100A</span>
+                </div>
+                <div class="ff-t-scan"><i class="ph ph-barcode"></i> Scan component to kit…</div>
+                <div style="margin-top:0.6rem;">
+                  <div class="ff-kit"><span><i class="ph ph-check-circle"></i> CELL-21700 ×6</span><span class="ff-pos">Kitted</span></div>
+                  <div class="ff-kit"><span><i class="ph ph-check-circle"></i> PCB-CTRL-v3 ×1</span><span class="ff-pos">Kitted</span></div>
+                  <div class="ff-kit"><span><i class="ph ph-circle"></i> BUSBAR-CU ×2</span><span style="color:var(--ff-muted)">Pending</span></div>
+                  <div class="ff-kit"><span><i class="ph ph-circle"></i> ENCLOSURE-48V ×1</span><span style="color:var(--ff-muted)">Pending</span></div>
+                </div>
+                <div style="margin-top:0.8rem; text-align:right;"><span class="ff-btn acc">Confirm Kit</span></div>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>Shop Floor.</b> A touch-first operator view: assigned work orders, barcode kitting, scrap and QC, with price variance rolled up.</figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ============ WHO IT'S FOR ============ -->
+    <section class="scroll-reveal" style="padding: 4rem 0;">
+      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 1rem;">Built For Real Production</h2>
+      <div class="ff-audience">
+        <div class="glass-card ff-aud"><h3 style="font-size: 1.1rem;"><i class="ph ph-factory"></i> Small-to-Mid Manufacturers</h3><p style="font-size:1rem;">Running real production lines that outgrew spreadsheets.</p></div>
+        <div class="glass-card ff-aud"><h3 style="font-size: 1.1rem;"><i class="ph ph-handshake"></i> Contract Manufacturers</h3><p style="font-size:1rem;">Juggling many customers, BOMs and delivery commitments.</p></div>
+        <div class="glass-card ff-aud"><h3 style="font-size: 1.1rem;"><i class="ph ph-circuitry"></i> Hardware &amp; Electronics</h3><p style="font-size:1rem;">BMS, EV, electronics and complex assemblies.</p></div>
+        <div class="glass-card ff-aud"><h3 style="font-size: 1.1rem;"><i class="ph ph-battery-charging"></i> Energy &amp; EV Builders</h3><p style="font-size:1rem;">Battery packs and power systems with deep multi-level BOMs.</p></div>
+      </div>
+    </section>
+
+    <!-- ============ WHY FLOWFORGE ============ -->
+    <section class="scroll-reveal" style="padding: 4rem 0; border-top: 1px solid var(--glass-border);">
+      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 2rem;">Why FlowForge</h2>
+      <div class="grid">
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">01</div>
+          <h3 style="font-size: 1.2rem;">One Source of Truth</h3>
+          <p>Orders, inventory, BOMs, procurement and sales share one signed ledger. No reconciling spreadsheets, ever.</p>
+        </div>
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">02</div>
+          <h3 style="font-size: 1.2rem;">Shortage Intelligence Everywhere</h3>
+          <p>See what you're short by project, by production plan, and company-wide, always netted against live stock.</p>
+        </div>
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">03</div>
+          <h3 style="font-size: 1.2rem;">Full Traceability</h3>
+          <p>Every stock movement is a signed, auditable transaction. Freeze a baseline and compare it live.</p>
+        </div>
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">04</div>
+          <h3 style="font-size: 1.2rem;">Margin-Aware</h3>
+          <p>Sell surplus stock to partners and see the cost-to-sale spread instantly, per line.</p>
+        </div>
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">05</div>
+          <h3 style="font-size: 1.2rem;">Role-Based &amp; Multi-Tenant</h3>
+          <p>Eight roles, from operator to admin, each sees exactly what they need, nothing they don't.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="scroll-reveal" style="padding: 4rem 0; text-align: center;">
+      <h2 class="display-font" style="font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 1rem;">Run Your Factory on <span class="span-red">One Platform</span></h2>
+      <p style="margin: 0 auto 2rem;">From customer order to posted goods receipt: traceable, real-time, role-aware. Initialize FlowForge OS for your operation.</p>
+      <a href="/contact" class="btn-primary magnetic">Get Started</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Arboreal Labs. Engineered for tomorrow's baseline.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="canvas-bg.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

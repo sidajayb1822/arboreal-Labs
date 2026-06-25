@@ -196,6 +196,177 @@ footer { border-top: 1px solid var(--glass-border); padding: 3rem 0; margin-top:
 .hamburger-btn.active span:nth-child(2) { opacity: 0; }
 .hamburger-btn.active span:nth-child(3) { transform: rotate(-45deg); }
 
+/* =================================================================
+   FlowForge OS - product page: dark-UI mockups ("screenshots")
+   All rules scoped under .ff- so no other page is affected.
+   Swappable: each mockup lives in a <figure class="ff-shot"> slot
+   that a real screenshot <img> can drop into without layout change.
+   ================================================================= */
+:root {
+  --ff-accent: #6366F1;            /* electric indigo - app primary action/active nav */
+  --ff-accent-soft: rgba(99, 102, 241, 0.16);
+  --ff-ok: #34D399;                /* healthy / positive */
+  --ff-warn: #FBBF24;              /* warning / low */
+  --ff-bad: #F87171;               /* critical / shortage */
+  --ff-surface: #0B0D13;           /* near-black slate */
+  --ff-surface-2: #11141D;
+  --ff-surface-3: #161A25;
+  --ff-line: rgba(255, 255, 255, 0.08);
+  --ff-text: #E7EAF3;
+  --ff-muted: rgba(231, 234, 243, 0.55);
+  --ff-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+}
+
+/* trust strip under hero */
+.ff-stats { display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; justify-content: center; align-items: center; margin-top: 2.5rem; }
+.ff-stats .ff-stat { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.95rem; color: var(--ff-muted); }
+.ff-stats .ff-stat b { font-family: var(--font-display); color: var(--lunar-white); font-size: 1.15rem; }
+.ff-stats .ff-sep { width: 1px; height: 18px; background: var(--glass-border); }
+
+/* figure slot + caption */
+.ff-shot { margin: 0; }
+.ff-shot figcaption { margin-top: 0.9rem; font-size: 0.85rem; color: var(--ff-muted); text-align: center; }
+.ff-shot figcaption b { color: var(--lunar-white); font-weight: 600; }
+
+/* browser/window frame so dark UI reads as a screenshot */
+.ff-window {
+  background: var(--ff-surface); border: 1px solid var(--ff-line);
+  border-radius: 16px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+  color: var(--ff-text);
+}
+.ff-topbar { display: flex; align-items: center; gap: 0.85rem; padding: 0.7rem 1rem; background: var(--ff-surface-2); border-bottom: 1px solid var(--ff-line); }
+.ff-dots { display: flex; gap: 0.4rem; }
+.ff-dots span { width: 11px; height: 11px; border-radius: 50%; background: #2b2f3c; }
+.ff-dots span:nth-child(1){ background:#ff5f57; } .ff-dots span:nth-child(2){ background:#febc2e; } .ff-dots span:nth-child(3){ background:#28c840; }
+.ff-url { flex: 1; max-width: 360px; margin: 0 auto; font-family: var(--ff-mono); font-size: 0.72rem; color: var(--ff-muted); background: var(--ff-surface); border: 1px solid var(--ff-line); border-radius: 7px; padding: 0.25rem 0.7rem; text-align: center; }
+
+/* app shell: sidebar + content */
+.ff-app { display: grid; grid-template-columns: 188px 1fr; min-height: 360px; }
+.ff-side { background: var(--ff-surface-2); border-right: 1px solid var(--ff-line); padding: 1rem 0.75rem; }
+.ff-brand { display: flex; align-items: center; gap: 0.55rem; padding: 0.25rem 0.5rem 1rem; }
+.ff-brand .ff-mark { width: 22px; height: 22px; border-radius: 6px; background: linear-gradient(135deg, var(--ff-accent), #a855f7); box-shadow: 0 0 14px var(--ff-accent-soft); }
+.ff-brand b { font-family: var(--font-display); font-size: 0.9rem; letter-spacing: -0.01em; }
+.ff-navgroup { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ff-muted); padding: 0.9rem 0.6rem 0.35rem; }
+.ff-nav { display: flex; align-items: center; gap: 0.55rem; padding: 0.42rem 0.6rem; border-radius: 8px; font-size: 0.78rem; color: rgba(231,234,243,0.78); }
+.ff-nav i { font-size: 1rem; opacity: 0.8; }
+.ff-nav.is-active { background: var(--ff-accent-soft); color: #fff; box-shadow: inset 2px 0 0 var(--ff-accent); }
+
+.ff-main { padding: 1.1rem 1.25rem; min-width: 0; }
+.ff-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.ff-head h4 { font-family: var(--font-display); font-size: 1.05rem; margin: 0; }
+.ff-search { font-family: var(--ff-mono); font-size: 0.7rem; color: var(--ff-muted); background: var(--ff-surface-2); border: 1px solid var(--ff-line); border-radius: 7px; padding: 0.3rem 0.7rem; min-width: 150px; }
+
+/* KPI cards */
+.ff-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-bottom: 1.1rem; }
+.ff-kpi { background: var(--ff-surface-2); border: 1px solid var(--ff-line); border-radius: 12px; padding: 0.75rem 0.85rem; }
+.ff-kpi .ff-k-label { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ff-muted); }
+.ff-kpi .ff-k-val { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.2; font-variant-numeric: tabular-nums; margin-top: 0.2rem; }
+.ff-kpi .ff-k-sub { font-size: 0.66rem; margin-top: 0.15rem; }
+
+/* tabs */
+.ff-tabs { display: flex; gap: 1.1rem; border-bottom: 1px solid var(--ff-line); margin-bottom: 0.85rem; }
+.ff-tabs span { font-size: 0.72rem; color: var(--ff-muted); padding-bottom: 0.5rem; }
+.ff-tabs span.is-active { color: #fff; box-shadow: inset 0 -2px 0 var(--ff-accent); }
+
+/* tables */
+.ff-table { width: 100%; border-collapse: collapse; font-size: 0.74rem; }
+.ff-table th { text-align: left; font-weight: 500; color: var(--ff-muted); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--ff-line); }
+.ff-table td { padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.ff-table tbody tr:last-child td { border-bottom: none; }
+.ff-table .ff-num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--ff-mono); }
+.ff-mono { font-family: var(--ff-mono); letter-spacing: -0.02em; }
+.ff-sub-row td { background: rgba(255,255,255,0.02); font-size: 0.7rem; color: var(--ff-muted); }
+.ff-sub-row .ff-mono { color: rgba(231,234,243,0.8); }
+
+/* row accent by status (left border) */
+.ff-acc-amber td:first-child { box-shadow: inset 3px 0 0 var(--ff-warn); }
+.ff-acc-green td:first-child { box-shadow: inset 3px 0 0 var(--ff-ok); }
+.ff-acc-red   td:first-child { box-shadow: inset 3px 0 0 var(--ff-bad); }
+.ff-acc-muted td:first-child { box-shadow: inset 3px 0 0 #3a3f4d; }
+
+/* status pills + value colours */
+.ff-pill { display: inline-block; font-size: 0.64rem; font-weight: 600; padding: 0.12rem 0.55rem; border-radius: 100px; letter-spacing: 0.02em; }
+.ff-pill.ok   { background: rgba(52,211,153,0.14); color: var(--ff-ok); }
+.ff-pill.warn { background: rgba(251,191,36,0.14); color: var(--ff-warn); }
+.ff-pill.bad  { background: rgba(248,113,113,0.14); color: var(--ff-bad); }
+.ff-pill.mut  { background: rgba(255,255,255,0.06); color: var(--ff-muted); }
+.ff-pos { color: var(--ff-ok); } .ff-neg { color: var(--ff-bad); }
+.ff-chipline { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.85rem; }
+.ff-chip-sel { font-size: 0.68rem; font-family: var(--ff-mono); color: var(--ff-text); background: var(--ff-accent-soft); border: 1px solid rgba(99,102,241,0.35); border-radius: 100px; padding: 0.2rem 0.7rem; }
+
+/* primary button inside mockups */
+.ff-btn { display: inline-block; font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.45rem 1rem; border-radius: 8px; }
+.ff-btn.acc { background: var(--ff-accent); color: #fff; }
+.ff-btn.go  { background: var(--ff-ok); color: #04130d; }
+
+/* tablet frame for shop floor */
+.ff-tablet { max-width: 360px; margin: 0 auto; background: #05060a; border: 10px solid #1b1e27; border-radius: 28px; box-shadow: 0 30px 70px rgba(0,0,0,0.55); overflow: hidden; }
+.ff-tablet .ff-t-body { padding: 1rem; color: var(--ff-text); }
+.ff-t-card { background: var(--ff-surface-2); border: 1px solid var(--ff-line); border-radius: 12px; padding: 0.85rem; margin-top: 0.7rem; }
+.ff-t-scan { display: flex; align-items: center; gap: 0.5rem; font-family: var(--ff-mono); font-size: 0.72rem; color: var(--ff-muted); background: var(--ff-surface); border: 1px dashed rgba(255,255,255,0.16); border-radius: 8px; padding: 0.55rem 0.7rem; }
+.ff-kit { display: flex; align-items: center; justify-content: space-between; font-size: 0.76rem; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.ff-kit:last-child { border-bottom: none; }
+.ff-kit .ph-check-circle { color: var(--ff-ok); } .ff-kit .ph-circle { color: var(--ff-muted); }
+
+/* gallery layout */
+.ff-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
+.ff-pillar-label { display: inline-block; font-family: var(--font-display); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mars-red); margin-bottom: 0.4rem; }
+.ff-audience { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+.ff-audience .ff-aud { flex: 1 1 220px; }
+
+@media (max-width: 860px) {
+  .ff-gallery { grid-template-columns: 1fr; }
+  .ff-app { grid-template-columns: 1fr; }
+  .ff-side { display: none; }
+  .ff-kpis { grid-template-columns: repeat(2, 1fr); }
+  .ff-url { display: none; }
+}
+
+/* =================================================================
+   Home - "AI Century" promo: iPhone mockup with video
+   ================================================================= */
+.ai-century { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
+.ai-century .ai-copy h2 { font-size: 2.5rem; margin-bottom: 1.25rem; }
+.ai-century .ai-points { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+.ai-century .ai-points li { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 0.9rem; color: rgba(240,242,245,0.85); font-size: 1.05rem; }
+.ai-century .ai-points i { color: var(--mars-red); font-size: 1.25rem; margin-top: 0.15rem; flex-shrink: 0; }
+.ai-phone-wrap { display: flex; justify-content: center; }
+
+.iphone-mock {
+  position: relative;
+  width: clamp(250px, 78vw, 300px);
+  aspect-ratio: 9 / 19.5;
+  background: linear-gradient(160deg, #20232c, #0b0d13);
+  border-radius: 46px;
+  padding: 11px;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.05), 0 40px 80px rgba(0,0,0,0.6), inset 0 0 2px rgba(255,255,255,0.18);
+}
+.iphone-mock::before,  /* volume buttons */
+.iphone-mock::after {  /* power button */
+  content: ""; position: absolute; background: #1b1e27; border-radius: 2px;
+}
+.iphone-mock::before { left: -3px; top: 110px; width: 3px; height: 78px; box-shadow: 0 -34px 0 #1b1e27; }
+.iphone-mock::after  { right: -3px; top: 130px; width: 3px; height: 64px; }
+.iphone-screen {
+  position: relative; width: 100%; height: 100%;
+  border-radius: 36px; overflow: hidden; background: #000;
+}
+.iphone-screen video { width: 100%; height: 100%; object-fit: cover; background: #000; display: block; }
+.iphone-island {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  width: 32%; height: 26px; background: #04050a; border-radius: 100px; z-index: 3;
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.8);
+}
+.iphone-glare {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: 36px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, transparent 35%);
+}
+
+@media (max-width: 860px) {
+  .ai-century { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+  .ai-century .ai-points { display: inline-block; text-align: left; }
+}
+
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; justify-content: space-between; align-items: center; border-radius: 0; border: none; background: transparent; backdrop-filter: none; box-shadow: none; top: 0; width: 100%; }
   .hamburger-btn { display: flex; }
