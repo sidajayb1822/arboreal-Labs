@@ -181,4 +181,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Continuous subtle glow scaling
   gsap.to('.breathing', { scale: 1.02, duration: 3, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+
+  // 9. Lazy-load promo video (defer the ~3MB download until it scrolls into view)
+  const lazyVideo = document.querySelector('video[data-src]');
+  if (lazyVideo) {
+    const loadVideo = () => {
+      if (!lazyVideo.src) {
+        lazyVideo.src = lazyVideo.dataset.src;
+        lazyVideo.load();
+      }
+    };
+    if ('IntersectionObserver' in window) {
+      const vObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            loadVideo();
+            lazyVideo.play().catch(() => {});
+          } else if (lazyVideo.src) {
+            lazyVideo.pause();
+          }
+        });
+      }, { rootMargin: '200px 0px' });
+      vObserver.observe(lazyVideo);
+    } else {
+      // No IntersectionObserver support: load and play immediately
+      loadVideo();
+      lazyVideo.play().catch(() => {});
+    }
+  }
 });
