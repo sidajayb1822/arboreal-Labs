@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Hamburger Menu Logic
   const hamburger = document.querySelector('.hamburger-btn');
   const navLinks = document.querySelector('.nav-links');
-  const dropdownMobile = document.querySelector('.dropdown');
 
   if (hamburger && navLinks) {
       hamburger.addEventListener('click', () => {
@@ -14,14 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
           document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
       });
       
-      if (dropdownMobile) {
-          dropdownMobile.addEventListener('click', (e) => {
+      document.querySelectorAll('.dropdown').forEach(dd => {
+          dd.addEventListener('click', (e) => {
               if (window.innerWidth <= 768 && e.target.tagName.toLowerCase() === 'a' && e.target.nextElementSibling?.classList.contains('dropdown-content')) {
                   e.preventDefault();
-                  dropdownMobile.classList.toggle('active');
+                  dd.classList.toggle('active');
               }
           });
-      }
+      });
       
       document.querySelectorAll('.nav-links a:not(.dropdown > a)').forEach(link => {
           link.addEventListener('click', () => {
