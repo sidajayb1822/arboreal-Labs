@@ -393,6 +393,90 @@ footer { border-top: 1px solid var(--glass-border); padding: 4rem 0 2rem; margin
   .ai-century .ai-points { display: inline-block; text-align: left; }
 }
 
+/* =================================================================
+   Custom Systems — Netflix-style mosaic overlay (click to open)
+   ================================================================= */
+.cs-trigger { cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; }
+.cs-trigger i { font-size: 0.95rem; transition: transform 0.3s ease; }
+.cs-trigger:hover i { transform: scale(1.12); }
+
+.cs-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(7, 8, 12, 0.8);
+  backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 7rem 1.5rem 2.5rem; overflow-y: auto;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+.cs-overlay.open { opacity: 1; pointer-events: auto; }
+.cs-overlay-inner {
+  width: 100%; max-width: 1100px;
+  transform: translateY(26px) scale(0.985);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.cs-overlay.open .cs-overlay-inner { transform: none; }
+.cs-close {
+  position: fixed; top: 2rem; right: 2rem; z-index: 2;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: rgba(240, 242, 245, 0.04); border: 1px solid var(--glass-border);
+  color: var(--lunar-white); font-size: 1.5rem; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+.cs-close:hover { color: var(--mars-red); border-color: var(--mars-red); transform: rotate(90deg); }
+.cs-overlay-head { margin-bottom: 1.7rem; }
+.cs-eyebrow { font-family: var(--font-display); color: var(--mars-red); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; margin-bottom: 0.5rem; }
+.cs-overlay-head h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 0.4rem; }
+.cs-sub { color: rgba(240, 242, 245, 0.65); font-size: 1rem; margin: 0; }
+
+.cs-mosaic { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 150px; gap: 1rem; }
+.cs-tile {
+  position: relative; overflow: hidden; border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-specular);
+  padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end;
+  text-decoration: none; color: var(--lunar-white);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.cs-tile::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 28% 18%, var(--cs-accent, rgba(255,59,59,0.28)), transparent 62%);
+  opacity: 0.65; transition: opacity 0.4s ease;
+}
+.cs-tile:hover { transform: translateY(-6px) scale(1.015); border-color: var(--cs-solid, var(--mars-red)); box-shadow: 0 24px 50px rgba(0,0,0,0.5), 0 0 32px var(--cs-accent, rgba(255,59,59,0.2)); }
+.cs-tile:hover::before { opacity: 1; }
+.cs-wm { position: absolute; top: -14px; right: -6px; font-size: 6.5rem; opacity: 0.09; color: var(--cs-solid, var(--mars-red)); line-height: 1; }
+.cs-tile h3 { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.35rem; position: relative; }
+.cs-tile p { position: relative; font-size: 0.86rem; line-height: 1.5; color: rgba(240, 242, 245, 0.72); margin: 0; max-width: 42ch; }
+.cs-feat { grid-column: span 2; grid-row: span 2; }
+.cs-feat h3 { font-size: 1.7rem; }
+.cs-feat p { font-size: 0.98rem; }
+.cs-feat .cs-wm { font-size: 11rem; }
+.cs-wide { grid-column: span 2; }
+.cs-banner { grid-column: span 4; }
+.cs-badge {
+  position: absolute; top: 1rem; right: 1rem; z-index: 2;
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+  padding: 0.2rem 0.6rem; border-radius: 100px;
+  background: rgba(255, 255, 255, 0.08); color: rgba(240, 242, 245, 0.85); border: 1px solid var(--glass-border);
+}
+.cs-go { position: relative; margin-top: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.76rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cs-solid, var(--mars-red)); }
+.cs-go i { transition: transform 0.3s ease; }
+.cs-tile:hover .cs-go i { transform: translateX(4px); }
+
+@media (max-width: 760px) {
+  .cs-mosaic { grid-template-columns: 1fr 1fr; grid-auto-rows: 132px; }
+  .cs-feat { grid-column: span 2; grid-row: span 2; }
+  .cs-wide, .cs-banner { grid-column: span 2; }
+  .cs-close { top: 1rem; right: 1rem; }
+  .cs-overlay { padding-top: 5.5rem; }
+}
+@media (max-width: 460px) {
+  .cs-mosaic { grid-template-columns: 1fr; }
+  .cs-feat, .cs-wide, .cs-banner { grid-column: span 1; }
+  .cs-feat { grid-row: span 2; }
+}
+
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; justify-content: space-between; align-items: center; border-radius: 0; border: none; background: transparent; backdrop-filter: none; box-shadow: none; top: 0; width: 100%; }
   .hamburger-btn { display: flex; }
