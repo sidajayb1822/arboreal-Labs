@@ -2,6 +2,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const isMobile = window.innerWidth <= 768;
   const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
 
+  // 0. Light/Dark Mode Toggle (footer switch)
+  const themeSwitch = document.getElementById('theme-switch');
+  const themeLabel = document.getElementById('theme-toggle-label');
+  const updateThemeLabel = () => {
+    if (!themeLabel) return;
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    themeLabel.textContent = `Experience our website in ${isLight ? 'Dark' : 'Light'} Mode`;
+  };
+  if (themeSwitch) {
+    themeSwitch.checked = document.documentElement.getAttribute('data-theme') === 'light';
+    updateThemeLabel();
+    themeSwitch.addEventListener('change', () => {
+      const isLight = themeSwitch.checked;
+      document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+      try { localStorage.setItem('al-theme', isLight ? 'light' : 'dark'); } catch (e) {}
+      updateThemeLabel();
+    });
+  }
+
   // Hamburger Menu Logic
   const hamburger = document.querySelector('.hamburger-btn');
   const navLinks = document.querySelector('.nav-links');
@@ -59,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       yTo(e.clientY);
     });
     
-    document.querySelectorAll('a, button, .magnetic, .dropdown').forEach(el => {
+    document.querySelectorAll('a, button, .magnetic, .dropdown, .theme-toggle').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('active'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });

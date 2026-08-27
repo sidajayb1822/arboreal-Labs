@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var s=localStorage.getItem('al-theme');var light=s?s==='light':window.matchMedia('(prefers-color-scheme: light)').matches;if(light){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | Arboreal Labs</title>
   <meta name="description" content="Tell us about your business goals. We build custom software, AI tools, and high-performance websites.">
@@ -45,7 +46,7 @@
       color: var(--mars-red);
     }
     input, textarea {
-      background: rgba(240, 242, 245, 0.02);
+      background: rgba(var(--lunar-white-rgb), 0.02);
       border: 1px solid var(--glass-border);
       padding: 1rem;
       color: var(--lunar-white);
@@ -129,7 +130,7 @@
         </div>
         <div class="input-group">
           <label for="interest">What are you interested in?</label>
-          <select id="interest" name="Interest" required style="background: rgba(240, 242, 245, 0.02); border: 1px solid var(--glass-border); padding: 1rem; color: var(--lunar-white); font-family: var(--font-body); border-radius: 8px; outline: none; appearance: auto; transition: border-color 0.3s ease;">
+          <select id="interest" name="Interest" required style="background: rgba(var(--lunar-white-rgb), 0.02); border: 1px solid var(--glass-border); padding: 1rem; color: var(--lunar-white); font-family: var(--font-body); border-radius: 8px; outline: none; appearance: auto; transition: border-color 0.3s ease;">
             <option value="" disabled selected style="color: #11131A">Select an area of interest...</option>
             <option value="GrowX" style="color: #11131A">GrowX</option>
             <option value="Athena" style="color: #11131A">Athena</option>
@@ -189,6 +190,17 @@
           <a href="/privacy-policy">Privacy</a>
           <a href="/terms">Terms</a>
           <a href="/contact">Contact</a>
+        </div>
+        <div class="theme-toggle-group">
+          <span class="theme-toggle-label" id="theme-toggle-label">Experience our website in Dark Mode</span>
+          <label class="theme-toggle" aria-label="Toggle light mode">
+            <input type="checkbox" id="theme-switch">
+            <span class="theme-toggle-track">
+              <i class="ph ph-moon-stars"></i>
+              <i class="ph ph-sun"></i>
+              <span class="theme-toggle-thumb"></span>
+            </span>
+          </label>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var s=localStorage.getItem('al-theme');var light=s?s==='light':window.matchMedia('(prefers-color-scheme: light)').matches;if(light){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Website Development Agency | Build a Professional Website</title>
   <meta name="description"
@@ -107,7 +108,7 @@
 
     <section class="scroll-reveal" style="padding: 1rem 0 4rem 0;">
       <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 1.5rem;">How People Find You</h2>
-      <p style="font-size: 1.1rem; color: rgba(240, 242, 245, 0.8); max-width: 800px;">
+      <p style="font-size: 1.1rem; color: rgba(var(--lunar-white-rgb), 0.8); max-width: 800px;">
         A beautiful website is useless if no one visits it. We build special code into your website that tells Google exactly what you do. We make your site load extremely fast and easy to read for search engines, helping you show up at the top of the search results so customers can find you naturally.
       </p>
     </section>
@@ -149,7 +150,7 @@
 
         .loop-path-line {
           fill: none;
-          stroke: rgba(240, 242, 245, 0.15);
+          stroke: rgba(var(--lunar-white-rgb), 0.15);
           /* Lunar white semi-transparent */
           stroke-width: 2;
           stroke-dasharray: 6 6;
@@ -160,11 +161,11 @@
           width: calc(50% - 15px);
           max-width: 280px;
           z-index: 2;
-          background: rgba(17, 19, 26, 0.6);
+          background: rgba(var(--space-charcoal-rgb), 0.6);
           /* Space Charcoal, Glassmorphism */
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(240, 242, 245, 0.1);
+          border: 1px solid rgba(var(--lunar-white-rgb), 0.1);
           border-radius: 12px;
           padding: 1.25rem;
           transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -204,7 +205,7 @@
         .node-title {
           font-family: 'Space Grotesk', sans-serif;
           font-size: 1.15rem;
-          color: #F0F2F5;
+          color: var(--lunar-white);
           /* Lunar White */
           margin-bottom: 0.5rem;
           display: flex;
@@ -224,7 +225,7 @@
         .node-desc {
           font-family: 'Inter', sans-serif;
           font-size: 0.85rem;
-          color: rgba(240, 242, 245, 0.8);
+          color: rgba(var(--lunar-white-rgb), 0.8);
           line-height: 1.5;
           margin-bottom: 0;
         }
@@ -443,6 +444,17 @@
           <a href="/privacy-policy">Privacy</a>
           <a href="/terms">Terms</a>
           <a href="/contact">Contact</a>
+        </div>
+        <div class="theme-toggle-group">
+          <span class="theme-toggle-label" id="theme-toggle-label">Experience our website in Dark Mode</span>
+          <label class="theme-toggle" aria-label="Toggle light mode">
+            <input type="checkbox" id="theme-switch">
+            <span class="theme-toggle-track">
+              <i class="ph ph-moon-stars"></i>
+              <i class="ph ph-sun"></i>
+              <span class="theme-toggle-thumb"></span>
+            </span>
+          </label>
         </div>
       </div>
     </div>

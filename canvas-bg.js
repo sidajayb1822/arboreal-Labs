@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
         getThermoDensity: () => 0
     };
 
+    // Shared theme awareness — toggled via the footer switch (see script.js)
+    const isLightMode = () => document.documentElement.getAttribute('data-theme') === 'light';
+
     // ==========================================
     // 1. WEBGL SHADER BACKGROUND (Aurora)
     // ==========================================
@@ -53,14 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
             uniform float uColorIntensity;
             uniform float uNoiseLayers;
             uniform float uMouseInfluence;
+            uniform float uLightMode;
 
             #define MARCH_STEPS 32
 
             vec3 spaceCharcoal = vec3(0.066, 0.074, 0.102); // #11131A
             vec3 marsRed = vec3(0.65, 0.05, 0.05); // Deep Dark Red
             vec3 darkRed = vec3(0.15, 0.0, 0.0);   // Void Red
-            vec3 darkPurple = vec3(0.35, 0.0, 0.45); // Deep Flowing Purple
-            vec3 deepPurple = vec3(0.1, 0.0, 0.2); // Void Purple
+            vec3 darkPurple = vec3(0.35, 0.0, 0.45); // Deep Flowing Purple (dark mode)
+            vec3 deepPurple = vec3(0.1, 0.0, 0.2); // Void Purple (dark mode)
+            vec3 darkYellow = vec3(0.45, 0.35, 0.05); // Warm golden yellow (light-mode accent)
+            vec3 deepYellow = vec3(0.18, 0.13, 0.0); // Deeper amber (light-mode accent)
+            vec3 lunarCanvas = vec3(0.965, 0.966, 0.972); // Light-mode near-white canvas
 
             float hash(vec2 p) {
                 p = fract(p * vec2(123.34, 456.21));
@@ -92,23 +99,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
             void main() {
                 vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
-                vec3 ro = vec3(0, -1, 0); 
-                vec3 rd = normalize(vec3(uv, 1.0)); 
+
+                vec3 ro = vec3(0, -1, 0);
+                vec3 rd = normalize(vec3(uv, 1.0));
                 vec3 col = vec3(0);
                 float t = 0.0;
-                
+
                 for (int i=0; i<MARCH_STEPS; i++) {
                     vec3 p = ro + rd * t;
                     float density = map(p);
                     if (density > 0.0) {
                         vec3 redMix = mix(darkRed, marsRed, sin(p.x * 2.0 + iTime) * 0.5 + 0.5);
-                        vec3 purpleMix = mix(deepPurple, darkPurple, cos(p.y * 2.0 - iTime * 0.8) * 0.5 + 0.5);
-                        vec3 auroraColor = mix(redMix, purpleMix, sin(p.z * 1.5 + p.x * 0.5 + iTime * 1.2) * 0.5 + 0.5);
+                        // Dark mode pairs red with purple; light mode pairs it with yellow
+                        // instead (better fits a bright backdrop). Selected via uLightMode
+                        // as a branchless mix so dark mode's math stays byte-identical.
+                        vec3 secondaryLow = mix(deepPurple, deepYellow, uLightMode);
+                        vec3 secondaryHigh = mix(darkPurple, darkYellow, uLightMode);
+                        vec3 secondaryMix = mix(secondaryLow, secondaryHigh, cos(p.y * 2.0 - iTime * 0.8) * 0.5 + 0.5);
+                        vec3 auroraColor = mix(redMix, secondaryMix, sin(p.z * 1.5 + p.x * 0.5 + iTime * 1.2) * 0.5 + 0.5);
                         col += auroraColor * density * 0.12 * uColorIntensity;
                     }
                     t += 0.12;
                 }
-                gl_FragColor = vec4(spaceCharcoal + col, 1.0);
+
+                if (uLightMode > 0.5) {
+                    // Adding light on top of near-black (dark mode) looks vivid; adding
+                    // the same light on top of near-white would just clip to white. So
+                    // instead blend *toward* the aurora's own hue, by how much of it is
+                    // here — same noise/flow/palette, composited for a light backdrop.
+                    // A soft exponential response (not a hard clamp) keeps the organic
+                    // density variation visible instead of flattening bright regions
+                    // into one solid plateau, and it never fully reaches solid color —
+                    // white always shows through a little, preserving text contrast.
+                    float glow = 1.0 - exp(-length(col) * 1.5);
+                    vec3 tint = col / max(length(col), 0.0001);
+                    gl_FragColor = vec4(mix(lunarCanvas, tint, glow), 1.0);
+                } else {
+                    gl_FragColor = vec4(spaceCharcoal + col, 1.0);
+                }
             }
         `;
 
@@ -149,7 +177,8 @@ document.addEventListener("DOMContentLoaded", () => {
             uFlowSpeed: gl.getUniformLocation(program, "uFlowSpeed"),
             uColorIntensity: gl.getUniformLocation(program, "uColorIntensity"),
             uNoiseLayers: gl.getUniformLocation(program, "uNoiseLayers"),
-            uMouseInfluence: gl.getUniformLocation(program, "uMouseInfluence")
+            uMouseInfluence: gl.getUniformLocation(program, "uMouseInfluence"),
+            uLightMode: gl.getUniformLocation(program, "uLightMode")
         };
 
         const startTime = performance.now();
@@ -226,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
             gl.uniform1f(locations.uColorIntensity, config.colorIntensity);
             gl.uniform1f(locations.uNoiseLayers, config.noiseLayers);
             gl.uniform1f(locations.uMouseInfluence, config.mouseInfluence);
+            gl.uniform1f(locations.uLightMode, isLightMode() ? 1.0 : 0.0);
 
             gl.drawArrays(gl.TRIANGLES, 0, 6);
             requestAnimationFrame(renderLoop);
@@ -275,6 +305,8 @@ document.addEventListener("DOMContentLoaded", () => {
         resize();
 
         const update = () => {
+            const light = isLightMode();
+
             // Inject Heat
             if (mousePos.active && mousePos.prevX > 0) {
                 const dx = mousePos.x - mousePos.prevX;
@@ -321,20 +353,22 @@ document.addEventListener("DOMContentLoaded", () => {
                         // Hot spots: Organic Mars Red blooms
                         const x = c * resolution + resolution / 2;
                         const y = r * resolution + resolution / 2;
-                        
+
                         const size = resolution * (0.4 + temp * 0.8);
-                        
-                        ctx.fillStyle = `rgba(255, 59, 59, ${Math.min(temp * 1.5, 1)})`; // Mars Red
-                        
+
+                        ctx.fillStyle = light
+                            ? `rgba(214, 30, 30, ${Math.min(temp * 1.5, 1)})` // Deeper red for contrast on white
+                            : `rgba(255, 59, 59, ${Math.min(temp * 1.5, 1)})`; // Mars Red
+
                         ctx.beginPath();
                         ctx.arc(x, y, size / 2, 0, Math.PI * 2);
                         ctx.fill();
                     } else {
-                        // Cold spots: Faint architectural Lunar White grid
+                        // Cold spots: Faint architectural grid dots
                         if (c % 2 === 0 && r % 2 === 0) {
                             const x = c * resolution + resolution / 2;
                             const y = r * resolution + resolution / 2;
-                            ctx.fillStyle = "rgba(240, 242, 245, 0.05)"; // 5% Opacity
+                            ctx.fillStyle = light ? "rgba(20, 22, 28, 0.05)" : "rgba(240, 242, 245, 0.05)";
                             ctx.beginPath();
                             ctx.arc(x, y, 1, 0, Math.PI * 2);
                             ctx.fill();
@@ -355,14 +389,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Constant evaluation loop tracking Red Fonts vs WebGL Rendering Output
     const trackRedFonts = () => {
         const redElements = document.querySelectorAll('.span-red, .logo-icon, [style*="color: var(--mars-red)"], .tagline, .glass-card i, label');
+
         redElements.forEach(el => {
             const rect = el.getBoundingClientRect();
             let cx = rect.left + rect.width / 2;
             let cy = rect.top + rect.height / 2;
-            
+
             let aurora = fontTracker.getAuroraDensity(cx, cy);
             let thermo = fontTracker.getThermoDensity(cx, cy);
-            
+
             // Adjust contrast dynamically depending on mapped rendering collisions
             if (aurora + (thermo * 1.5) > 0.35) {
                 el.classList.add('dynamic-white');

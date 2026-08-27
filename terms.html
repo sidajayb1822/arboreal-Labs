@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var s=localStorage.getItem('al-theme');var light=s?s==='light':window.matchMedia('(prefers-color-scheme: light)').matches;if(light){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service | Arboreal Labs</title>
   <meta name="description" content="The terms and conditions governing your use of Arboreal Labs' website, platforms, and services.">
@@ -160,6 +161,17 @@
           <a href="/privacy-policy">Privacy</a>
           <a href="/terms">Terms</a>
           <a href="/contact">Contact</a>
+        </div>
+        <div class="theme-toggle-group">
+          <span class="theme-toggle-label" id="theme-toggle-label">Experience our website in Dark Mode</span>
+          <label class="theme-toggle" aria-label="Toggle light mode">
+            <input type="checkbox" id="theme-switch">
+            <span class="theme-toggle-track">
+              <i class="ph ph-moon-stars"></i>
+              <i class="ph ph-sun"></i>
+              <span class="theme-toggle-thumb"></span>
+            </span>
+          </label>
         </div>
       </div>
     </div>

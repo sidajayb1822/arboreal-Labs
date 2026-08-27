@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var s=localStorage.getItem('al-theme');var light=s?s==='light':window.matchMedia('(prefers-color-scheme: light)').matches;if(light){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GrowX CRM | Project Management Software for Agencies | Arboreal Labs</title>
   <meta name="description" content="GrowX CRM by Arboreal Labs is the definitive operational suite and project management software designed for scaling agencies.">
@@ -101,7 +102,7 @@
       <div class="grid">
         <div class="glass-card">
           <h3 style="font-size: 1.2rem;"><i class="ph ph-users-three"></i> Access & Personnel Grid</h3>
-          <ul style="padding-left: 1.5rem; margin-top: 1rem; color: rgba(240, 242, 245, 0.85); line-height: 1.8;">
+          <ul style="padding-left: 1.5rem; margin-top: 1rem; color: rgba(var(--lunar-white-rgb), 0.85); line-height: 1.8;">
             <li><strong style="color: #fff;">Role-Based Telemetry:</strong> Secure, isolated command centers for Owners, Freelancers, and Clients.</li>
             <li><strong style="color: #fff;">Unified Directory:</strong> Centralized management protocols for your entire operational ecosystem.</li>
             <li><strong style="color: #fff;">Frictionless Onboarding:</strong> Generate secure access credentials for network additions instantly.</li>
@@ -110,7 +111,7 @@
         
         <div class="glass-card">
           <h3 style="font-size: 1.2rem;"><i class="ph ph-folder-open"></i> Project Mechanics</h3>
-          <ul style="padding-left: 1.5rem; margin-top: 1rem; color: rgba(240, 242, 245, 0.85); line-height: 1.8;">
+          <ul style="padding-left: 1.5rem; margin-top: 1rem; color: rgba(var(--lunar-white-rgb), 0.85); line-height: 1.8;">
             <li><strong style="color: #fff;">Command Center:</strong> Real-time visibility into active/suspended deployments.</li>
             <li><strong style="color: #fff;">Milestone Architecture:</strong> Fracture complex projects into trackable components.</li>
             <li><strong style="color: #fff;">Viscosity Controls:</strong> Precisely calibrate client visibility per submission.</li>
@@ -119,7 +120,7 @@
         
         <div class="glass-card">
           <h3 style="font-size: 1.2rem;"><i class="ph ph-chart-line-up"></i> Financial Telemetry</h3>
-          <ul style="padding-left: 1.5rem; margin-top: 1rem; color: rgba(240, 242, 245, 0.85); line-height: 1.8;">
+          <ul style="padding-left: 1.5rem; margin-top: 1rem; color: rgba(var(--lunar-white-rgb), 0.85); line-height: 1.8;">
             <li><strong style="color: #fff;">Cost TrackerPRO:</strong> Execute income and expense inputs seamlessly.</li>
             <li><strong style="color: #fff;">Project Accounting:</strong> Link capital flow directly to active deployments.</li>
             <li><strong style="color: #fff;">Live Analytics:</strong> Real-time dashboarding of total revenue & burn rate.</li>
@@ -200,6 +201,17 @@
           <a href="/privacy-policy">Privacy</a>
           <a href="/terms">Terms</a>
           <a href="/contact">Contact</a>
+        </div>
+        <div class="theme-toggle-group">
+          <span class="theme-toggle-label" id="theme-toggle-label">Experience our website in Dark Mode</span>
+          <label class="theme-toggle" aria-label="Toggle light mode">
+            <input type="checkbox" id="theme-switch">
+            <span class="theme-toggle-track">
+              <i class="ph ph-moon-stars"></i>
+              <i class="ph ph-sun"></i>
+              <span class="theme-toggle-thumb"></span>
+            </span>
+          </label>
         </div>
       </div>
     </div>

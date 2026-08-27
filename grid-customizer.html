@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Net Customizer | Arboreal Labs</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Segoe UI', Inter, sans-serif; background: #fff; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+  #panel {
+    position: fixed; top: 1rem; right: 1rem; width: 320px; max-height: calc(100vh - 2rem);
+    overflow-y: auto; background: rgba(17, 19, 26, 0.92); backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.25rem;
+    color: #F0F2F5; z-index: 10; box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  }
+  #panel h1 { font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.25rem; color: #FF3B3B; }
+  #panel .sub { font-size: 0.75rem; color: rgba(240,242,245,0.5); margin-bottom: 1.1rem; line-height: 1.4; }
+
+  .field { margin-bottom: 0.95rem; }
+  .field label { display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 0.35rem; color: rgba(240,242,245,0.85); }
+  .field label span.val { color: #FF3B3B; font-variant-numeric: tabular-nums; }
+  input[type="range"] {
+    width: 100%; height: 4px; -webkit-appearance: none; appearance: none;
+    background: rgba(255,255,255,0.12); border-radius: 4px; outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%;
+    background: #FF3B3B; cursor: pointer; box-shadow: 0 0 8px rgba(255,59,59,0.6);
+  }
+  input[type="color"] {
+    width: 100%; height: 32px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
+    background: none; cursor: pointer; padding: 0;
+  }
+
+  .row { display: flex; gap: 0.6rem; }
+  .row .field { flex: 1; }
+
+  #directionField { display: flex; align-items: center; gap: 0.85rem; }
+  #directionField .field { flex: 1; margin-bottom: 0; }
+  #directionArrow {
+    flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04);
+    display: flex; align-items: center; justify-content: center;
+  }
+  #directionArrow svg { transform: rotate(0deg); transition: transform 0.08s linear; }
+
+  hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 1rem 0; }
+
+  button {
+    width: 100%; padding: 0.7rem; border-radius: 8px; border: none; cursor: pointer;
+    font-family: inherit; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.03em;
+    text-transform: uppercase; margin-top: 0.4rem; transition: opacity 0.2s ease;
+  }
+  button:hover { opacity: 0.85; }
+  #copyBtn { background: #FF3B3B; color: #fff; }
+  #resetBtn { background: rgba(255,255,255,0.08); color: #F0F2F5; }
+
+  #output {
+    display: none; margin-top: 0.8rem; background: #05060a; border-radius: 8px; padding: 0.75rem;
+    font-family: 'Consolas', monospace; font-size: 0.7rem; line-height: 1.5; color: #9dffb0;
+    white-space: pre-wrap; word-break: break-word; max-height: 220px; overflow-y: auto;
+  }
+  #copiedNote { display: none; font-size: 0.7rem; color: #9dffb0; margin-top: 0.4rem; text-align: center; }
+
+  #toggleBtn {
+    position: fixed; top: 1rem; right: 1rem; z-index: 11; background: rgba(17,19,26,0.9);
+    color: #F0F2F5; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
+    padding: 0.5rem 0.9rem; font-size: 0.75rem; cursor: pointer; display: none;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="shader-canvas"></canvas>
+
+<button id="toggleBtn">Show Controls</button>
+
+<div id="panel">
+  <h1>Grid Net Customizer</h1>
+  <div class="sub">Drag the sliders to tune the light-mode background live. When you're happy with it, hit "Copy Settings" and send the output back so it can be applied to the real site.</div>
+
+  <div class="field">
+    <label>Square Size <span class="val" id="val-density"></span></label>
+    <input type="range" id="density" min="15" max="150" step="1" value="55">
+  </div>
+
+  <div class="field">
+    <label>Flow Speed <span class="val" id="val-flow"></span></label>
+    <input type="range" id="flow" min="0" max="2" step="0.01" value="0.3">
+  </div>
+
+  <div id="directionField">
+    <div class="field">
+      <label>Direction <span class="val" id="val-direction"></span></label>
+      <input type="range" id="direction" min="0" max="360" step="1" value="90">
+    </div>
+    <div id="directionArrow" title="Direction the net drifts in">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" id="arrowSvg">
+        <path d="M12 20V4M12 4L5 11M12 4L19 11" stroke="#FF3B3B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label>Waviness X <span class="val" id="val-warpx"></span></label>
+      <input type="range" id="warpx" min="0" max="0.05" step="0.001" value="0.02">
+    </div>
+    <div class="field">
+      <label>Waviness Y <span class="val" id="val-warpy"></span></label>
+      <input type="range" id="warpy" min="0" max="0.05" step="0.001" value="0.016">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Brightness <span class="val" id="val-intensity"></span></label>
+    <input type="range" id="intensity" min="0" max="1" step="0.01" value="0.75">
+  </div>
+
+  <div class="field">
+    <label>Line Thickness <span class="val" id="val-thickness"></span></label>
+    <input type="range" id="thickness" min="0.2" max="3" step="0.05" value="0.6">
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label>Line Color</label>
+      <input type="color" id="netColor" value="#ff7373">
+    </div>
+    <div class="field">
+      <label>Background</label>
+      <input type="color" id="bgColor" value="#f6f6f8">
+    </div>
+  </div>
+
+  <hr>
+  <button id="copyBtn">Copy Settings</button>
+  <button id="resetBtn">Reset to Site Defaults</button>
+  <div id="copiedNote">Copied to clipboard.</div>
+  <pre id="output"></pre>
+</div>
+
+<script>
+const canvas = document.getElementById('shader-canvas');
+const gl = canvas.getContext('webgl');
+if (!gl) {
+  document.body.innerHTML = '<div style="padding:2rem;font-family:sans-serif;color:#c00;">WebGL is not available in this browser.</div>';
+  throw new Error('no webgl');
+}
+
+const vertexSrc = `
+  attribute vec2 aPosition;
+  void main() { gl_Position = vec4(aPosition, 0.0, 1.0); }
+`;
+
+const fragmentSrc = `
+  precision highp float;
+  uniform vec2 iResolution;
+  uniform float iTime;
+  uniform vec2 iMouse;
+  uniform float uDensity;
+  uniform float uFlow;
+  uniform float uDirection;
+  uniform float uWarpX;
+  uniform float uWarpY;
+  uniform float uIntensity;
+  uniform float uThickness;
+  uniform vec3 uNetColor;
+  uniform vec3 uBgColor;
+
+  void main() {
+    vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+    vec2 mouseNorm = (iMouse.xy / iResolution.xy - 0.5) * 2.0;
+    vec2 p = uv * uDensity + mouseNorm * 0.12;
+    vec2 flowDir = vec2(cos(uDirection), sin(uDirection));
+    p -= flowDir * iTime * uFlow * 0.3;
+
+    float t = iTime * uFlow;
+    p.x += sin(p.y * 1.3 + t * 0.6) * uWarpX;
+    p.y += cos(p.x * 1.1 - t * 0.5) * uWarpY;
+
+    vec2 cell = fract(p) - 0.5;
+
+    float cellUnitsPerPixel = uDensity / iResolution.y;
+    float halfWidth = cellUnitsPerPixel * uThickness;
+    float aa = halfWidth * 0.833;
+    vec2 lineAA = 1.0 - smoothstep(vec2(halfWidth), vec2(halfWidth + aa), abs(cell));
+    float gridLine = clamp((lineAA.x + lineAA.y) * uIntensity, 0.0, 1.0);
+
+    gl_FragColor = vec4(mix(uBgColor, uNetColor, gridLine), 1.0);
+  }
+`;
+
+function compile(src, type) {
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+    console.error(gl.getShaderInfoLog(s));
+    return null;
+  }
+  return s;
+}
+
+const vs = compile(vertexSrc, gl.VERTEX_SHADER);
+const fs = compile(fragmentSrc, gl.FRAGMENT_SHADER);
+const program = gl.createProgram();
+gl.attachShader(program, vs);
+gl.attachShader(program, fs);
+gl.linkProgram(program);
+gl.useProgram(program);
+
+const verts = new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]);
+const buf = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
+const aPosition = gl.getAttribLocation(program, 'aPosition');
+gl.enableVertexAttribArray(aPosition);
+gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+
+const loc = {
+  iResolution: gl.getUniformLocation(program, 'iResolution'),
+  iTime: gl.getUniformLocation(program, 'iTime'),
+  iMouse: gl.getUniformLocation(program, 'iMouse'),
+  uDensity: gl.getUniformLocation(program, 'uDensity'),
+  uFlow: gl.getUniformLocation(program, 'uFlow'),
+  uDirection: gl.getUniformLocation(program, 'uDirection'),
+  uWarpX: gl.getUniformLocation(program, 'uWarpX'),
+  uWarpY: gl.getUniformLocation(program, 'uWarpY'),
+  uIntensity: gl.getUniformLocation(program, 'uIntensity'),
+  uThickness: gl.getUniformLocation(program, 'uThickness'),
+  uNetColor: gl.getUniformLocation(program, 'uNetColor'),
+  uBgColor: gl.getUniformLocation(program, 'uBgColor'),
+};
+
+const DEFAULTS = {
+  density: 55, flow: 0.3, direction: 90, warpx: 0.02, warpy: 0.016,
+  intensity: 0.75, thickness: 0.6, netColor: '#ff7373', bgColor: '#f6f6f8'
+};
+
+const state = { ...DEFAULTS };
+const mouse = { x: -1000, y: -1000 };
+
+function hexToRgb01(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+}
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  gl.viewport(0, 0, canvas.width, canvas.height);
+}
+window.addEventListener('resize', resize);
+resize();
+
+window.addEventListener('mousemove', (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+const startTime = performance.now();
+function render() {
+  const time = (performance.now() - startTime) / 1000;
+  gl.uniform2f(loc.iResolution, canvas.width, canvas.height);
+  gl.uniform1f(loc.iTime, time);
+  gl.uniform2f(loc.iMouse, mouse.x, canvas.height - mouse.y);
+  gl.uniform1f(loc.uDensity, state.density);
+  gl.uniform1f(loc.uFlow, state.flow);
+  gl.uniform1f(loc.uDirection, state.direction * Math.PI / 180);
+  gl.uniform1f(loc.uWarpX, state.warpx);
+  gl.uniform1f(loc.uWarpY, state.warpy);
+  gl.uniform1f(loc.uIntensity, state.intensity);
+  gl.uniform1f(loc.uThickness, state.thickness);
+  const net = hexToRgb01(state.netColor);
+  gl.uniform3f(loc.uNetColor, net[0], net[1], net[2]);
+  const bg = hexToRgb01(state.bgColor);
+  gl.uniform3f(loc.uBgColor, bg[0], bg[1], bg[2]);
+  gl.drawArrays(gl.TRIANGLES, 0, 6);
+  requestAnimationFrame(render);
+}
+render();
+
+// ---- UI wiring ----
+const fields = [
+  { id: 'density', key: 'density', fmt: v => v },
+  { id: 'flow', key: 'flow', fmt: v => v.toFixed(2) },
+  { id: 'direction', key: 'direction', fmt: v => v + '°' },
+  { id: 'warpx', key: 'warpx', fmt: v => v.toFixed(3) },
+  { id: 'warpy', key: 'warpy', fmt: v => v.toFixed(3) },
+  { id: 'intensity', key: 'intensity', fmt: v => v.toFixed(2) },
+  { id: 'thickness', key: 'thickness', fmt: v => v.toFixed(2) },
+];
+
+function updateArrow() {
+  // SVG arrow points "up" at rotation 0; direction is a math angle
+  // (0=right, 90=up, ccw), so rotate clockwise by (90 - direction).
+  document.getElementById('arrowSvg').style.transform = `rotate(${90 - state.direction}deg)`;
+}
+
+function syncUI() {
+  fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    el.value = state[f.key];
+    document.getElementById('val-' + f.id).textContent = f.fmt(parseFloat(el.value));
+  });
+  document.getElementById('netColor').value = state.netColor;
+  document.getElementById('bgColor').value = state.bgColor;
+  updateArrow();
+}
+
+fields.forEach(f => {
+  const el = document.getElementById(f.id);
+  el.addEventListener('input', () => {
+    state[f.key] = parseFloat(el.value);
+    document.getElementById('val-' + f.id).textContent = f.fmt(state[f.key]);
+    if (f.id === 'direction') updateArrow();
+  });
+});
+document.getElementById('netColor').addEventListener('input', (e) => { state.netColor = e.target.value; });
+document.getElementById('bgColor').addEventListener('input', (e) => { state.bgColor = e.target.value; });
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  Object.assign(state, DEFAULTS);
+  syncUI();
+});
+
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  const net = hexToRgb01(state.netColor).map(v => v.toFixed(3));
+  const bg = hexToRgb01(state.bgColor).map(v => v.toFixed(3));
+  const effectiveRate = state.flow * 0.3;
+  const text =
+`density = ${state.density.toFixed(1)}
+flow speed (0-2 scale, internal multiplier 0.3) = ${state.flow.toFixed(2)}
+effective translation rate = ${effectiveRate.toFixed(3)} cell-units/sec
+direction = ${state.direction} degrees (${(state.direction * Math.PI / 180).toFixed(3)} rad)
+warp amplitude X = ${state.warpx.toFixed(3)}
+warp amplitude Y = ${state.warpy.toFixed(3)}
+brightness / intensity factor = ${state.intensity.toFixed(2)}
+line thickness factor = ${state.thickness.toFixed(2)}
+netRed = vec3(${net.join(', ')})
+lunarCanvas (background) = vec3(${bg.join(', ')})`;
+
+  const out = document.getElementById('output');
+  out.textContent = text;
+  out.style.display = 'block';
+  try {
+    await navigator.clipboard.writeText(text);
+    const note = document.getElementById('copiedNote');
+    note.style.display = 'block';
+    setTimeout(() => { note.style.display = 'none'; }, 2000);
+  } catch (e) { /* clipboard permission denied — text is still shown above */ }
+});
+
+// Mobile-friendly panel toggle
+const panel = document.getElementById('panel');
+const toggleBtn = document.getElementById('toggleBtn');
+function checkLayout() {
+  if (window.innerWidth <= 640) {
+    toggleBtn.style.display = 'block';
+    panel.style.display = 'none';
+  } else {
+    toggleBtn.style.display = 'none';
+    panel.style.display = 'block';
+  }
+}
+toggleBtn.addEventListener('click', () => {
+  const showing = panel.style.display === 'block';
+  panel.style.display = showing ? 'none' : 'block';
+  toggleBtn.textContent = showing ? 'Show Controls' : 'Hide Controls';
+});
+window.addEventListener('resize', checkLayout);
+checkLayout();
+
+syncUI();
+</script>
+</body>
+</html>
