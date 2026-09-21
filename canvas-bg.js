@@ -131,8 +131,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     // density variation visible instead of flattening bright regions
                     // into one solid plateau, and it never fully reaches solid color —
                     // white always shows through a little, preserving text contrast.
-                    float glow = 1.0 - exp(-length(col) * 1.5);
-                    vec3 tint = col / max(length(col), 0.0001);
+                    // Dampened well below the dark-mode intensity so light mode reads
+                    // as a mostly-white surface with only a faint tint of color.
+                    vec3 lightCol = col * 0.4;
+                    float glow = 1.0 - exp(-length(lightCol) * 1.5);
+                    vec3 tint = lightCol / max(length(lightCol), 0.0001);
                     gl_FragColor = vec4(mix(lunarCanvas, tint, glow), 1.0);
                 } else {
                     gl_FragColor = vec4(spaceCharcoal + col, 1.0);

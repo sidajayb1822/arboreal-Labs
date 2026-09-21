@@ -200,59 +200,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Continuous subtle glow scaling
   gsap.to('.breathing', { scale: 1.02, duration: 3, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
-  // 10. Custom Systems — Netflix-style mosaic overlay (click to open)
-  const csTriggers = document.querySelectorAll('.cs-trigger');
-  if (csTriggers.length) {
-    const csTiles = [
-      { href: '/custom-solutions', title: 'Custom Software', desc: 'Bespoke platforms and AI tools, built exactly for how your business runs.', icon: 'ph-cpu', cls: 'cs-feat', accent: 'rgba(255,59,59,0.30)', solid: '#FF3B3B', live: true },
-      { href: '/precision-variance', title: 'Precision Variance Analysis', desc: 'Catch every cost and quantity variance against a signed, auditable baseline.', icon: 'ph-chart-scatter', cls: 'cs-wide', accent: 'rgba(99,102,241,0.30)', solid: '#6366F1' },
-      { href: '/customs-clearance', title: 'Customs Clearance & Compliance', desc: 'Customs docs, duties, and trade compliance in one connected workflow.', icon: 'ph-package', cls: '', accent: 'rgba(45,212,191,0.28)', solid: '#2DD4BF' },
-      { href: '/client-engagement', title: 'Client Engagement', desc: 'Every client touchpoint and approval in one place.', icon: 'ph-chats-circle', cls: '', accent: 'rgba(251,191,36,0.26)', solid: '#FBBF24' },
-      { href: '/accounting-compliance', title: 'Accounting Compliance', desc: 'Automated ledgers, reconciliations, and audit-ready reporting.', icon: 'ph-calculator', cls: 'cs-banner', accent: 'rgba(52,211,153,0.26)', solid: '#34D399' },
-    ];
-    const tilesHTML = csTiles.map(t => `
-        <a class="cs-tile ${t.cls}" href="${t.href}" style="--cs-accent:${t.accent}; --cs-solid:${t.solid};">
-          <i class="ph ${t.icon} cs-wm"></i>
-          ${t.live ? '' : '<span class="cs-badge">Coming Soon</span>'}
-          <h3>${t.title}</h3>
-          <p>${t.desc}</p>
-          <span class="cs-go">${t.live ? 'Explore' : 'Preview'} <i class="ph ph-arrow-right"></i></span>
-        </a>`).join('');
-
-    const overlay = document.createElement('div');
-    overlay.className = 'cs-overlay';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Custom Systems');
-    overlay.innerHTML = `
-      <button class="cs-close" aria-label="Close">&times;</button>
-      <div class="cs-overlay-inner">
-        <div class="cs-overlay-head">
-          <p class="cs-eyebrow">Custom Systems</p>
-          <h2>Software, tailored to your operation</h2>
-          <p class="cs-sub">Purpose-built tools we design, host, and run for you.</p>
-        </div>
-        <div class="cs-mosaic">${tilesHTML}</div>
-      </div>`;
-    document.body.appendChild(overlay);
-
-    const openCS = () => { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; };
-    const closeCS = () => { overlay.classList.remove('open'); document.body.style.overflow = ''; };
-
-    csTriggers.forEach(t => t.addEventListener('click', (e) => { e.preventDefault(); openCS(); }));
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay || e.target.closest('.cs-close')) { e.preventDefault(); closeCS(); }
-    });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeCS(); });
-
-    if (cursor && !isTouchDevice) {
-      overlay.querySelectorAll('a, button').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-      });
-    }
-  }
-
   // 9. Lazy-load promo video (defer the ~3MB download until it scrolls into view)
   const lazyVideo = document.querySelector('video[data-src]');
   if (lazyVideo) {
