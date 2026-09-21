@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         getThermoDensity: () => 0
     };
 
-    // Shared theme awareness — toggled via the footer switch (see script.js)
+    // Shared theme awareness — toggled via the footer switch (see assets/js/script.js)
     const isLightMode = () => document.documentElement.getAttribute('data-theme') === 'light';
 
     // ==========================================
