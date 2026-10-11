@@ -389,26 +389,37 @@ document.addEventListener("DOMContentLoaded", () => {
     initWebGLShader();
     initThermoGrid();
 
-    // Constant evaluation loop tracking Red Fonts vs WebGL Rendering Output
-    const trackRedFonts = () => {
-        const redElements = document.querySelectorAll('.span-red, .logo-icon, [style*="color: var(--mars-red)"], .tagline, .glass-card i, label');
+    // Constant evaluation loop tracking Red Fonts vs WebGL Rendering Output.
+    // Throttled to ~10fps and the element list is cached (refreshed on resize)
+    // instead of re-querying + reflowing the DOM every single animation frame —
+    // the visual effect is a slow-moving background tint, so it doesn't need 60fps.
+    let redElements = document.querySelectorAll('.span-red, .logo-icon, [style*="color: var(--mars-red)"], .tagline, .glass-card i, label');
+    window.addEventListener('resize', () => {
+        redElements = document.querySelectorAll('.span-red, .logo-icon, [style*="color: var(--mars-red)"], .tagline, .glass-card i, label');
+    });
 
-        redElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            let cx = rect.left + rect.width / 2;
-            let cy = rect.top + rect.height / 2;
+    const TRACK_INTERVAL_MS = 100;
+    let lastTrackTime = 0;
+    const trackRedFonts = (now) => {
+        if (now - lastTrackTime >= TRACK_INTERVAL_MS) {
+            lastTrackTime = now;
+            redElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                let cx = rect.left + rect.width / 2;
+                let cy = rect.top + rect.height / 2;
 
-            let aurora = fontTracker.getAuroraDensity(cx, cy);
-            let thermo = fontTracker.getThermoDensity(cx, cy);
+                let aurora = fontTracker.getAuroraDensity(cx, cy);
+                let thermo = fontTracker.getThermoDensity(cx, cy);
 
-            // Adjust contrast dynamically depending on mapped rendering collisions
-            if (aurora + (thermo * 1.5) > 0.35) {
-                el.classList.add('dynamic-white');
-            } else {
-                el.classList.remove('dynamic-white');
-            }
-        });
+                // Adjust contrast dynamically depending on mapped rendering collisions
+                if (aurora + (thermo * 1.5) > 0.35) {
+                    el.classList.add('dynamic-white');
+                } else {
+                    el.classList.remove('dynamic-white');
+                }
+            });
+        }
         requestAnimationFrame(trackRedFonts);
     };
-    trackRedFonts();
+    requestAnimationFrame(trackRedFonts);
 });
