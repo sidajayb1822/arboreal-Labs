@@ -32,16 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
           document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
       });
       
-      document.querySelectorAll('.dropdown').forEach(dd => {
-          dd.addEventListener('click', (e) => {
-              if (window.innerWidth <= 768 && e.target.tagName.toLowerCase() === 'a' && e.target.nextElementSibling?.classList.contains('dropdown-content')) {
-                  e.preventDefault();
-                  dd.classList.toggle('active');
-              }
-          });
-      });
-      
-      document.querySelectorAll('.nav-links a:not(.dropdown > a)').forEach(link => {
+      document.querySelectorAll('.nav-links a').forEach(link => {
           link.addEventListener('click', () => {
               if (window.innerWidth <= 768) {
                   hamburger.classList.remove('active');
@@ -78,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
       yTo(e.clientY);
     });
     
-    document.querySelectorAll('a, button, .magnetic, .dropdown, .theme-toggle').forEach(el => {
+    document.querySelectorAll('a, button, .magnetic, .theme-toggle').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('active'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
@@ -226,5 +217,51 @@ document.addEventListener("DOMContentLoaded", () => {
       loadVideo();
       lazyVideo.play().catch(() => {});
     }
+  }
+
+  // 10. Projects page filters (project type + industry)
+  const projectGroups = document.querySelectorAll('.project-group');
+  if (projectGroups.length) {
+    const typeBtns = document.querySelectorAll('[data-type-filter]');
+    const industryBtns = document.querySelectorAll('[data-industry-filter]');
+    let activeType = 'all';
+    let activeIndustry = 'all';
+
+    const markActive = (btns, key, value) => btns.forEach(btn => {
+      const isActive = btn.dataset[key] === value;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive);
+    });
+
+    const render = () => {
+      markActive(typeBtns, 'typeFilter', activeType);
+      markActive(industryBtns, 'industryFilter', activeIndustry);
+      projectGroups.forEach(group => {
+        group.classList.toggle('is-hidden', activeType !== 'all' && group.dataset.type !== activeType);
+        let visible = 0;
+        group.querySelectorAll('.work-card').forEach(card => {
+          const show = activeIndustry === 'all' || card.dataset.industries.split(' ').includes(activeIndustry);
+          card.classList.toggle('is-hidden', !show);
+          if (show) visible++;
+        });
+        group.querySelector('.work-empty').classList.toggle('is-hidden', visible > 0);
+      });
+      // Hiding cards changes page height, so later scroll-reveal triggers need new positions
+      ScrollTrigger.refresh();
+    };
+
+    typeBtns.forEach(btn => btn.addEventListener('click', () => {
+      activeType = btn.dataset.typeFilter;
+      history.replaceState(null, '', activeType === 'all' ? location.pathname : '#' + activeType);
+      render();
+    }));
+    industryBtns.forEach(btn => btn.addEventListener('click', () => {
+      activeIndustry = btn.dataset.industryFilter;
+      render();
+    }));
+
+    const initialType = location.hash.slice(1);
+    if (Array.from(typeBtns).some(btn => btn.dataset.typeFilter === initialType)) activeType = initialType;
+    render();
   }
 });

@@ -47,7 +47,7 @@ main, footer, nav, section {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  body, a, button, .dropdown { cursor: none !important; }
+  body, a, button { cursor: none !important; }
 }
 
 .custom-cursor {
@@ -114,20 +114,8 @@ nav {
 }
 
 .nav-links { display: flex; gap: 2rem; align-items: center; }
-.nav-links a, .dropdown { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; transition: color 0.3s ease; }
-.nav-links a:hover, .dropdown:hover > a { color: var(--mars-red); }
-
-.dropdown { position: relative; display: inline-block; padding: 0.5rem 0; }
-.dropdown-content {
-  display: flex; flex-direction: column; opacity: 0; pointer-events: none;
-  position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
-  background: rgba(var(--space-charcoal-rgb), 0.9); border: 1px solid var(--glass-border);
-  backdrop-filter: blur(24px); border-radius: 12px; padding: 0.5rem 0; min-width: 180px;
-  transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.dropdown:hover .dropdown-content { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-.dropdown-content a { padding: 0.75rem 1.5rem; color: var(--lunar-white); display: block; border-left: 2px solid transparent; }
-.dropdown-content a:hover { background: rgba(255, 59, 59, 0.05); color: var(--mars-red); border-left-color: var(--mars-red); }
+.nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; transition: color 0.3s ease; }
+.nav-links a:hover { color: var(--mars-red); }
 
 .btn-primary {
   background: var(--mars-red); color: var(--on-mars-red); padding: 0.65rem 1.5rem;
@@ -168,6 +156,48 @@ nav {
 .glass-card ul { transform: translateZ(10px); }
 .glass-card i { color: var(--mars-red); font-size: 1.8rem; }
 
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;
+  font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+  color: rgba(var(--lunar-white-rgb), 0.65); transition: color 0.3s ease;
+}
+.back-link:hover { color: var(--mars-red); }
+
+/* Work showcase (Custom Systems) */
+.work-filters { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+.work-filter {
+  font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 0.55rem 1.15rem; border-radius: 100px;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  color: rgba(var(--lunar-white-rgb), 0.75); cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.work-filter:hover { color: var(--lunar-white); border-color: var(--mars-red); }
+.work-filter.active { background: var(--mars-red); border-color: var(--mars-red); color: var(--on-mars-red); }
+.work-filters-sub { margin-top: -1rem; }
+.work-filters-sub .work-filter { font-size: 0.7rem; padding: 0.45rem 0.95rem; }
+.work-grid { margin-top: 0; }
+.work-card { display: flex; flex-direction: column; }
+.work-empty { color: rgba(var(--lunar-white-rgb), 0.55); padding: 1rem 0; }
+.is-hidden { display: none !important; }
+.work-card h3 { font-size: 1.2rem; }
+.work-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin-bottom: 1.2rem; }
+.work-tag, .work-badge {
+  font-size: 0.66rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 0.2rem 0.65rem; border-radius: 100px; border: 1px solid var(--glass-border);
+  color: rgba(var(--lunar-white-rgb), 0.7);
+}
+.work-badge { margin-left: auto; border-color: rgba(255, 59, 59, 0.4); color: var(--mars-red); }
+.work-more {
+  margin-top: auto; padding-top: 1.2rem; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--mars-red); font-weight: 600; font-size: 0.8rem;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.work-more i { font-size: 1rem; transition: transform 0.3s ease; }
+.work-more:hover i { transform: translateX(4px); }
+
 /* Dual-Canvas Background Injection */
 .ambient-glow {
   position: absolute; top: -20%; left: -10%;
@@ -207,7 +237,7 @@ footer { border-top: 1px solid var(--glass-border); padding: 4rem 0 2rem; margin
 .footer-socials a { width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid var(--glass-border); color: var(--lunar-white); transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; }
 .footer-socials a:hover { color: var(--mars-red); border-color: var(--mars-red); background: rgba(255, 59, 59, 0.06); box-shadow: 0 0 18px rgba(255, 59, 59, 0.18); }
 .footer-socials i { font-size: 1.3rem; }
-.footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .footer-col h4 { font-family: var(--font-display); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lunar-white); margin-bottom: 1.2rem; }
 .footer-col a { display: block; font-size: 0.9rem; color: rgba(var(--lunar-white-rgb), 0.6); margin-bottom: 0.75rem; transition: color 0.3s ease; }
 .footer-col a:hover { color: var(--mars-red); }
@@ -269,7 +299,7 @@ footer { border-top: 1px solid var(--glass-border); padding: 4rem 0 2rem; margin
 .hamburger-btn.active span:nth-child(3) { transform: rotate(-45deg); }
 
 /* =================================================================
-   FlowForge OS - product page: dark-UI mockups ("screenshots")
+   Inventory Management Software (/inventory-management) - product page: dark-UI mockups ("screenshots")
    All rules scoped under .ff- so no other page is affected.
    Swappable: each mockup lives in a <figure class="ff-shot"> slot
    that a real screenshot <img> can drop into without layout change.
@@ -412,6 +442,10 @@ footer { border-top: 1px solid var(--glass-border); padding: 4rem 0 2rem; margin
   border-radius: 46px;
   padding: 11px;
   box-shadow: 0 0 0 2px rgba(255,255,255,0.05), 0 40px 80px rgba(0,0,0,0.6), inset 0 0 2px rgba(255,255,255,0.18);
+  /* Not fully opaque, so Chrome won't skip drawing the animated background
+     behind the phone; on some Windows GPUs that skipped tile lags behind
+     during smooth scroll and shows as a dark 256px box. */
+  opacity: 0.999;
 }
 .iphone-mock::before,  /* volume buttons */
 .iphone-mock::after {  /* power button */
@@ -423,7 +457,7 @@ footer { border-top: 1px solid var(--glass-border); padding: 4rem 0 2rem; margin
   position: relative; width: 100%; height: 100%;
   border-radius: 36px; overflow: hidden; background: #000;
 }
-.iphone-screen video { width: 100%; height: 100%; object-fit: cover; background: #000; display: block; }
+.iphone-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .iphone-island {
   position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
   width: 32%; height: 26px; background: #04050a; border-radius: 100px; z-index: 3;
@@ -455,14 +489,5 @@ footer { border-top: 1px solid var(--glass-border); padding: 4rem 0 2rem; margin
   }
   .nav-links.active { transform: translateY(0); }
   .nav-links a { font-size: 1.5rem; border-left: none; }
-  .dropdown > a { font-size: 1.5rem; display: inline-block; }
-  .dropdown-content, .dropdown:hover .dropdown-content, .dropdown.active .dropdown-content {
-    position: static !important; opacity: 1 !important; visibility: visible !important; 
-    transform: none !important; background: transparent !important; border: none !important; 
-    padding: 1rem 0 0 0 !important; text-align: center !important; box-shadow: none !important; pointer-events: auto !important;
-  }
-  .dropdown-content { display: none !important; }
-  .dropdown.active .dropdown-content { display: flex !important; flex-direction: column; gap: 1rem; }
-  .dropdown-content a { font-size: 1.2rem; padding: 0.5rem; }
   .btn-primary { width: auto; font-size: 1.2rem; margin-top: 1rem; }
 }
