@@ -43,19 +43,25 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // 1. Lenis Smooth Scroll
-  const lenis = new Lenis({
-    duration: 1.2,
+  const nav = document.querySelector('nav');
+  const syncNavState = () => nav?.classList.toggle('is-scrolled', window.scrollY > 40);
+  syncNavState();
+  window.addEventListener('scroll', syncNavState, { passive: true });
+
+  // 1. Lenis Smooth Scroll — driven by GSAP's ticker to keep every layer in sync.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lenis = typeof Lenis !== 'undefined' ? new Lenis({
+    duration: reduceMotion ? 0 : 1.15,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-  });
-  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
+    smoothWheel: !reduceMotion,
+  }) : null;
 
   gsap.registerPlugin(ScrollTrigger);
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
+  if (lenis) {
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
 
   // 2. Custom Cursor (Desktop Only)
   const cursor = document.querySelector('.custom-cursor');
@@ -191,7 +197,82 @@ document.addEventListener("DOMContentLoaded", () => {
   // Continuous subtle glow scaling
   gsap.to('.breathing', { scale: 1.02, duration: 3, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
-  // 9. Lazy-load promo video (defer the ~3MB download until it scrolls into view)
+  // 9. Homepage cinematic depth system
+  const heroVisual = document.querySelector('.pillar-globe');
+  if (heroVisual && !reduceMotion) {
+    gsap.to(heroVisual, {
+      y: 60,
+      scale: .86,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero-cinematic', start: 'top top', end: 'bottom top', scrub: 1.1 }
+    });
+    gsap.to('.hero-content', {
+      yPercent: 18,
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero-cinematic', start: '42% top', end: 'bottom top', scrub: true }
+    });
+  }
+
+  // Give internal pages the same spatial rhythm without requiring page-specific markup.
+  if (!document.querySelector('.home-main')) {
+    const pageHeaderElements = document.querySelectorAll('.page-header > .back-link, .page-header > .tagline, .page-header > h1, .page-header > p');
+    if (pageHeaderElements.length && !reduceMotion) {
+      gsap.from(pageHeaderElements, {
+        y: 34,
+        rotateX: -8,
+        opacity: 0,
+        duration: 1,
+        stagger: .08,
+        ease: 'power3.out',
+        delay: .15
+      });
+    }
+
+    gsap.utils.toArray('.page-header section').forEach((section) => {
+      if (!reduceMotion) {
+        gsap.fromTo(section,
+          { y: 54, opacity: 0.35 },
+          {
+            y: 0, opacity: 1, ease: 'none',
+            scrollTrigger: { trigger: section, start: 'top 92%', end: 'top 58%', scrub: .65 }
+          }
+        );
+      }
+    });
+  }
+
+  const storySteps = gsap.utils.toArray('.story-step');
+  storySteps.forEach((step) => {
+    ScrollTrigger.create({
+      trigger: step,
+      start: 'top 62%',
+      end: 'bottom 38%',
+      toggleClass: { targets: step, className: 'active' }
+    });
+    if (!reduceMotion) {
+      gsap.from(step.querySelector('i'), {
+        rotate: -35,
+        scale: .7,
+        scrollTrigger: { trigger: step, start: 'top 85%', end: 'top 45%', scrub: .8 }
+      });
+    }
+  });
+
+  gsap.utils.toArray('.service-panel').forEach((panel, index) => {
+    if (!reduceMotion) {
+      gsap.from(panel, {
+        y: 100 + index * 28,
+        rotateX: 12,
+        opacity: 0,
+        duration: 1.1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '.services-deck', start: 'top 82%' }
+      });
+    }
+  });
+
+  // 10. Lazy-load promo video (defer the ~3MB download until it scrolls into view)
   const lazyVideo = document.querySelector('video[data-src]');
   if (lazyVideo) {
     const loadVideo = () => {
@@ -219,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 10. Projects page filters (project type + industry)
+  // 11. Projects page filters (project type + industry)
   const projectGroups = document.querySelectorAll('.project-group');
   if (projectGroups.length) {
     const typeBtns = document.querySelectorAll('[data-type-filter]');
@@ -263,5 +344,72 @@ document.addEventListener("DOMContentLoaded", () => {
     const initialType = location.hash.slice(1);
     if (Array.from(typeBtns).some(btn => btn.dataset.typeFilter === initialType)) activeType = initialType;
     render();
+  }
+
+  // 12. Scroll-drawn process roadmap (Custom Systems page)
+  const roadmap = document.querySelector('.roadmap');
+  if (roadmap) {
+    const track = roadmap.querySelector('.roadmap-track');
+    const svg = roadmap.querySelector('.roadmap-svg');
+    const paths = svg.querySelectorAll('path');
+    const progressPath = svg.querySelector('.road-progress');
+    const car = roadmap.querySelector('.roadmap-car');
+    const stops = Array.from(roadmap.querySelectorAll('.roadmap-stop'));
+    let length = 0, stopLengths = [], current = reduceMotion ? 1 : 0;
+
+    // Trace a smooth road through the centre of every stop node.
+    const build = () => {
+      const box = track.getBoundingClientRect();
+      const pts = stops.map((stop) => {
+        const r = stop.querySelector('.stop-node').getBoundingClientRect();
+        return [r.left + r.width / 2 - box.left, r.top + r.height / 2 - box.top];
+      });
+      const all = [[pts[0][0], 0], ...pts, [pts[pts.length - 1][0], box.height]];
+      let d = `M${all[0][0]},${all[0][1]}`;
+      for (let i = 1; i < all.length; i++) {
+        const [x1, y1] = all[i - 1], [x2, y2] = all[i];
+        const my = (y1 + y2) / 2;
+        d += ` C${x1},${my} ${x2},${my} ${x2},${y2}`;
+      }
+      svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+      paths.forEach((p) => p.setAttribute('d', d));
+      length = progressPath.getTotalLength();
+      progressPath.style.strokeDasharray = length;
+      // Distance along the road at which each stop is reached (y rises monotonically).
+      stopLengths = pts.map(([, y]) => {
+        let lo = 0, hi = length;
+        for (let k = 0; k < 24; k++) {
+          const mid = (lo + hi) / 2;
+          if (progressPath.getPointAtLength(mid).y < y) lo = mid; else hi = mid;
+        }
+        return lo;
+      });
+      render(current);
+      roadmap.classList.add('is-ready');
+    };
+
+    const render = (progress) => {
+      current = progress;
+      const drawn = length * progress;
+      progressPath.style.strokeDashoffset = length - drawn;
+      const pt = progressPath.getPointAtLength(drawn);
+      car.style.transform = `translate(${pt.x}px, ${pt.y}px)`;
+      stops.forEach((stop, i) => stop.classList.toggle('is-reached', drawn >= stopLengths[i] - 4));
+    };
+
+    build();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+    let resizeTimer;
+    window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(build, 150); });
+
+    if (!reduceMotion) {
+      const proxy = { p: 0 };
+      gsap.to(proxy, {
+        p: 1,
+        ease: 'none',
+        onUpdate: () => render(proxy.p),
+        scrollTrigger: { trigger: track, start: 'top 72%', end: 'bottom 60%', scrub: 0.6 }
+      });
+    }
   }
 });

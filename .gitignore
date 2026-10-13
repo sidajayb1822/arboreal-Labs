@@ -22,3 +22,6 @@ yarn-error.log*
 .idea/
 *.swp
 *.swo
+
+# Local asset library (third-party repos for reference; never deployed)
+asset-library/
