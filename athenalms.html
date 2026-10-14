@@ -72,21 +72,48 @@
     <div class="nav-links">
       <a href="/custom-solutions" class="span-red">Custom Systems <i class="ph ph-squares-four"></i></a>
       <a href="/website-solutions">Web Deployment</a>
-      <a href="/projects">Projects</a>
+      <div class="nav-drop">
+        <a href="/projects" class="nav-drop-toggle" aria-haspopup="true">Projects <i class="ph ph-caret-down"></i></a>
+        <div class="nav-drop-menu">
+          <a href="/projects"><i class="ph ph-squares-four"></i><span><b>Custom Software</b><small>Systems we've built for real businesses</small></span></a>
+          <a href="/websites"><i class="ph ph-browsers"></i><span><b>Websites</b><small>Live sites, concepts and sites we manage</small></span></a>
+        </div>
+      </div>
       <a href="/contact" class="btn-primary magnetic">Initialize</a>
     </div>
   </nav>
 
-  <main class="page-header container">
-    <a href="/projects#custom-software" class="back-link"><i class="ph ph-arrow-left"></i> Back to projects</a>
-    <div class="scroll-reveal" style="text-align: center;">
-      <p class="tagline hero-fade">Educational Command System for Coaching Operations</p>
-      <h1 class="hero-anim-text" style="font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 2rem;">ATHENA <span class="span-red">LMS</span></h1>
-      <p class="hero-fade" style="margin: 0 auto; text-align: center; max-width: 800px;">A modular, multi-tenant learning management architecture. One unified platform. Role-specific interfaces. Zero operational friction.</p>
-    </div>
+  <main class="page-header container ims-page">
+    <a href="/projects" class="back-link"><i class="ph ph-arrow-left"></i> Back to projects</a>
+    <!-- ============ HERO ============ -->
+    <section class="ims-hero">
+      <div class="ims-hero-copy">
+        <p class="tagline hero-fade">Educational Command System for Coaching Operations</p>
+        <h1 class="hero-anim-text ims-title">ATHENA <span class="span-red">LMS</span></h1>
+        <p class="hero-fade">A modular, multi-tenant learning management architecture. One unified platform. Role-specific interfaces. Zero operational friction.</p>
+        <div class="hero-fade ims-actions">
+          <a href="/contact" class="btn-primary magnetic">Initialize</a>
+          <a href="#features" class="text-link magnetic">See what it does <i class="ph ph-arrow-down"></i></a>
+        </div>
+      </div>
+      <div class="ims-hero-media hero-fade">
+        <div class="glass-card ims-panel">
+          <div class="ims-panel-head"><span class="ff-pillar-label">At a glance</span></div>
+          <ul class="ims-panel-list">
+            <li><i class="ph ph-calendar-blank"></i><div><b>Scheduling</b><span>Day, week, bi-weekly and month views with time-blocking and live status colours.</span></div></li>
+            <li><i class="ph ph-wallet"></i><div><b>Fees &amp; balances</b><span>Custom rates per student, payment logging and real-time balances.</span></div></li>
+            <li><i class="ph ph-users"></i><div><b>Five role-based views</b><span>Superadmin, Owner, Instructor, Operative and Student.</span></div></li>
+            <li><i class="ph ph-paint-brush"></i><div><b>Multi-tenant &amp; white-label</b><span>Isolated environments with your own colours, logo and typography.</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-    <section class="scroll-reveal" style="padding: 4rem 0;">
-      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 2rem;">System Mechanics</h2>
+    <section class="scroll-reveal ims-block" id="features">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">Features</span>
+        <h2 class="display-font">System Mechanics</h2>
+      </div>
       <div class="grid">
         <div class="glass-card">
           <h3 style="font-size: 1.2rem;"><i class="ph ph-calendar-blank"></i> Intelligent Scheduling Matrix</h3>
@@ -107,8 +134,11 @@
       </div>
     </section>
 
-    <section class="scroll-reveal" style="padding: 4rem 0;">
-      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 2rem;">Access Hierarchies</h2>
+    <section class="scroll-reveal ims-block">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">Roles</span>
+        <h2 class="display-font">Access Hierarchies</h2>
+      </div>
       <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
         <div class="glass-card">
           <h3 style="font-size: 1.2rem; color: var(--mars-red);">01. Superadmin</h3>
@@ -133,8 +163,11 @@
       </div>
     </section>
 
-    <section class="scroll-reveal" style="padding: 4rem 0; border-top: 1px solid var(--glass-border);">
-      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 2rem;">Core Architecture & Engine</h2>
+    <section class="scroll-reveal ims-block">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">Platform</span>
+        <h2 class="display-font">Core Architecture & Engine</h2>
+      </div>
       <div class="grid">
         <div class="glass-card" style="border-left: 2px solid white;">
           <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Multi-Tenant Isolation</h3>
@@ -173,6 +206,7 @@
           <div class="footer-col">
             <h4>Company</h4>
             <a href="/projects">Projects</a>
+            <a href="/websites">Websites</a>
             <a href="/contact">Contact</a>
           </div>
           <div class="footer-col">

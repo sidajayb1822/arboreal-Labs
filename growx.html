@@ -77,21 +77,48 @@
     <div class="nav-links">
       <a href="/custom-solutions" class="span-red">Custom Systems <i class="ph ph-squares-four"></i></a>
       <a href="/website-solutions">Web Deployment</a>
-      <a href="/projects">Projects</a>
+      <div class="nav-drop">
+        <a href="/projects" class="nav-drop-toggle" aria-haspopup="true">Projects <i class="ph ph-caret-down"></i></a>
+        <div class="nav-drop-menu">
+          <a href="/projects"><i class="ph ph-squares-four"></i><span><b>Custom Software</b><small>Systems we've built for real businesses</small></span></a>
+          <a href="/websites"><i class="ph ph-browsers"></i><span><b>Websites</b><small>Live sites, concepts and sites we manage</small></span></a>
+        </div>
+      </div>
       <a href="/contact" class="btn-primary magnetic">Initialize</a>
     </div>
   </nav>
 
-  <main class="page-header container">
-    <a href="/projects#custom-software" class="back-link"><i class="ph ph-arrow-left"></i> Back to projects</a>
-    <div class="scroll-reveal" style="text-align: center;">
-      <p class="tagline hero-fade">Agency Operations & Project Architecture</p>
-      <h1 class="hero-anim-text" style="font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 2rem;">GROW<span class="span-red">X</span> CRM</h1>
-      <p class="hero-fade" style="margin: 0 auto; text-align: center;">The definitive operational suite for scaling agencies. Replace chaos with control through integrated project mechanics, real-time financial telemetry, and intelligent pipeline execution.</p>
-    </div>
+  <main class="page-header container ims-page">
+    <a href="/projects" class="back-link"><i class="ph ph-arrow-left"></i> Back to projects</a>
+    <!-- ============ HERO ============ -->
+    <section class="ims-hero">
+      <div class="ims-hero-copy">
+        <p class="tagline hero-fade">Agency Operations &amp; Project Architecture</p>
+        <h1 class="hero-anim-text ims-title">GROW<span class="span-red">X</span> CRM</h1>
+        <p class="hero-fade">The definitive operational suite for scaling agencies. Replace chaos with control through integrated project mechanics, real-time financial telemetry, and intelligent pipeline execution.</p>
+        <div class="hero-fade ims-actions">
+          <a href="/contact" class="btn-primary magnetic">Initialize</a>
+          <a href="#features" class="text-link magnetic">See what it does <i class="ph ph-arrow-down"></i></a>
+        </div>
+      </div>
+      <div class="ims-hero-media hero-fade">
+        <div class="glass-card ims-panel">
+          <div class="ims-panel-head"><span class="ff-pillar-label">At a glance</span></div>
+          <ul class="ims-panel-list">
+            <li><i class="ph ph-users-three"></i><div><b>Role-based workspaces</b><span>Separate views for owners, freelancers and clients.</span></div></li>
+            <li><i class="ph ph-folder-open"></i><div><b>Projects &amp; milestones</b><span>Break complex projects into trackable pieces, with client visibility per submission.</span></div></li>
+            <li><i class="ph ph-chart-line-up"></i><div><b>Financial tracking</b><span>Income, expenses and project accounting with live revenue and burn-rate analytics.</span></div></li>
+            <li><i class="ph ph-tag"></i><div><b>Plans from ₹699/mo</b><span>Baseline, Pro, Pro Plus and Enterprise tiers.</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-    <section class="scroll-reveal" style="padding: 4rem 0;">
-      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 2rem;">System Capabilities</h2>
+    <section class="scroll-reveal ims-block" id="features">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">Capabilities</span>
+        <h2 class="display-font">System Capabilities</h2>
+      </div>
       <div class="grid">
         <div class="glass-card">
           <h3 style="font-size: 1.2rem;"><i class="ph ph-users-three"></i> Access & Personnel Grid</h3>
@@ -122,8 +149,11 @@
       </div>
     </section>
 
-    <section class="scroll-reveal" style="padding: 4rem 0; border-top: 1px solid var(--glass-border);">
-      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 2rem;">Deployment Access</h2>
+    <section class="scroll-reveal ims-block">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">Pricing</span>
+        <h2 class="display-font">Deployment Access</h2>
+      </div>
       <div class="grid">
         <div class="glass-card">
           <h3 style="color: var(--mars-red);">Baseline</h3>
@@ -169,6 +199,7 @@
           <div class="footer-col">
             <h4>Company</h4>
             <a href="/projects">Projects</a>
+            <a href="/websites">Websites</a>
             <a href="/contact">Contact</a>
           </div>
           <div class="footer-col">

@@ -4,20 +4,42 @@
   <meta charset="UTF-8">
   <script>(function(){try{var s=localStorage.getItem('al-theme');var light=s?s==='light':window.matchMedia('(prefers-color-scheme: light)').matches;if(light){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Precision Variance Analysis Tool | Arboreal Labs</title>
-  <meta name="description" content="Pinpoint every cost and quantity variance across production, netted against a signed, auditable baseline, so you catch margin leaks before they compound. This module is in active development.">
+  <title>Precision Variance Analysis | Jewellery Quote Verification | Arboreal Labs</title>
+  <meta name="description" content="Drop a jewellery quotation into one window and see every metal, stone and labour line checked against your master rates, colour-coded.">
   <link rel="canonical" href="https://arboreallabs.com/precision-variance">
-  <meta name="robots" content="noindex, follow">
 
-  <meta property="og:title" content="Precision Variance Analysis Tool | Arboreal Labs">
-  <meta property="og:description" content="Pinpoint every cost and quantity variance across production, netted against a signed, auditable baseline, so you catch margin leaks before they compound. This module is in active development.">
-  <meta property="og:type" content="website">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Precision Variance Analysis | Jewellery Costing &amp; Quote Verification Tool">
+  <meta property="og:description" content="Drop a jewellery quotation into one window and see every metal, stone and labour line checked against your master rates, colour-coded.">
+  <meta property="og:type" content="product">
   <meta property="og:url" content="https://arboreallabs.com/precision-variance">
-  <meta property="og:image" content="https://arboreallabs.com/assets/images/Arboreal%20logo/Light%20whole%20logo.png">
+  <meta property="og:image" content="https://arboreallabs.com/assets/images/Variation%20tool%20-creation%20jewles/variance-hero.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Precision Variance Analysis | Arboreal Labs">
+  <meta name="twitter:description" content="Catch every pricing mistake before a quote leaves the building.">
+  <meta name="twitter:image" content="https://arboreallabs.com/assets/images/Variation%20tool%20-creation%20jewles/variance-hero.jpg">
 
   <link rel="icon" href="assets/images/Arboreal logo/Light favicon.png" type="image/png">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Schema.org SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Precision Variance Analysis",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Drop a jewellery quotation into one window and see every metal, stone and labour line checked against your master rates, colour-coded.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Arboreal Labs"
+    }
+  }
+  </script>
   <!-- Schema.org Organization -->
   <script type="application/ld+json">
   {
@@ -51,21 +73,438 @@
     <div class="nav-links">
       <a href="/custom-solutions" class="span-red">Custom Systems <i class="ph ph-squares-four"></i></a>
       <a href="/website-solutions">Web Deployment</a>
-      <a href="/projects">Projects</a>
+      <div class="nav-drop">
+        <a href="/projects" class="nav-drop-toggle" aria-haspopup="true">Projects <i class="ph ph-caret-down"></i></a>
+        <div class="nav-drop-menu">
+          <a href="/projects"><i class="ph ph-squares-four"></i><span><b>Custom Software</b><small>Systems we've built for real businesses</small></span></a>
+          <a href="/websites"><i class="ph ph-browsers"></i><span><b>Websites</b><small>Live sites, concepts and sites we manage</small></span></a>
+        </div>
+      </div>
       <a href="/contact" class="btn-primary magnetic">Initialize</a>
     </div>
   </nav>
 
-  <main class="page-header container">
-    <a href="/projects#custom-software" class="back-link"><i class="ph ph-arrow-left"></i> Back to projects</a>
-    <div class="scroll-reveal" style="text-align: center; min-height: 62vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-      <p class="tagline hero-fade" style="display: inline-flex; align-items: center; gap: 0.6rem;"><span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--mars-red); box-shadow:0 0 12px var(--mars-red-glow);"></span> Coming Soon &middot; In Development</p>
-      <h1 class="hero-anim-text" style="font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 1.5rem;">PRECISION VARIANCE <span class="span-red">ANALYSIS</span></h1>
-      <p class="hero-fade" style="margin: 0 auto 2.5rem; text-align: center; max-width: 640px;">Pinpoint every cost and quantity variance across production, netted against a signed, auditable baseline, so you catch margin leaks before they compound. This module is in active development.</p>
-      <div class="hero-fade" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-        <a href="/custom-solutions" class="btn-primary magnetic" style="background: transparent; border: 1px solid var(--mars-red); box-shadow: none;">Explore Custom Systems</a>
+  <main class="page-header container ims-page ff-theme-light" style="--ff-accent: #6366F1; --ff-accent-2: #4F46E5; --ff-on-accent: #FFFFFF; --ff-surface: #F1F5F9; --ff-panel: #FFFFFF; --ff-side: #0F172A; --ff-line: #E2E8F0; --ff-text: #0F172A; --ff-muted: #64748B; --ff-side-text: #E2E8F0; --ff-side-muted: rgba(226, 232, 240, 0.5); --ff-nav-text: #94A3B8; --ff-active-text: #FFFFFF; --ff-active-bg: var(--ff-accent);">
+    <a href="/projects" class="back-link"><i class="ph ph-arrow-left"></i> Back to projects</a>
+
+    <!-- ============ HERO ============ -->
+    <section class="ims-hero">
+      <div class="ims-hero-copy">
+        <p class="tagline hero-fade">Jewellery Costing &amp; Quote Verification Tool</p>
+        <h1 class="hero-anim-text ims-title">PRECISION VARIANCE <span class="span-red">ANALYSIS</span></h1>
+        <p class="hero-fade">Drop a quotation or sales order into one window and every metal, stone, setting and labour line is re-priced against your own master rates. Matches turn green, small gaps amber and real mistakes red, so wrong prices are caught before the customer sees them.</p>
+        <div class="hero-fade ims-actions">
+          <a href="/contact" class="btn-primary magnetic">Initialize</a>
+          <a href="#see-it-running" class="text-link magnetic">See it running <i class="ph ph-arrow-down"></i></a>
+        </div>
       </div>
+      <div class="ims-hero-media hero-fade">
+        <div class="ims-photo ims-photo--zoom" style="--ims-aspect: 800 / 572;">
+          <a href="/assets/images/Variation%20tool%20-creation%20jewles/variance-hero.webp" target="_blank" rel="noopener" aria-label="Open the full-size infographic">
+          <picture>
+          <source type="image/webp" srcset="/assets/images/Variation%20tool%20-creation%20jewles/variance-hero.webp">
+          <img src="/assets/images/Variation%20tool%20-creation%20jewles/variance-hero.jpg" alt="A desktop monitor showing the variance tool's pricing table, with rows colour-coded green, amber and red, next to a diamond ring and jeweller's tools." width="800" height="572" decoding="async">
+          </picture>
+          </a>
+        </div>
+        <div class="ims-float ims-float-a"><i class="ph ph-warning-circle"></i><div><b>CAD design fee −60%</b><span>Over threshold · flagged red</span></div></div>
+        <div class="ims-float ims-float-b"><i class="ph ph-check-circle"></i><div><b>14K yellow gold</b><span>Matches master · within 5%</span></div></div>
+      </div>
+    </section>
+
+    <div class="ff-stats ims-stats hero-fade">
+      <span class="ff-stat"><b>7</b> cost line types checked</span>
+      <span class="ff-sep"></span>
+      <span class="ff-stat"><b>9</b> editable pricing formulas</span>
+      <span class="ff-sep"></span>
+      <span class="ff-stat"><b>4</b> modules in one app</span>
+      <span class="ff-sep"></span>
+      <span class="ff-stat"><b>0</b> changes made to your ERP</span>
     </div>
+
+    <!-- ============ HERO MOCKUP ============ -->
+    <section class="scroll-reveal ims-block">
+      <figure class="ff-shot">
+          <div class="ff-window">
+            <div class="ff-topbar">
+              <div class="ff-dots"><span></span><span></span><span></span></div>
+              <div class="ff-url">arboreallabs.com / bom-comparison</div>
+            </div>
+            <div class="ff-app">
+              <aside class="ff-side">
+                <div class="ff-brand"><span class="ff-mark"></span><b>Arboreal Labs</b></div>
+                <div class="ff-navgroup">Navigation</div>
+                <div class="ff-nav is-active"><i class="ph ph-scales"></i> BOM Comparison</div>
+                <div class="ff-nav"><i class="ph ph-tag"></i> Customer Rates</div>
+                <div class="ff-nav"><i class="ph ph-package"></i> Order Pipeline</div>
+                <div class="ff-nav"><i class="ph ph-function"></i> Formulas</div>
+                <div class="ff-navgroup">Setup</div>
+                <div class="ff-nav"><i class="ph ph-gear"></i> Database Settings</div>
+              </aside>
+              <div class="ff-main">
+                <div class="ff-head"><h4>BOM Comparison</h4><span class="ff-pill mut">SO\26\A\118 · Northgate Jewels</span><span class="ff-btn acc">Export Highlighted Excel</span></div>
+                <div class="ff-tabs"><span class="is-active">RNG-1042</span><span>PND-2210</span><span>ERG-0871</span><span>BRC-0315</span></div>
+                <div class="ff-kpis">
+                  <div class="ff-kpi"><div class="ff-k-label">Template Total ($)</div><div class="ff-k-val">667.27</div><div class="ff-k-sub">5 lines</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">OK</div><div class="ff-k-val ff-pos">2</div><div class="ff-k-sub ff-pos">within 5%</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">Warning</div><div class="ff-k-val">1</div><div class="ff-k-sub">5–15% gap</div></div>
+                  <div class="ff-kpi"><div class="ff-k-label">Over Threshold</div><div class="ff-k-val ff-neg">1</div><div class="ff-k-sub ff-neg">1 missing rate</div></div>
+                </div>
+                <table class="ff-table">
+                  <thead><tr><th>Section</th><th>Code</th><th>Description</th><th class="ff-num">Template ($)</th><th class="ff-num">Master ($)</th><th class="ff-num">Diff (%)</th></tr></thead>
+                  <tbody>
+                    <tr class="ff-acc-green"><td>Metal</td><td class="ff-mono">G14</td><td>14K yellow gold</td><td class="ff-num">284.27</td><td class="ff-num">284.27</td><td class="ff-num ff-pos">+0.0%</td></tr>
+                    <tr class="ff-acc-green"><td>Stone</td><td class="ff-mono">RD-LAB</td><td>Round lab-grown</td><td class="ff-num">210.00</td><td class="ff-num">210.00</td><td class="ff-num ff-pos">+0.0%</td></tr>
+                    <tr class="ff-acc-amber"><td>Stone Setting</td><td class="ff-mono">SET/PRONG</td><td>Prong setting</td><td class="ff-num">18.00</td><td class="ff-num">16.80</td><td class="ff-num">-6.7%</td></tr>
+                    <tr class="ff-acc-red"><td>Labour (Others)</td><td class="ff-mono">CAD/DESIGN</td><td>CAD design fee</td><td class="ff-num">150.00</td><td class="ff-num">60.00</td><td class="ff-num ff-neg">-60.0%</td></tr>
+                    <tr class="ff-acc-muted"><td>Labour (Setting)</td><td class="ff-mono">ENG/HAND</td><td>Hand engraving</td><td class="ff-num">5.00</td><td class="ff-num">N/A</td><td class="ff-num">—</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>BOM Comparison.</b> Drop a quote and see every line checked against master rates, colour-coded, with one tab per design.</figcaption>
+        </figure>
+    </section>
+
+    <!-- ============ INTEGRATION ============ -->
+    <section class="scroll-reveal ims-block">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">Integration</span>
+        <h2 class="display-font">Built on top of their legacy system, not instead of it</h2>
+        <p>The client already ran their business on an established jewellery ERP and its database. Replacing it wasn't an option, so we integrated with it: the tool connects to their existing database, reads the live rate masters and customer data, and acts as a validator that confirms the BOM variance on every quote before it goes out.</p>
+      </div>
+      <div class="ims-integration">
+        <div class="glass-card ims-int-node">
+          <i class="ph ph-database"></i>
+          <span class="ims-int-tag">Existing</span>
+          <h3>Legacy ERP &amp; database</h3>
+          <p>Their system of record, kept exactly as it is: rate charts, customer rates, metal loss % and orders.</p>
+        </div>
+        <div class="ims-int-arrow" aria-hidden="true"><span>Reads rates, read-only</span><i class="ph ph-arrow-right"></i></div>
+        <div class="glass-card ims-int-node ims-int-core">
+          <i class="ph ph-seal-check"></i>
+          <span class="ims-int-tag">Our validator</span>
+          <h3>Precision Variance Analysis</h3>
+          <p>Re-prices every BOM line from those masters and checks the quote against them, line by line.</p>
+        </div>
+        <div class="ims-int-arrow" aria-hidden="true"><span>Confirms variance</span><i class="ph ph-arrow-right"></i></div>
+        <div class="glass-card ims-int-node">
+          <i class="ph ph-file-text"></i>
+          <span class="ims-int-tag">Output</span>
+          <h3>Verified quote</h3>
+          <p>Every line marked OK, warning or over threshold, with a highlighted copy ready to send or fix.</p>
+        </div>
+      </div>
+      <ul class="ims-int-points">
+        <li><i class="ph ph-shield-check"></i> Read-only: nothing in their live ERP is ever changed</li>
+        <li><i class="ph ph-plugs-connected"></i> No migration or new system for the team to learn</li>
+        <li><i class="ph ph-database"></i> New pricing masters in their database can be used without a software update</li>
+      </ul>
+    </section>
+
+    <!-- ============ THE SHIFT ============ -->
+    <section class="scroll-reveal ims-block">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">The shift</span>
+        <h2 class="display-font">Stop re-checking quotes line by line</h2>
+        <p>A single jewellery quote mixes gold at today's metal rate, stones priced by size band, setting charges and a handful of labour heads. Today someone checks each line against the rate chart by hand, and a wrong rate only gets noticed after the customer has it.</p>
+      </div>
+      <div class="ims-compare">
+        <div class="glass-card ims-before">
+          <h3><i class="ph ph-x-circle"></i> Before</h3>
+          <ul>
+            <li>Every line re-priced by hand with a calculator and the rate chart</li>
+            <li>Big sales orders with many designs take hours to review</li>
+            <li>Nobody can say how a master price was worked out</li>
+            <li>Pricing rules live in one person's head or a spreadsheet</li>
+          </ul>
+        </div>
+        <div class="glass-card ims-after">
+          <h3><i class="ph ph-check-circle"></i> After</h3>
+          <ul>
+            <li>Every line priced from your master rates in seconds</li>
+            <li>One tab per design, with problem designs highlighted</li>
+            <li>A step-by-step breakdown behind every master price</li>
+            <li>Pricing rules you can see and edit, per customer if needed</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FLOW ============ -->
+    <section class="scroll-reveal ims-block">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">From quote file to verified prices</span>
+        <h2 class="display-font">From quote file to verified prices in six steps</h2>
+        <p>You bring the file; the tool finds the customer, pulls the rates and does the maths.</p>
+      </div>
+      <ol class="ims-flow ims-flow--6">
+        <li><i class="ph ph-plugs-connected"></i><b>Connect</b><small>Point the app at your ERP database once and set the fallback rate chart and default metal loss %.</small></li>
+        <li><i class="ph ph-file-arrow-down"></i><b>Drop file</b><small>Drag in a quotation or sales order spreadsheet; each design in the file gets its own tab.</small></li>
+        <li><i class="ph ph-magic-wand"></i><b>Auto-price</b><small>The customer is matched from the file and every line is re-priced from their rate chart, falling back to your base chart where they have no rate.</small></li>
+        <li><i class="ph ph-traffic-signal"></i><b>Review</b><small>Lines turn green, amber or red by how far the quote is from master, with totals and counts for the whole design.</small></li>
+        <li><i class="ph ph-magnifying-glass-plus"></i><b>Drill in</b><small>Double-click any line to see exactly how its master price was built, and fix the formula on the spot.</small></li>
+        <li><i class="ph ph-microsoft-excel-logo"></i><b>Export</b><small>Save a copy of the original file with each problem cell coloured in, layout untouched.</small></li>
+      </ol>
+    </section>
+
+    <!-- ============ MODULES ============ -->
+    <section class="scroll-reveal ims-block ims-modules">
+      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 1rem;">One App, Three Jobs</h2>
+      <p style="margin-bottom: 1rem;">Check every quote, control how prices are worked out, and look up rates and orders without opening the ERP.</p>
+      <span class="ff-pillar-label">Check</span>
+      <div class="grid">
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-scales"></i> BOM Comparison</h3>
+          <p>Drop a spreadsheet and every metal, stone, stone setting, setting labour, other labour, finding and chain line is compared with the master price. Lines within 5% are green, 5–15% amber, over 15% red, and lines with no master rate grey. A summary shows template total, master total, the difference and how many lines fall in each status.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-stack"></i> Multi-Design Orders</h3>
+          <p>Sales orders with many designs open as one tab per design, skipping the order summary sheet. Tabs with a real price difference are highlighted, and a search box narrows the list to the design you need.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-list-magnifying-glass"></i> Line Breakdown</h3>
+          <p>Double-click any line to see each step of its master price: where every number came from, what was done to it and the running total. If the customer had no rate of their own, the line says it used the base chart.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-paint-bucket"></i> Highlighted Export</h3>
+          <p>Export writes a copy of the file you dropped in with each line's own cells filled in its status colour. A stone and its setting on the same row are coloured separately, so you can see which one is wrong.</p>
+        </div>
+      </div>
+
+      <span class="ff-pillar-label">Price</span>
+      <div class="grid">
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-function"></i> Pricing Formulas</h3>
+          <p>Each of the nine cost types (metal, diamond, colour stone, finding, per-piece labour, per-gram labour, diamond-weight labour, stone setting, chain) has a readable formula. Edit it with a step-by-step builder or as plain text, add an override for one customer, or reset to the built-in default.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-database"></i> Custom Variables</h3>
+          <p>Point a new variable at any table and column in your ERP, choose how it matches each line, and it appears in every formula dropdown. New pricing masters can be used without a software update.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-sliders-horizontal"></i> Costing Settings</h3>
+          <p>Set the customer code (or let the app detect it from the file), a base rate chart to fill gaps, and a default metal loss %. The customer's own loss % is used whenever the ERP has one.</p>
+        </div>
+      </div>
+
+      <span class="ff-pillar-label">Look up</span>
+      <div class="grid">
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-tag"></i> Customer Rate Card</h3>
+          <p>Pick any customer and load every material and labour rate on file, with size or weight bands and per-piece or per-gram basis, in two tabs.</p>
+        </div>
+        <div class="glass-card">
+          <h3 style="font-size: 1.2rem;"><i class="ph ph-package"></i> Order Pipeline</h3>
+          <p>A live list of open quotations and sales orders with order date, expected delivery and value. Each one is marked Open, Overdue or Delivered, and you can filter by customer and type or include delivered orders.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREENS ============ -->
+    <section class="scroll-reveal ims-block" id="see-it-running">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">Screens</span>
+        <h2 class="display-font">See It Running</h2>
+        <p>Realistic sample data. Every company, person and figure shown is fictional.</p>
+      </div>
+      <div class="ff-gallery ff-gallery--wide">
+        <figure class="ff-shot">
+            <div class="ff-window">
+              <div class="ff-topbar">
+                <div class="ff-dots"><span></span><span></span><span></span></div>
+                <div class="ff-url">arboreallabs.com / bom-comparison / line-detail</div>
+              </div>
+              <div class="ff-app">
+                <aside class="ff-side">
+                  <div class="ff-brand"><span class="ff-mark"></span><b>Arboreal Labs</b></div>
+                  <div class="ff-navgroup">Navigation</div>
+                  <div class="ff-nav is-active"><i class="ph ph-scales"></i> BOM Comparison</div>
+                  <div class="ff-nav"><i class="ph ph-tag"></i> Customer Rates</div>
+                  <div class="ff-nav"><i class="ph ph-package"></i> Order Pipeline</div>
+                  <div class="ff-nav"><i class="ph ph-function"></i> Formulas</div>
+                </aside>
+                <div class="ff-main">
+                  <div class="ff-head"><h4>Line detail · G14</h4><span class="ff-pill mut">Metal · default formula</span><span class="ff-btn acc">Edit formula…</span></div>
+                  <div class="ff-kpis" style="grid-template-columns:repeat(3,1fr)">
+                    <div class="ff-kpi"><div class="ff-k-label">Template</div><div class="ff-k-val">$284.27</div><div class="ff-k-sub">as quoted</div></div>
+                    <div class="ff-kpi"><div class="ff-k-label">Master</div><div class="ff-k-val">$284.27</div><div class="ff-k-sub">from rate masters</div></div>
+                    <div class="ff-kpi"><div class="ff-k-label">Diff</div><div class="ff-k-val ff-pos">+0.0%</div><div class="ff-k-sub ff-pos">match</div></div>
+                  </div>
+                  <table class="ff-table">
+                    <thead><tr><th>Step</th><th>Source</th><th>Op</th><th class="ff-num">Operand</th><th class="ff-num">Running total</th></tr></thead>
+                    <tbody>
+                      <tr><td>Metal rate</td><td>Quote line — LME (US$/troy oz)</td><td class="ff-mono">start</td><td class="ff-num">2,650.0000</td><td class="ff-num">2,650.0000</td></tr>
+                      <tr><td>Troy oz → gram</td><td>Constant</td><td class="ff-mono">÷</td><td class="ff-num">31.1035</td><td class="ff-num">85.1994</td></tr>
+                      <tr><td>Metal purity</td><td>Raw material master</td><td class="ff-mono">×</td><td class="ff-num">0.5833</td><td class="ff-num">49.6968</td></tr>
+                      <tr><td>Loss uplift</td><td>Customer loss % (10%)</td><td class="ff-mono">×</td><td class="ff-num">1.1000</td><td class="ff-num">54.6665</td></tr>
+                      <tr class="ff-acc-green"><td>Line weight</td><td>Quote line — weight (g)</td><td class="ff-mono">×</td><td class="ff-num">5.2000</td><td class="ff-num">284.2658</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <figcaption><b>Line breakdown.</b> See exactly how a master price was built, step by step, and jump straight to editing the formula.</figcaption>
+          </figure>
+
+        <figure class="ff-shot">
+            <div class="ff-window">
+              <div class="ff-topbar">
+                <div class="ff-dots"><span></span><span></span><span></span></div>
+                <div class="ff-url">arboreallabs.com / formulas</div>
+              </div>
+              <div class="ff-app">
+                <aside class="ff-side">
+                  <div class="ff-brand"><span class="ff-mark"></span><b>Arboreal Labs</b></div>
+                  <div class="ff-navgroup">Navigation</div>
+                  <div class="ff-nav"><i class="ph ph-scales"></i> BOM Comparison</div>
+                  <div class="ff-nav"><i class="ph ph-tag"></i> Customer Rates</div>
+                  <div class="ff-nav"><i class="ph ph-package"></i> Order Pipeline</div>
+                  <div class="ff-nav is-active"><i class="ph ph-function"></i> Formulas</div>
+                </aside>
+                <div class="ff-main">
+                  <div class="ff-head"><h4>Pricing Formulas</h4><span class="ff-pill mut">stored locally</span><span class="ff-btn acc">New…</span></div>
+                  <table class="ff-table">
+                    <thead><tr><th>Component</th><th>Customer</th><th>Expression</th><th>Enabled</th></tr></thead>
+                    <tbody>
+                      <tr><td>Metal</td><td>(default)</td><td class="ff-mono">(lme / TROY_OZ) × purity × (1 + loss%) × weight</td><td><span class="ff-pill ok">Yes</span></td></tr>
+                      <tr><td>Diamond</td><td>(default)</td><td class="ff-mono">stone rate × basis</td><td><span class="ff-pill ok">Yes</span></td></tr>
+                      <tr><td>Labour (per piece)</td><td>(default)</td><td class="ff-mono">max(labour rate × qty, minimum)</td><td><span class="ff-pill ok">Yes</span></td></tr>
+                      <tr class="ff-sub-row"><td class="ff-mono">↳ override</td><td class="ff-mono">NGJ-LGD</td><td class="ff-mono">max(labour rate × qty, minimum) × 1.05</td><td><span class="ff-pill ok">Yes</span></td></tr>
+                      <tr><td>Stone setting</td><td>(default)</td><td class="ff-mono">max(setting rate × qty, minimum)</td><td><span class="ff-pill mut">No</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <figcaption><b>Pricing Formulas.</b> View and edit how each cost type is priced, with overrides for individual customers.</figcaption>
+          </figure>
+
+        <figure class="ff-shot">
+            <div class="ff-window">
+              <div class="ff-topbar">
+                <div class="ff-dots"><span></span><span></span><span></span></div>
+                <div class="ff-url">arboreallabs.com / customer-rates</div>
+              </div>
+              <div class="ff-app">
+                <aside class="ff-side">
+                  <div class="ff-brand"><span class="ff-mark"></span><b>Arboreal Labs</b></div>
+                  <div class="ff-navgroup">Navigation</div>
+                  <div class="ff-nav"><i class="ph ph-scales"></i> BOM Comparison</div>
+                  <div class="ff-nav is-active"><i class="ph ph-tag"></i> Customer Rates</div>
+                  <div class="ff-nav"><i class="ph ph-package"></i> Order Pipeline</div>
+                  <div class="ff-nav"><i class="ph ph-function"></i> Formulas</div>
+                </aside>
+                <div class="ff-main">
+                  <div class="ff-head"><h4>Customer Rate Card</h4><span class="ff-pill mut">214 material · 38 labour rates</span><span class="ff-btn acc">Load Rate Card</span></div>
+                  <div class="ff-chipline"><span class="ff-chip-sel">Customer: NGJ-LGD — Northgate Jewels (LGD)</span></div>
+                  <div class="ff-tabs"><span class="is-active">Materials</span><span>Labour</span></div>
+                  <table class="ff-table">
+                    <thead><tr><th>Code</th><th>Description</th><th>Category</th><th class="ff-num">From</th><th class="ff-num">To</th><th class="ff-num">Rate</th></tr></thead>
+                    <tbody>
+                      <tr><td class="ff-mono">RD-LAB</td><td>Round lab-grown</td><td>D</td><td class="ff-num">0.00</td><td class="ff-num">0.50</td><td class="ff-num">140.0000</td></tr>
+                      <tr><td class="ff-mono">RD-LAB</td><td>Round lab-grown</td><td>D</td><td class="ff-num">0.51</td><td class="ff-num">1.00</td><td class="ff-num">210.0000</td></tr>
+                      <tr><td class="ff-mono">BAG-LAB</td><td>Baguette lab-grown</td><td>D</td><td class="ff-num">2.00</td><td class="ff-num">4.00</td><td class="ff-num">95.0000</td></tr>
+                      <tr><td class="ff-mono">EM-SAP</td><td>Emerald-cut sapphire</td><td>C</td><td class="ff-num">0.00</td><td class="ff-num">2.00</td><td class="ff-num">60.0000</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <figcaption><b>Customer Rate Card.</b> Look up every material and labour rate on file for a customer, with size and weight bands.</figcaption>
+          </figure>
+
+        <figure class="ff-shot">
+            <div class="ff-window">
+              <div class="ff-topbar">
+                <div class="ff-dots"><span></span><span></span><span></span></div>
+                <div class="ff-url">arboreallabs.com / order-pipeline</div>
+              </div>
+              <div class="ff-app">
+                <aside class="ff-side">
+                  <div class="ff-brand"><span class="ff-mark"></span><b>Arboreal Labs</b></div>
+                  <div class="ff-navgroup">Navigation</div>
+                  <div class="ff-nav"><i class="ph ph-scales"></i> BOM Comparison</div>
+                  <div class="ff-nav"><i class="ph ph-tag"></i> Customer Rates</div>
+                  <div class="ff-nav is-active"><i class="ph ph-package"></i> Order Pipeline</div>
+                  <div class="ff-nav"><i class="ph ph-function"></i> Formulas</div>
+                </aside>
+                <div class="ff-main">
+                  <div class="ff-head"><h4>Order Pipeline</h4><span class="ff-pill mut">5 order(s)</span><span class="ff-btn acc">Refresh</span></div>
+                  <div class="ff-chipline"><span class="ff-chip-sel">Type: All</span><span class="ff-chip-sel">Include delivered</span></div>
+                  <div class="ff-search"><i class="ph ph-magnifying-glass"></i> Search name or code…</div>
+                  <table class="ff-table">
+                    <thead><tr><th>Order No</th><th>Customer</th><th>Order Date</th><th>Exp. Delivery</th><th class="ff-num">Value (USD)</th><th>Status</th></tr></thead>
+                    <tbody>
+                      <tr class="ff-acc-red"><td class="ff-mono">SO\26\A\104</td><td>Harbour Lane Gems</td><td>02 Sep 2026</td><td>30 Sep 2026</td><td class="ff-num">$18,420</td><td><span class="ff-pill bad">Overdue</span></td></tr>
+                      <tr><td class="ff-mono">SO\26\A\118</td><td>Northgate Jewels</td><td>21 Sep 2026</td><td>28 Oct 2026</td><td class="ff-num">$9,640</td><td><span class="ff-pill mut">Open</span></td></tr>
+                      <tr><td class="ff-mono">QT\26\B\057</td><td>Silverleaf Bridal</td><td>03 Oct 2026</td><td>—</td><td class="ff-num">$4,215</td><td><span class="ff-pill mut">Open</span></td></tr>
+                      <tr class="ff-acc-green"><td class="ff-mono">SO\26\A\089</td><td>Crescent &amp; Co.</td><td>11 Aug 2026</td><td>15 Sep 2026</td><td class="ff-num">$22,980</td><td><span class="ff-pill ok">Delivered</span></td></tr>
+                      <tr><td class="ff-mono">QT\26\A\212</td><td>Harbour Lane Gems</td><td>08 Oct 2026</td><td>—</td><td class="ff-num">$1,375</td><td><span class="ff-pill mut">Open</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <figcaption><b>Order Pipeline.</b> Track open quotes and sales orders and spot overdue deliveries at a glance.</figcaption>
+          </figure>
+      </div>
+    </section>
+
+    <!-- ============ WHO IT'S FOR ============ -->
+    <section class="scroll-reveal ims-block">
+      <div class="ims-section-head">
+        <span class="ff-pillar-label">Who it's for</span>
+        <h2 class="display-font">Built For Jewellery Makers</h2>
+      </div>
+      <div class="ff-audience">
+        <div class="glass-card ff-aud"><h3 style="font-size: 1.1rem;"><i class="ph ph-diamond"></i> Jewellery manufacturers</h3><p style="font-size:1rem;">Studded and diamond jewellery makers who quote from a rate chart.</p></div>
+        <div class="glass-card ff-aud"><h3 style="font-size: 1.1rem;"><i class="ph ph-calculator"></i> Costing teams</h3><p style="font-size:1rem;">People who check every quote before it goes out.</p></div>
+        <div class="glass-card ff-aud"><h3 style="font-size: 1.1rem;"><i class="ph ph-handshake"></i> Sales &amp; merchandising</h3><p style="font-size:1rem;">Teams who need a customer's rates and order status fast.</p></div>
+        <div class="glass-card ff-aud"><h3 style="font-size: 1.1rem;"><i class="ph ph-chart-line-up"></i> Owners &amp; managers</h3><p style="font-size:1rem;">Leaders who want to stop margin leaking through wrong rates.</p></div>
+      </div>
+    </section>
+
+    <!-- ============ WHY ============ -->
+    <section class="scroll-reveal ims-block">
+      <h2 class="display-font" style="font-size: 2.5rem; margin-bottom: 2rem;">Why It Works</h2>
+      <div class="grid">
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">01</div>
+          <h3 style="font-size: 1.2rem;">Reads your ERP, never changes it</h3>
+          <p>The tool only reads rates from your existing ERP database. Formulas and settings are kept on your own PC, so nothing in your live system is touched.</p>
+        </div>
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">02</div>
+          <h3 style="font-size: 1.2rem;">Every number explained</h3>
+          <p>Each master price comes with a step-by-step breakdown, so a red line can be argued with facts, not guesswork.</p>
+        </div>
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">03</div>
+          <h3 style="font-size: 1.2rem;">Your pricing rules, not ours</h3>
+          <p>Pricing formulas are plain, editable rules with per-customer overrides. New pricing masters can be added as custom variables without new software.</p>
+        </div>
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">04</div>
+          <h3 style="font-size: 1.2rem;">Built for how jewellery is priced</h3>
+          <p>It handles metal rate with purity and loss, stones by carat or millimetre size band, per-piece or per-gram labour, minimum charges and a fallback rate chart.</p>
+        </div>
+        <div class="glass-card">
+          <div style="font-size: 1.5rem; font-weight: bold; color: var(--mars-red); margin-bottom: 0.5rem;">05</div>
+          <h3 style="font-size: 1.2rem;">One file to install</h3>
+          <p>It ships as a single Windows app. Point it at your database and drop in your first quote.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="scroll-reveal" style="padding: 4rem 0; text-align: center;">
+      <h2 class="display-font" style="font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 1rem;">Find the wrong price <span class="span-red">before your customer does</span></h2>
+      <p style="margin: 0 auto 2rem;">Talk to Arboreal Labs about setting up quote verification on your own rate charts.</p>
+      <a href="/contact" class="btn-primary magnetic">Get Started</a>
+    </section>
+
   </main>
 
   <footer>
@@ -89,6 +528,7 @@
           <div class="footer-col">
             <h4>Company</h4>
             <a href="/projects">Projects</a>
+            <a href="/websites">Websites</a>
             <a href="/contact">Contact</a>
           </div>
           <div class="footer-col">

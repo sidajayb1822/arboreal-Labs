@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <script>(function(){try{var s=localStorage.getItem('al-theme');var light=s?s==='light':window.matchMedia('(prefers-color-scheme: light)').matches;if(light){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Projects | Arboreal Labs</title>
-  <meta name="description" content="Custom software and websites Arboreal Labs has built for manufacturing, service and consultancy businesses.">
+  <title>Custom Software Projects | Arboreal Labs</title>
+  <meta name="description" content="Custom software Arboreal Labs has built for manufacturing, service and consultancy businesses.">
   <link rel="canonical" href="https://arboreallabs.com/projects">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Our Projects | Arboreal Labs">
-  <meta property="og:description" content="Custom software and websites Arboreal Labs has built for manufacturing, service and consultancy businesses.">
+  <meta property="og:title" content="Custom Software Projects | Arboreal Labs">
+  <meta property="og:description" content="Custom software Arboreal Labs has built for manufacturing, service and consultancy businesses.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://arboreallabs.com/projects">
   <meta property="og:image" content="https://arboreallabs.com/assets/images/Arboreal%20logo/Light%20whole%20logo.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Our Projects | Arboreal Labs">
-  <meta name="twitter:description" content="Custom software and websites Arboreal Labs has built for manufacturing, service and consultancy businesses.">
+  <meta name="twitter:title" content="Custom Software Projects | Arboreal Labs">
+  <meta name="twitter:description" content="Custom software Arboreal Labs has built for manufacturing, service and consultancy businesses.">
   <meta name="twitter:image" content="https://arboreallabs.com/assets/images/Arboreal%20logo/Light%20whole%20logo.png">
 
   <link rel="icon" href="assets/images/Arboreal logo/Light favicon.png" type="image/png">
@@ -57,24 +57,25 @@
     <div class="nav-links">
       <a href="/custom-solutions">Custom Systems <i class="ph ph-squares-four"></i></a>
       <a href="/website-solutions">Web Deployment</a>
-      <a href="/projects" class="span-red">Projects</a>
+      <div class="nav-drop">
+        <a href="/projects" class="nav-drop-toggle span-red" aria-haspopup="true">Projects <i class="ph ph-caret-down"></i></a>
+        <div class="nav-drop-menu">
+          <a href="/projects" class="is-current"><i class="ph ph-squares-four"></i><span><b>Custom Software</b><small>Systems we've built for real businesses</small></span></a>
+          <a href="/websites"><i class="ph ph-browsers"></i><span><b>Websites</b><small>Live sites, concepts and sites we manage</small></span></a>
+        </div>
+      </div>
       <a href="/contact" class="btn-primary magnetic">Initialize</a>
     </div>
   </nav>
 
   <main class="page-header container">
     <div class="scroll-reveal">
-      <p class="tagline hero-fade">Software and websites we've built for real businesses.</p>
-      <h1 class="hero-anim-text" style="font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1rem;">OUR <span class="span-red">PROJECTS</span></h1>
+      <p class="tagline hero-fade">Systems we've built for real businesses.</p>
+      <h1 class="hero-anim-text" style="font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1rem;">CUSTOM <span class="span-red">SOFTWARE</span></h1>
     </div>
 
     <section class="scroll-reveal" style="padding: 3rem 0 0;">
-      <div class="work-filters" role="group" aria-label="Filter by project type">
-        <button type="button" class="work-filter active" data-type-filter="all" aria-pressed="true">All Projects</button>
-        <button type="button" class="work-filter" data-type-filter="custom-software" aria-pressed="false">Custom Software</button>
-        <button type="button" class="work-filter" data-type-filter="websites" aria-pressed="false">Websites</button>
-      </div>
-      <div class="work-filters work-filters-sub" role="group" aria-label="Filter by industry">
+      <div class="work-filters" role="group" aria-label="Filter by industry">
         <button type="button" class="work-filter active" data-industry-filter="all" aria-pressed="true">All Industries</button>
         <button type="button" class="work-filter" data-industry-filter="manufacturing" aria-pressed="false">Manufacturing</button>
         <button type="button" class="work-filter" data-industry-filter="service" aria-pressed="false">Service</button>
@@ -83,7 +84,6 @@
     </section>
 
     <section id="custom-software" class="project-group" data-type="custom-software" style="padding: 2rem 0;">
-      <h2 class="display-font" style="font-size: 2rem; margin-bottom: 1.5rem;">Custom Software</h2>
       <div class="grid work-grid">
         <article class="glass-card work-card" data-industries="manufacturing">
           <div class="work-meta"><span class="work-tag">Manufacturing</span></div>
@@ -93,10 +93,24 @@
         </article>
 
         <article class="glass-card work-card" data-industries="manufacturing">
-          <div class="work-meta"><span class="work-tag">Manufacturing</span><span class="work-badge">Coming Soon</span></div>
+          <div class="work-meta"><span class="work-tag">Manufacturing</span></div>
           <h3><i class="ph ph-chart-scatter"></i> Precision Variance Analysis</h3>
-          <p>Catch every cost and quantity variance across production against a signed, auditable baseline, before margin leaks compound.</p>
+          <p>Drop a jewellery quote in and every metal, stone and labour line is re-priced against your master rates and colour-coded, so wrong prices are caught before the customer sees them.</p>
           <a href="/precision-variance" class="work-more">Know more <i class="ph ph-arrow-right"></i></a>
+        </article>
+
+        <article class="glass-card work-card" data-industries="manufacturing service">
+          <div class="work-meta"><span class="work-tag">Manufacturing</span><span class="work-tag">Service</span></div>
+          <h3><i class="ph ph-funnel"></i> B2B Sales Pipeline CRM</h3>
+          <p>Marketing leads, deal milestones, tasks and meeting minutes in one shared pipeline, with revenue and target dashboards that update as the team works.</p>
+          <a href="/sales-pipeline-crm" class="work-more">Know more <i class="ph ph-arrow-right"></i></a>
+        </article>
+
+        <article class="glass-card work-card" data-industries="consultancy service">
+          <div class="work-meta"><span class="work-tag">Consultancy</span><span class="work-tag">Service</span></div>
+          <h3><i class="ph ph-briefcase"></i> Deal Pipeline &amp; Firm Operations Platform</h3>
+          <p>Founder intake, fundraise tracking, investor CRM, client projects, partner payouts and HR for advisory and investment banking firms, in one platform.</p>
+          <a href="/deal-pipeline-platform" class="work-more">Know more <i class="ph ph-arrow-right"></i></a>
         </article>
 
         <article class="glass-card work-card" data-industries="consultancy service">
@@ -134,13 +148,6 @@
       </div>
       <p class="work-empty is-hidden">No custom software projects for this industry yet.</p>
     </section>
-
-    <section id="websites" class="project-group" data-type="websites" style="padding: 2rem 0 4rem;">
-      <h2 class="display-font" style="font-size: 2rem; margin-bottom: 1.5rem;">Websites</h2>
-      <div class="grid work-grid">
-      </div>
-      <p class="work-empty">No website projects to show here yet.</p>
-    </section>
   </main>
 
   <footer>
@@ -164,6 +171,7 @@
           <div class="footer-col">
             <h4>Company</h4>
             <a href="/projects">Projects</a>
+            <a href="/websites">Websites</a>
             <a href="/contact">Contact</a>
           </div>
           <div class="footer-col">

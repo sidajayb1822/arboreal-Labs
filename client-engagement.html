@@ -51,21 +51,40 @@
     <div class="nav-links">
       <a href="/custom-solutions" class="span-red">Custom Systems <i class="ph ph-squares-four"></i></a>
       <a href="/website-solutions">Web Deployment</a>
-      <a href="/projects">Projects</a>
+      <div class="nav-drop">
+        <a href="/projects" class="nav-drop-toggle" aria-haspopup="true">Projects <i class="ph ph-caret-down"></i></a>
+        <div class="nav-drop-menu">
+          <a href="/projects"><i class="ph ph-squares-four"></i><span><b>Custom Software</b><small>Systems we've built for real businesses</small></span></a>
+          <a href="/websites"><i class="ph ph-browsers"></i><span><b>Websites</b><small>Live sites, concepts and sites we manage</small></span></a>
+        </div>
+      </div>
       <a href="/contact" class="btn-primary magnetic">Initialize</a>
     </div>
   </nav>
 
-  <main class="page-header container">
-    <a href="/projects#custom-software" class="back-link"><i class="ph ph-arrow-left"></i> Back to projects</a>
-    <div class="scroll-reveal" style="text-align: center; min-height: 62vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-      <p class="tagline hero-fade" style="display: inline-flex; align-items: center; gap: 0.6rem;"><span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--mars-red); box-shadow:0 0 12px var(--mars-red-glow);"></span> Coming Soon &middot; In Development</p>
-      <h1 class="hero-anim-text" style="font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 1.5rem;">CLIENT <span class="span-red">ENGAGEMENT</span></h1>
-      <p class="hero-fade" style="margin: 0 auto 2.5rem; text-align: center; max-width: 640px;">Keep every client touchpoint, update, approval, and conversation in one place, with the full context your team needs to deliver. This module is in active development.</p>
-      <div class="hero-fade" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-        <a href="/custom-solutions" class="btn-primary magnetic" style="background: transparent; border: 1px solid var(--mars-red); box-shadow: none;">Explore Custom Systems</a>
+  <main class="page-header container ims-page">
+    <a href="/projects" class="back-link"><i class="ph ph-arrow-left"></i> Back to projects</a>
+    <!-- ============ HERO ============ -->
+    <section class="ims-hero">
+      <div class="ims-hero-copy">
+        <p class="tagline hero-fade">Custom System · In Development</p>
+        <h1 class="hero-anim-text ims-title">CLIENT <span class="span-red">ENGAGEMENT</span></h1>
+        <p class="hero-fade">Keep every client touchpoint, update, approval, and conversation in one place, with the full context your team needs to deliver. This module is in active development.</p>
+        <div class="hero-fade ims-actions">
+          <a href="/custom-solutions" class="btn-primary magnetic">Explore Custom Systems</a>
+        </div>
       </div>
-    </div>
+      <div class="ims-hero-media hero-fade">
+        <div class="glass-card ims-panel">
+          <div class="ims-panel-head"><span class="ff-pillar-label">What it will do</span><span class="ims-panel-status">Coming soon</span></div>
+          <ul class="ims-panel-list">
+            <li><i class="ph ph-chats-circle"></i><div><b>Every touchpoint in one place</b><span>Updates, approvals and conversations with each client, together.</span></div></li>
+            <li><i class="ph ph-stack"></i><div><b>Full context for the team</b><span>Everyone sees the history they need to deliver.</span></div></li>
+            <li><i class="ph ph-check-circle"></i><div><b>Approvals on record</b><span>Client sign-offs kept alongside the work they relate to.</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -89,6 +108,7 @@
           <div class="footer-col">
             <h4>Company</h4>
             <a href="/projects">Projects</a>
+            <a href="/websites">Websites</a>
             <a href="/contact">Contact</a>
           </div>
           <div class="footer-col">

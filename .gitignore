@@ -25,3 +25,14 @@ yarn-error.log*
 
 # Local asset library (third-party repos for reference; never deployed)
 asset-library/
+
+# Product briefs generated from client codebases (contain internal notes; never deploy)
+product-brief*.html
+
+# Original infographic exports (the site serves the compressed copies next to them)
+assets/images/B2B SALES PIPELINE CRM - intsys/Intsys tool infographic.png
+assets/images/ECOSYSTEM -esv/ESV Inphographic.png
+assets/images/Variation tool -creation jewles/Info - creation jw.png
+
+# Local build tools (portfolio generator + data)
+tools/

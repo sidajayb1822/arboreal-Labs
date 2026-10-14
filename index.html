@@ -65,7 +65,13 @@
     <div class="nav-links">
       <a href="/custom-solutions">Custom Systems <i class="ph ph-squares-four"></i></a>
       <a href="/website-solutions">Web Deployment</a>
-      <a href="/projects">Projects</a>
+      <div class="nav-drop">
+        <a href="/projects" class="nav-drop-toggle" aria-haspopup="true">Projects <i class="ph ph-caret-down"></i></a>
+        <div class="nav-drop-menu">
+          <a href="/projects"><i class="ph ph-squares-four"></i><span><b>Custom Software</b><small>Systems we've built for real businesses</small></span></a>
+          <a href="/websites"><i class="ph ph-browsers"></i><span><b>Websites</b><small>Live sites, concepts and sites we manage</small></span></a>
+        </div>
+      </div>
       <a href="/contact" class="btn-primary magnetic">Initialize</a>
     </div>
   </nav>
@@ -93,12 +99,6 @@
       <div class="scroll-cue"><span>Scroll to explore</span><i class="ph ph-arrow-down"></i></div>
     </section>
 
-    <section class="one-system-intro container">
-      <p class="eyebrow">One connected system</p>
-      <h2><span class="nowrap">Less software.</span><br><span class="span-red nowrap">More momentum.</span></h2>
-      <p>We turn fragmented workflows into one intelligent operating layer.</p>
-    </section>
-
     <section class="one-system" aria-label="How Arboreal Labs connects your business">
       <div class="one-system-stage">
         <svg class="one-system-svg" role="img" aria-label="Animation: five separate business tools (sales, marketing, inventory, logistics and presence) get wired together by Arboreal Labs into one connected system." preserveAspectRatio="xMidYMid meet"></svg>
@@ -106,8 +106,13 @@
       </div>
     </section>
 
-    <section class="system-story system-story--steps" id="approach">
+    <section class="system-story" id="approach">
       <div class="container story-grid">
+        <div class="story-sticky">
+          <p class="eyebrow">One connected system</p>
+          <h2><span class="nowrap">Less software.</span><br><span class="span-red nowrap">More momentum.</span></h2>
+          <p>We turn fragmented workflows into one intelligent operating layer.</p>
+        </div>
         <div class="story-steps">
           <article class="story-step" data-step="01">
             <i class="ph ph-circles-three-plus"></i>
@@ -182,6 +187,7 @@
           <div class="footer-col">
             <h4>Company</h4>
             <a href="/projects">Projects</a>
+            <a href="/websites">Websites</a>
             <a href="/contact">Contact</a>
           </div>
           <div class="footer-col">

@@ -1,6 +1,6 @@
 /* One System — scroll-scrubbed port of arboreal-one-system-transparent.html.
-   Five disconnected tools get wired into one Arboreal Labs system; scrolling
-   through the pinned section moves the timeline from 0 to T seconds. */
+   Five disconnected tools get wired into one Arboreal Labs system; it plays once
+   (T seconds) when the section comes into view, then holds on the final frame. */
 (() => {
 const section = document.querySelector('.one-system');
 if (!section) return;
@@ -14,7 +14,7 @@ const LOCKUP = '/assets/images/Arboreal%20logo/Light%20whole%20logo.png';
 const SHOW_TEXT = true, TRANSPARENT = true;
 let LIGHT = false, C;
 const C_BASE = { ink:'#F0F2F5', inkSoft:'#AEB2B7', bg:'#11131A', card:'#171A22', line:'#2A2E38', viz:'#343845', muted:'#6B7077', soft:'#AEB2B7', lunar:'#F0F2F5', red:'#FF3B3B', purple:'#8000FF', flow:'#590073', void:'#1A0033' };
-const T = 9.6; // scroll scrubs 0 -> T, ending on the connected 'In practice' frame
+const T = 9.6; // play once, then hold on the connected 'In practice' frame
 
 /* ---------- helpers ---------- */
 const clamp = (x,a=0,b=1)=>Math.min(b,Math.max(a,x));
@@ -348,7 +348,7 @@ function render(t){
   R.fade.setAttribute('opacity',(1-P(t,0,.45)).toFixed(3));
 }
 
-/* ---------- run (scroll-driven) ---------- */
+/* ---------- run (plays in real time when in view) ---------- */
 function applyTheme(){
   LIGHT = document.documentElement.getAttribute('data-theme') === 'light';
   C = Object.assign({}, C_BASE);
@@ -368,29 +368,29 @@ const start = () => {
   new MutationObserver(() => { applyTheme(); ensureLayout(true); })
     .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-  if (reduced || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+  if (reduced) {
     section.classList.add('is-static');
     seek(T);
     return;
   }
-  gsap.registerPlugin(ScrollTrigger);
-  // Skip the empty first beat and start while the section scrolls into view,
-  // so the cards are already arriving by the time the stage pins.
-  const T0 = 0.35;
-  const proxy = { t: T0 };
-  seek(T0);
-  gsap.to(proxy, {
-    t: T,
-    ease: 'none',
-    onUpdate: () => seek(proxy.t),
-    scrollTrigger: {
-      trigger: section,
-      start: 'top 75%',
-      end: 'bottom bottom',
-      scrub: 1.2,
-      onUpdate: (self) => section.style.setProperty('--os-progress', self.progress.toFixed(4)),
-    },
-  });
+  // Play once in real time when the section is mostly on screen; pause while it is
+  // scrolled away or the tab is hidden, then resume. Holds on the final frame.
+  const SPEED = 1.6; // 1 = original pacing (9.6s); 1.6 plays it in 6s
+  let playing = false, onScreen = false, raf = 0, prev = 0;
+  const frame = (now) => {
+    if (!prev) prev = now;
+    seek(lastT + (now - prev) / 1000 * SPEED);
+    prev = now;
+    section.style.setProperty('--os-progress', (lastT / T).toFixed(4));
+    if (lastT >= T) { playing = false; section.classList.add('is-done'); return; }
+    raf = requestAnimationFrame(frame);
+  };
+  const play = () => { if (playing || lastT >= T || !onScreen || document.hidden) return; playing = true; prev = 0; raf = requestAnimationFrame(frame); };
+  const pause = () => { cancelAnimationFrame(raf); playing = false; };
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; onScreen ? play() : pause(); }, { threshold: 0.45 }).observe(stage);
+  } else { onScreen = true; play(); }
+  document.addEventListener('visibilitychange', () => (document.hidden ? pause() : play()));
 };
 (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
 })();

@@ -317,8 +317,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const render = () => {
       markActive(typeBtns, 'typeFilter', activeType);
       markActive(industryBtns, 'industryFilter', activeIndustry);
+      // Websites have their own filters (portfolio.js), so the industry row only applies to custom software
+      const industryRow = document.querySelector('.work-filters-sub[aria-label="Filter by industry"]');
+      if (industryRow) industryRow.classList.toggle('is-hidden', activeType === 'websites');
       projectGroups.forEach(group => {
         group.classList.toggle('is-hidden', activeType !== 'all' && group.dataset.type !== activeType);
+        if (group.querySelector('.pf-grid')) return;
         let visible = 0;
         group.querySelectorAll('.work-card').forEach(card => {
           const show = activeIndustry === 'all' || card.dataset.industries.split(' ').includes(activeIndustry);
