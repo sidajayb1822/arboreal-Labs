@@ -1,6 +1,15 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/flowforge", "destination": "/inventory-management", "permanent": true }
+    {
+      "source": "/flowforge",
+      "destination": "/inventory-management",
+      "permanent": true
+    },
+    {
+      "source": "/websites/kevin-portfolio",
+      "destination": "/websites/siddhants-world",
+      "permanent": true
+    }
   ]
 }

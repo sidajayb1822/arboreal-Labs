@@ -1078,3 +1078,12 @@ html.lenis body {
 .pf-partner .pf-mark--hereafter { font-size: 1.35rem; }
 .pf-facts .pf-mark--hereafter { font-size: 1.3rem; }
 .pf-facts b .pf-mark { color: var(--lunar-white); text-transform: none; letter-spacing: 0; padding: 0; font-size: 1.3rem; }
+
+/* Projects toggle is a button: looks like the other nav links, only opens the dropdown */
+button.nav-drop-toggle { background: none; border: 0; padding: 0; cursor: pointer; color: inherit; font: inherit; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; transition: color 0.3s ease; }
+button.nav-drop-toggle:hover { color: var(--mars-red); }
+button.nav-drop-toggle.span-red { color: var(--mars-red); }
+@media (max-width: 768px) { button.nav-drop-toggle { font-size: 1.5rem; } }
+
+/* Outline buttons: in light mode the default light button text would vanish on the pale page */
+:root[data-theme="light"] .btn-primary.btn-outline { color: var(--mars-red); }
