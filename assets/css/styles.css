@@ -1071,12 +1071,8 @@ html.lenis body {
 @media (max-width: 1100px) { .pf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .pf-grid { grid-template-columns: 1fr; } }
 
-/* Partner wordmarks (e.g. Hereafter;) */
 .pf-mark { white-space: nowrap; color: var(--lunar-white); }
-.pf-mark--hereafter { font-family: "EB Garamond", Garamond, "Times New Roman", serif; font-weight: 700; font-size: 1.15em; letter-spacing: 0; text-transform: none; }
 .pf-partner { display: flex; align-items: baseline; gap: .45rem; margin-top: .9rem; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: rgba(var(--lunar-white-rgb), .55); }
-.pf-partner .pf-mark--hereafter { font-size: 1.35rem; }
-.pf-facts .pf-mark--hereafter { font-size: 1.3rem; }
 .pf-facts b .pf-mark { color: var(--lunar-white); text-transform: none; letter-spacing: 0; padding: 0; font-size: 1.3rem; }
 
 /* Projects toggle is a button: looks like the other nav links, only opens the dropdown */
@@ -1087,3 +1083,30 @@ button.nav-drop-toggle.span-red { color: var(--mars-red); }
 
 /* Outline buttons: in light mode the default light button text would vanish on the pale page */
 :root[data-theme="light"] .btn-primary.btn-outline { color: var(--mars-red); }
+
+/* Image partner logos (e.g. Growwings) */
+.pf-mark--logo { display: inline-flex; align-items: center; }
+.pf-mark--logo img { height: 36px; width: auto; display: block; }
+.pf-partner { align-items: center; }
+.pf-facts b .pf-mark--logo { justify-content: flex-end; }
+.pf-facts b .pf-mark--logo img { height: 40px; }
+
+/* Black partner logos (e.g. Hereafter): white on the dark theme, dark on the light theme */
+.pf-mark--mono img, .partner-logo--mono img { filter: brightness(0) invert(1); }
+:root[data-theme="light"] .pf-mark--mono img, :root[data-theme="light"] .partner-logo--mono img { filter: brightness(0); }
+.pf-mark--mono img { height: 24px; }
+.pf-facts b .pf-mark--mono img { height: 28px; }
+
+/* Homepage: partners strip */
+.partners-band { padding-block: 5rem 1rem; text-align: center; }
+.partners-band .eyebrow { justify-content: center; margin-bottom: 2.25rem; max-width: none; }
+.partner-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(2.5rem, 7vw, 6rem); }
+.partner-logo { display: inline-flex; align-items: center; opacity: .85; transition: opacity .3s ease, transform .3s ease; }
+.partner-logo:hover { opacity: 1; transform: translateY(-2px); }
+.partner-logo img { height: 56px; width: auto; display: block; }
+.partner-logo--mono img { height: 40px; }
+@media (max-width: 600px) {
+  .partners-band { padding-block: 3.5rem .5rem; }
+  .partner-logo img { height: 44px; }
+  .partner-logo--mono img { height: 30px; }
+}
