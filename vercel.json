@@ -11,5 +11,31 @@
       "destination": "/websites/siddhants-world",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/smaya",
+      "destination": "/TEMP%20Demo%20Page/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/smaya",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/TEMP%20Demo%20Page/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
   ]
 }

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMAYA × Arboreal Labs | Website Preview</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/assets/images/Arboreal%20logo/Dark%20Favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+  <style>
+    :root {
+      --ink: #14161C;
+      --ink-2: #4A5060;
+      --mute: #8A90A0;
+      --line: #E7E9EE;
+      --soft: #F6F7F9;
+      --red: #FF3B3B;
+      --navy: #0B1F5E;
+      --royal: #1556C9;
+      --green: #13894B;
+      --amber: #E8740C;
+      --alert: #D3202A;
+      --display: 'Space Grotesk', system-ui, sans-serif;
+      --body: 'Inter', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #fff; color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    .wrap { width: min(1180px, 100% - 48px); margin-inline: auto; }
+
+    /* ---------- top bar + progress ---------- */
+    .bar { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
+    .bar img { height: 34px; width: auto; }
+    .bar nav { display: flex; gap: 1.75rem; font-size: .82rem; font-weight: 500; color: var(--ink-2); }
+    .bar nav a { text-decoration: none; transition: color .2s; }
+    .bar nav a:hover, .bar nav a.on { color: var(--ink); }
+    .progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--red); transform-origin: 0 50%; transform: scaleX(0); }
+
+    /* ---------- shared type ---------- */
+    .eyebrow { display: inline-flex; align-items: center; gap: .6rem; font-family: var(--display); font-size: .74rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--red); margin: 0 0 1rem; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+    h1, h2, h3 { font-family: var(--display); letter-spacing: -.03em; margin: 0; }
+    h2 { font-size: clamp(2rem, 4.2vw, 3.3rem); line-height: 1.05; }
+    .lead { font-size: clamp(1.05rem, 1.4vw, 1.2rem); color: var(--ink-2); max-width: 620px; margin: 1.1rem 0 0; }
+    section { padding-block: clamp(4.5rem, 10vw, 8rem); }
+    .rule { border: 0; border-top: 1px solid var(--line); margin: 0; }
+
+    /* reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: .1s; } .reveal.d2 { transition-delay: .2s; } .reveal.d3 { transition-delay: .3s; }
+
+    /* ---------- hero ---------- */
+    .hero { padding-block: clamp(5rem, 12vw, 9rem) clamp(3rem, 7vw, 5rem); }
+    .hero .for { display: flex; align-items: center; gap: .75rem; font-size: .9rem; color: var(--mute); margin-bottom: 2rem; }
+    .hero .for b { color: var(--navy); font-family: var(--display); letter-spacing: .02em; }
+    .hero h1 { font-size: clamp(2.8rem, 7.4vw, 6.2rem); line-height: .98; max-width: 14ch; }
+    .hero h1 em { font-style: normal; color: var(--red); }
+    .hero .lead { max-width: 640px; }
+    .chapters { list-style: none; padding: 0; margin: clamp(3rem, 6vw, 4.5rem) 0 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+    .chapters li { padding: 1.1rem 1.25rem 0 0; }
+    .chapters a { text-decoration: none; display: block; }
+    .chapters span { display: block; font-family: var(--display); font-size: .78rem; color: var(--red); letter-spacing: .1em; }
+    .chapters b { display: block; font-family: var(--display); font-weight: 600; font-size: 1.05rem; margin-top: .25rem; }
+    .chapters small { color: var(--mute); font-size: .85rem; }
+    .chapters a:hover b { color: var(--red); }
+
+    /* ---------- 01 exploded view ---------- */
+    .split { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+    .points { list-style: none; padding: 0; margin: 2rem 0 0; }
+    .points li { display: flex; gap: .9rem; padding: .85rem 0; border-top: 1px solid var(--line); color: var(--ink-2); font-size: .98rem; }
+    .points li:last-child { border-bottom: 1px solid var(--line); }
+    .points i { color: var(--red); font-size: 1.25rem; margin-top: .1rem; }
+    .points b { color: var(--ink); font-weight: 600; }
+    .explode { position: relative; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+    .explode canvas { width: 100%; height: auto; aspect-ratio: 800 / 720; display: block; }
+    .explode-hint { position: absolute; left: 50%; bottom: .5rem; transform: translateX(-50%); display: inline-flex; align-items: center; gap: .5rem; font-size: .8rem; font-weight: 500; color: var(--ink-2); padding: .45rem .9rem; border-radius: 100px; border: 1px solid var(--line); background: rgba(255,255,255,.9); transition: opacity .3s; white-space: nowrap; }
+    .explode-hint i { color: var(--red); }
+    .explode.open .explode-hint { opacity: 0; }
+    .explode-meter { position: absolute; right: 0; top: 0; font-family: var(--display); font-size: .75rem; letter-spacing: .1em; color: var(--mute); }
+
+    /* ---------- 02 motion graphics ---------- */
+    .film { margin-top: clamp(2.5rem, 5vw, 3.5rem); border-radius: 18px; overflow: hidden; background: #000; box-shadow: 0 40px 80px -40px rgba(11,31,94,.45); }
+    .film iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+    .film-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+    .film-notes div { border-top: 2px solid var(--ink); padding-top: .9rem; font-size: .95rem; color: var(--ink-2); }
+    .film-notes b { display: block; color: var(--ink); font-family: var(--display); font-size: 1.05rem; margin-bottom: .2rem; }
+
+    /* ---------- 03 simulator ---------- */
+    .sim { margin-top: clamp(2.5rem, 5vw, 3.5rem); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .sim-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+    .sim-controls .label { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); margin-right: .4rem; }
+    .btn { font: 500 .85rem var(--body); display: inline-flex; align-items: center; gap: .45rem; padding: .5rem .95rem; border-radius: 100px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; transition: border-color .2s, background .2s, color .2s; }
+    .btn:hover { border-color: var(--ink); }
+    .btn.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .btn.warn.on { background: var(--alert); border-color: var(--alert); }
+    .sim-controls .spacer { flex: 1; }
+    .sim-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) minmax(0, 1fr); }
+    .sim-col { padding: 1.6rem 1.6rem 1.8rem 0; }
+    .sim-col + .sim-col { padding-left: 1.6rem; border-left: 1px solid var(--line); }
+    .sim-col h3 { font-size: 1rem; display: flex; align-items: center; gap: .5rem; margin-bottom: .25rem; }
+    .sim-col h3 i { color: var(--royal); }
+    .sim-col .sub { font-size: .82rem; color: var(--mute); margin: 0 0 1.1rem; }
+
+    .sensor { padding: .7rem 0; border-top: 1px solid var(--line); }
+    .sensor:last-child { border-bottom: 1px solid var(--line); }
+    .sensor-top { display: flex; justify-content: space-between; align-items: baseline; font-size: .88rem; }
+    .sensor-top span { color: var(--ink-2); }
+    .sensor-top b { font-family: var(--display); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .sensor-top b.bad { color: var(--alert); }
+    .sensor input[type=range] { width: 100%; margin: .45rem 0 0; accent-color: var(--royal); }
+
+    .box-stage { position: relative; }
+    .box-svg { width: 100%; height: auto; display: block; }
+    .packet { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: .74rem; line-height: 1.55; color: var(--ink-2); background: var(--soft); border-radius: 10px; padding: .85rem 1rem; margin-top: .9rem; min-height: 9.6rem; white-space: pre; overflow: hidden; }
+    .packet .k { color: var(--royal); }
+    .packet .ok { color: var(--green); }
+    .queue { display: flex; justify-content: space-between; font-size: .8rem; color: var(--mute); margin-top: .7rem; }
+    .queue b { color: var(--ink); font-variant-numeric: tabular-nums; }
+    .queue b.buffer { color: var(--amber); }
+
+    .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .kpi { padding: .75rem 0; border-top: 1px solid var(--line); }
+    .kpi:nth-child(odd) { padding-right: .8rem; }
+    .kpi:nth-child(even) { padding-left: .8rem; border-left: 1px solid var(--line); }
+    .kpi span { display: block; font-size: .76rem; color: var(--mute); }
+    .kpi b { font-family: var(--display); font-size: 1.45rem; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--navy); }
+    .kpi small { font-size: .78rem; color: var(--mute); margin-left: .2rem; }
+    .dash-status { font-size: .78rem; color: var(--green); margin: .2rem 0 .7rem; display: flex; align-items: center; gap: .4rem; }
+    .dash-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .dash-status.wait { color: var(--amber); }
+    .alerts { border-top: 1px solid var(--line); padding-top: .9rem; margin-top: .1rem; min-height: 8.2rem; }
+    .alert { display: flex; gap: .6rem; font-size: .86rem; padding: .35rem 0; animation: pop .45s cubic-bezier(.2,.8,.2,1); }
+    .alert i { font-size: 1.1rem; margin-top: .1rem; }
+    .alert.good i { color: var(--green); }
+    .alert.bad i { color: var(--alert); }
+    .alert.mid i { color: var(--amber); }
+    .alert b { display: block; }
+    .alert small { color: var(--ink-2); }
+    @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .try { display: grid; grid-template-columns: minmax(0, 1.3fr) auto; gap: 1.2rem 3rem; align-items: center; margin-top: 2.5rem; padding: 1.8rem 0 1.8rem 1.6rem; border-left: 3px solid var(--red); }
+    .try h3 { font-size: clamp(1.35rem, 2.4vw, 1.9rem); }
+    .try-copy p { margin: .45rem 0 0; color: var(--ink-2); max-width: 560px; }
+    .try-actions { display: flex; flex-direction: column; align-items: flex-start; gap: .7rem; }
+    .cta { display: inline-flex; align-items: center; gap: .55rem; padding: .95rem 1.5rem; border-radius: 100px; background: var(--red); color: #fff; font: 600 .95rem var(--display); letter-spacing: .01em; cursor: pointer; box-shadow: 0 12px 30px -14px rgba(255,59,59,.8); transition: transform .2s, box-shadow .2s; }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -14px rgba(255,59,59,.9); }
+    .cta i { font-size: 1.15rem; }
+    #dataFile:focus-visible + .cta, .cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .linkish { display: inline-flex; align-items: center; gap: .4rem; background: none; border: 0; padding: 0; font: 500 .85rem var(--body); color: var(--ink-2); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+    .linkish:hover { color: var(--ink); }
+    .try-status { grid-column: 1 / -1; margin: 0; font-size: .85rem; color: var(--mute); }
+    .try-status.ok { color: var(--green); }
+    .try-status.err { color: var(--alert); }
+    .try-status button { margin-left: .6rem; }
+
+    /* ---------- 04 after launch ---------- */
+    .after { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+    .after-intro { position: sticky; top: 110px; }
+    .services { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+    .services li { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 1rem; padding: 1.7rem 0; border-top: 1px solid var(--line); }
+    .services li:last-child { border-bottom: 1px solid var(--line); }
+    .services .n { font-family: var(--display); font-size: .85rem; color: var(--red); letter-spacing: .08em; padding-top: .35rem; }
+    .services h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); display: flex; align-items: center; gap: .6rem; }
+    .services h3 i { color: var(--red); font-size: 1.3rem; }
+    .services p { margin: .5rem 0 0; color: var(--ink-2); }
+    .services .tags { display: flex; flex-wrap: wrap; gap: .4rem 1rem; margin-top: .75rem; font-size: .82rem; color: var(--mute); }
+    .services .tags span::before { content: "— "; color: var(--red); }
+
+    /* ---------- closing ---------- */
+    .close { text-align: center; padding-block: clamp(4rem, 9vw, 7rem); }
+    .close h2 { max-width: 18ch; margin-inline: auto; }
+    .close .lead { margin-inline: auto; }
+    .close img { height: 40px; width: auto; margin: 2.5rem auto 0; }
+    footer { border-top: 1px solid var(--line); padding: 1.5rem 0; font-size: .8rem; color: var(--mute); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+    @media (max-width: 960px) {
+      .split, .after { grid-template-columns: 1fr; }
+      .after-intro { position: static; }
+      .sim-grid { grid-template-columns: 1fr; }
+      .sim-col, .sim-col + .sim-col { padding: 1.4rem 0; border-left: 0; }
+      .sim-col + .sim-col { border-top: 1px solid var(--line); }
+      .try { grid-template-columns: 1fr; padding-left: 1.2rem; }
+      .chapters { grid-template-columns: repeat(2, 1fr); }
+      .bar nav { display: none; }
+    }
+    @media (max-width: 600px) {
+      .film-notes { grid-template-columns: 1fr; gap: 1.2rem; }
+      .film iframe { aspect-ratio: 16 / 9; }
+      .services li { grid-template-columns: 1fr; gap: .3rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="bar">
+    <div class="wrap">
+      <img src="/TEMP%20Demo%20Page/arboreal-logo.png" alt="Arboreal Labs" width="480" height="173">
+      <nav aria-label="Sections">
+        <a href="#interactive">Interactive views</a>
+        <a href="#motion">Motion graphics</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#after-launch">After launch</a>
+      </nav>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="for reveal">Prepared for <b>SMAYA.AI</b> by Arboreal Labs</p>
+        <p class="eyebrow reveal">The Arboreal Labs deliverable</p>
+        <h1 class="reveal d1">A website that <em>moves</em> like your product works.</h1>
+        <p class="lead reveal d2">We'll deliver an interactive website with motion graphics and scroll animations, so visitors don't just read about SMAYA, they see it working. This page is a preview of that experience.</p>
+        <ol class="chapters reveal d3">
+          <li><a href="#interactive"><span>01</span><b>Interactive views</b><small>Take the hardware apart</small></a></li>
+          <li><a href="#motion"><span>02</span><b>Motion graphics</b><small>The story in 30 seconds</small></a></li>
+          <li><a href="#simulator"><span>03</span><b>SMAYA simulator</b><small>See the box at work</small></a></li>
+          <li><a href="#after-launch"><span>04</span><b>After launch</b><small>How we keep it growing</small></a></li>
+        </ol>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ============ 01 INTERACTIVE EXPLODED VIEW ============ -->
+    <section id="interactive">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow reveal">01 · Interactive views</p>
+          <h2 class="reveal d1">Hover to take it apart.</h2>
+          <p class="lead reveal d2">Product footage becomes something visitors control. We split the video into frames and tie them to the cursor, so every part of the hardware can be inspected at the visitor's own pace.</p>
+          <ul class="points reveal d3">
+            <li><i class="ph ph-cursor-click"></i><span><b>Hover to explode,</b> move away to reassemble. On phones, tap.</span></li>
+            <li><i class="ph ph-film-strip"></i><span><b>Built from your own footage,</b> no plug-ins or heavy video players.</span></li>
+            <li><i class="ph ph-gauge"></i><span><b>Loads only when it's needed,</b> so the page stays quick.</span></li>
+          </ul>
+        </div>
+        <div class="explode reveal d1" id="explode" role="img" aria-label="Exploded view of the filter vessel. Hover or tap to take it apart.">
+          <span class="explode-meter" id="explodeMeter">ASSEMBLED</span>
+          <canvas width="800" height="720"></canvas>
+          <span class="explode-hint"><i class="ph ph-hand-pointing"></i> Hover to take it apart</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ============ 02 MOTION GRAPHICS ============ -->
+    <section id="motion">
+      <div class="wrap">
+        <p class="eyebrow reveal">02 · Motion graphics</p>
+        <h2 class="reveal d1">The whole story, in thirty seconds.</h2>
+        <p class="lead reveal d2">Collect, calculate, predict, recommend. A short film that explains what SMAYA does before anyone reads a word. Press play.</p>
+        <div class="film reveal d2">
+          <iframe src="/TEMP%20Demo%20Page/SMAYA_video.html" title="SMAYA motion graphic" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <div class="film-notes reveal d3">
+          <div><b>Made for the hero</b>Plays at the top of the homepage, muted until a visitor chooses sound.</div>
+          <div><b>One story, four steps</b>Each step can link to its own section of the site.</div>
+          <div><b>Crisp at any size</b>Drawn live in the browser, so it stays sharp on every screen.</div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ============ 03 SIMULATOR ============ -->
+    <section id="simulator">
+      <div class="wrap">
+        <p class="eyebrow reveal">03 · SMAYA simulator</p>
+        <h2 class="reveal d1">Watch the SMAYA box package your data.</h2>
+        <p class="lead reveal d2">Sensors on the cooling tower feed the edge box. The box bundles every reading into a signed packet, holds it safely if the connection drops, and sends it on to the dashboard, where it turns into savings, predictions and actions. Move the sliders or trigger a scenario.</p>
+
+        <div class="sim reveal d2" id="sim">
+          <div class="sim-controls">
+            <span class="label">Scenario</span>
+            <button type="button" class="btn on" data-scenario="normal"><i class="ph ph-check-circle"></i>Normal day</button>
+            <button type="button" class="btn warn" data-scenario="scaling"><i class="ph ph-drop"></i>Scaling risk</button>
+            <button type="button" class="btn warn" data-scenario="fan"><i class="ph ph-fan"></i>Fan wearing out</button>
+            <span class="spacer"></span>
+            <button type="button" class="btn" id="netBtn"><i class="ph ph-wifi-high"></i><span>Network online</span></button>
+            <button type="button" class="btn" id="playBtn"><i class="ph ph-pause"></i><span>Pause</span></button>
+          </div>
+
+          <div class="sim-grid">
+            <!-- sensors -->
+            <div class="sim-col">
+              <h3><i class="ph ph-broadcast"></i>1 · Field sensors</h3>
+              <p class="sub">Live readings from the cooling tower</p>
+              <div id="sensors"></div>
+            </div>
+
+            <!-- edge box -->
+            <div class="sim-col">
+              <h3><i class="ph ph-cube"></i>2 · SMAYA edge box</h3>
+              <p class="sub">Collects, packages and sends every 2 seconds</p>
+              <div class="box-stage">
+                <svg class="box-svg" viewBox="0 0 360 170" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="boxg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1556C9"/><stop offset="1" stop-color="#0B1F5E"/></linearGradient>
+                  </defs>
+                  <!-- inbound lines from sensors -->
+                  <g stroke="#D7DCE6" stroke-width="2" fill="none">
+                    <path d="M0 30 C60 30 70 70 120 78"/><path d="M0 60 C60 60 80 80 120 82"/><path d="M0 90 C60 90 80 88 120 86"/><path d="M0 120 C60 120 80 96 120 90"/><path d="M0 150 C60 150 70 104 120 94"/>
+                    <path id="outPath" d="M240 86 C290 86 300 86 360 86"/>
+                  </g>
+                  <g id="inDots" fill="#1556C9"></g>
+                  <!-- the box -->
+                  <rect x="120" y="44" width="120" height="84" rx="14" fill="url(#boxg)"/>
+                  <rect x="134" y="58" width="54" height="30" rx="5" fill="#0A1A4F" stroke="#3B7BE8" stroke-width="1.5"/>
+                  <text x="161" y="78" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#7FB3FF" id="boxCount">000</text>
+                  <circle id="ledNet" cx="210" cy="64" r="5" fill="#34D399"/>
+                  <circle id="ledPkt" cx="226" cy="64" r="5" fill="#1F3B8A"/>
+                  <text x="180" y="116" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#fff">SMAYA EDGE</text>
+                  <g id="outDots"></g>
+                </svg>
+              </div>
+              <div class="packet" id="packet" aria-live="polite"></div>
+              <div class="queue"><span>Sent <b id="sentCount">0</b></span><span>Held on the box <b id="bufCount">0</b></span><span>Lost <b>0</b></span></div>
+            </div>
+
+            <!-- dashboard -->
+            <div class="sim-col">
+              <h3><i class="ph ph-chart-line-up"></i>3 · SMAYA dashboard</h3>
+              <p class="sub">What the plant team sees</p>
+              <div class="kpis">
+                <div class="kpi"><span>Cycles of concentration</span><b id="kCoc">–</b><small>CoC</small></div>
+                <div class="kpi"><span>Approach</span><b id="kApp">–</b><small>°C</small></div>
+                <div class="kpi"><span>Water saved today</span><b id="kWater">–</b><small>m³</small></div>
+                <div class="kpi"><span>Tower health</span><b id="kHealth">–</b><small>/ 100</small></div>
+              </div>
+              <p class="dash-status" id="dashStatus">Live · updated just now</p>
+              <div class="alerts" id="alerts"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="try reveal" id="try">
+          <div class="try-copy">
+            <h3>Want to test it with your data?</h3>
+            <p>Upload a reading log from your cooling tower and the simulator will replay it, reading by reading. Your file stays on your computer; nothing is sent anywhere.</p>
+          </div>
+          <div class="try-actions">
+            <label class="cta" for="dataFile"><i class="ph ph-upload-simple"></i>Click here to upload your data</label>
+            <input type="file" id="dataFile" accept=".csv,text/csv" hidden>
+            <button type="button" class="linkish" id="sampleBtn"><i class="ph ph-download-simple"></i>Download a sample file</button>
+          </div>
+          <p class="try-status" id="tryStatus" aria-live="polite">A CSV file with columns for flow, hot and cold water temperature, pH, conductivity and fan vibration. Column names don't need to be exact.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ============ 04 AFTER LAUNCH ============ -->
+    <section id="after-launch">
+      <div class="wrap after">
+        <div class="after-intro">
+          <p class="eyebrow reveal">04 · After launch</p>
+          <h2 class="reveal d1">The launch is the start.</h2>
+          <p class="lead reveal d2">Once the website is live, we keep working on it every month, so it keeps bringing in the right people and turning them into conversations.</p>
+        </div>
+        <ol class="services">
+          <li class="reveal">
+            <span class="n">01</span>
+            <div>
+              <h3><i class="ph ph-pencil-simple-line"></i>SEO and content updates</h3>
+              <p>We keep the site fresh and findable, month after month.</p>
+              <div class="tags"><span>Refresh landing page copy</span><span>Regular blog posts</span><span>Updated page titles and descriptions</span><span>Fix broken or low-performing keywords</span></div>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="n">02</span>
+            <div>
+              <h3><i class="ph ph-trend-up"></i>Conversion rate optimisation</h3>
+              <p>We study how real visitors use the site and improve the pages that matter, so more of them get in touch.</p>
+              <div class="tags"><span>Based on incoming traffic</span><span>Clearer calls to action</span><span>Shorter, smarter forms</span></div>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="n">03</span>
+            <div>
+              <h3><i class="ph ph-magnifying-glass"></i>Google search optimisation</h3>
+              <p>We help SMAYA show up when plant managers and engineers search for water and cooling tower solutions.</p>
+              <div class="tags"><span>Search rankings</span><span>Google Business Profile</span><span>Monthly performance report</span></div>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="n">04</span>
+            <div>
+              <h3><i class="ph ph-users-three"></i>Lead management platform</h3>
+              <p>Every enquiry from the website lands in one place and ties into your existing CRM. If you don't have one yet, we can set it up for you, along with your sales team's organisation and a task tracker.</p>
+              <div class="tags"><span>Connects to your CRM</span><span>Or a new CRM, set up for you</span><span>Sales team and task tracking</span></div>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="n">05</span>
+            <div>
+              <h3><i class="ph ph-article"></i>Blog management and posting</h3>
+              <p>We plan, write and publish articles that answer the questions your buyers are already asking.</p>
+              <div class="tags"><span>Content calendar</span><span>Writing and editing</span><span>Publishing and sharing</span></div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <section class="close">
+      <div class="wrap">
+        <p class="eyebrow reveal" style="justify-content:center">Next step</p>
+        <h2 class="reveal d1">Let's build the SMAYA website together.</h2>
+        <p class="lead reveal d2">Design, motion, the simulator and ongoing care, all from one team.</p>
+        <img class="reveal d3" src="/TEMP%20Demo%20Page/arboreal-logo.png" alt="Arboreal Labs" width="480" height="173">
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><span>Arboreal Labs · Preview prepared for SMAYA.AI</span><span>Confidential · Not for distribution</span></div>
+  </footer>
+
+  <script>
+  (() => {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- reveal on scroll + top progress ---------- */
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    const bar = document.querySelector('.progress');
+    const links = [...document.querySelectorAll('.bar nav a')];
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+      let cur = null;
+      links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s && s.getBoundingClientRect().top < innerHeight * .4) cur = a; });
+      links.forEach(a => a.classList.toggle('on', a === cur));
+    };
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    /* ---------- 01 exploded view: frames tied to hover ---------- */
+    const ex = document.getElementById('explode');
+    const cv = ex.querySelector('canvas'), ctx = cv.getContext('2d');
+    const meter = document.getElementById('explodeMeter');
+    const N = 97, frames = new Array(N);
+    const src = i => `/TEMP%20Demo%20Page/exploded-frames/${String(i).padStart(3, '0')}.webp`;
+    let shown = -1, pos = 0, target = 0, raf = 0, loaded = false;
+    const draw = i => {
+      const img = frames[i];
+      if (!img || !img.complete || !img.naturalWidth) return false;
+      if (i !== shown) { ctx.clearRect(0, 0, 800, 720); ctx.drawImage(img, 0, 0, 800, 720); shown = i; }
+      return true;
+    };
+    const first = new Image();
+    first.onload = () => { frames[0] = first; draw(0); };
+    first.src = src(0);
+    const loadAll = () => {
+      if (loaded) return; loaded = true;
+      for (let i = 1; i < N; i++) { const im = new Image(); im.decoding = 'async'; im.src = src(i); frames[i] = im; }
+    };
+    new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { loadAll(); o.disconnect(); } }, { rootMargin: '400px' }).observe(ex);
+    const step = () => {
+      const speed = 1.35; // frames per tick (~80fps of footage)
+      pos += Math.sign(target - pos) * Math.min(speed, Math.abs(target - pos));
+      let i = Math.round(pos);
+      // if a frame isn't decoded yet, show the nearest one that is
+      while (i > 0 && !draw(i)) i--;
+      meter.textContent = pos <= 0.5 ? 'ASSEMBLED' : pos >= N - 1.5 ? 'EXPLODED' : `${Math.round(pos / (N - 1) * 100)}%`;
+      raf = pos !== target ? requestAnimationFrame(step) : 0;
+    };
+    const go = open => {
+      loadAll();
+      target = open ? N - 1 : 0;
+      ex.classList.toggle('open', open);
+      if (reduce) { pos = target; step(); return; }
+      if (!raf) raf = requestAnimationFrame(step);
+    };
+    const hover = matchMedia('(hover: hover)').matches;
+    if (hover) {
+      ex.addEventListener('mouseenter', () => go(true));
+      ex.addEventListener('mouseleave', () => go(false));
+    }
+    ex.addEventListener('click', () => { if (!hover) go(target === 0); });
+
+    /* ---------- 03 SMAYA simulator ---------- */
+    const SENSORS = [
+      { id: 'flow', name: 'Flow', unit: 'm³/h', min: 300, max: 900, step: 1, d: 0, v: 620, noise: 6, bad: v => v < 400 },
+      { id: 'tin', name: 'Hot water in', unit: '°C', min: 30, max: 48, step: .1, d: 1, v: 38.5, noise: .15 },
+      { id: 'tout', name: 'Cold water out', unit: '°C', min: 24, max: 40, step: .1, d: 1, v: 30.6, noise: .1 },
+      { id: 'ph', name: 'pH', unit: '', min: 5.5, max: 10, step: .01, d: 2, v: 7.8, noise: .02, bad: v => v < 6.5 || v > 8.8 },
+      { id: 'cond', name: 'Conductivity', unit: 'µS/cm', min: 600, max: 4000, step: 10, d: 0, v: 2050, noise: 14, bad: v => v > 2900 },
+      { id: 'vib', name: 'Fan vibration', unit: 'mm/s', min: .5, max: 12, step: .1, d: 1, v: 2.4, noise: .08, bad: v => v > 6.5 },
+    ];
+    const WET_BULB = 26, MAKEUP_COND = 400;
+    const SCEN = {
+      normal: { flow: 620, tin: 38.5, tout: 30.6, ph: 7.8, cond: 2050, vib: 2.4 },
+      scaling: { flow: 610, tin: 38.8, tout: 31.4, ph: 8.9, cond: 3250, vib: 2.5 },
+      fan: { flow: 600, tin: 39.6, tout: 33.8, ph: 7.7, cond: 2100, vib: 8.4 },
+    };
+    const wrapS = document.getElementById('sensors');
+    const fmt = (v, d) => Number(v).toFixed(d);
+    SENSORS.forEach(s => {
+      s.target = s.v;
+      const row = document.createElement('div');
+      row.className = 'sensor';
+      row.innerHTML = `<div class="sensor-top"><span>${s.name}</span><b>${fmt(s.v, s.d)} <small>${s.unit}</small></b></div>
+        <input type="range" min="${s.min}" max="${s.max}" step="${s.step}" value="${s.v}" aria-label="${s.name}">`;
+      s.out = row.querySelector('b'); s.input = row.querySelector('input');
+      s.input.addEventListener('input', () => { s.target = +s.input.value; s.v = s.target; render(); setScenarioBtn(null); });
+      wrapS.appendChild(row);
+    });
+    const render = () => SENSORS.forEach(s => {
+      s.out.innerHTML = `${fmt(s.v, s.d)} <small>${s.unit}</small>`;
+      s.out.classList.toggle('bad', !!(s.bad && s.bad(s.v)));
+      if (document.activeElement !== s.input) s.input.value = s.v;
+    });
+    const scenBtns = document.querySelectorAll('[data-scenario]');
+    const setScenarioBtn = name => scenBtns.forEach(b => b.classList.toggle('on', b.dataset.scenario === name));
+    scenBtns.forEach(b => b.addEventListener('click', () => {
+      const t = SCEN[b.dataset.scenario];
+      SENSORS.forEach(s => { s.target = t[s.id]; });
+      setScenarioBtn(b.dataset.scenario);
+    }));
+
+    let online = true, playing = true, seq = 140, sent = 0, buffer = [], water = 41.2;
+    const netBtn = document.getElementById('netBtn'), playBtn = document.getElementById('playBtn');
+    netBtn.addEventListener('click', () => {
+      online = !online;
+      netBtn.classList.toggle('on', !online);
+      netBtn.querySelector('i').className = online ? 'ph ph-wifi-high' : 'ph ph-wifi-slash';
+      netBtn.querySelector('span').textContent = online ? 'Network online' : 'Network offline';
+      document.getElementById('ledNet').setAttribute('fill', online ? '#34D399' : '#F59E0B');
+    });
+    playBtn.addEventListener('click', () => {
+      playing = !playing;
+      playBtn.querySelector('i').className = playing ? 'ph ph-pause' : 'ph ph-play';
+      playBtn.querySelector('span').textContent = playing ? 'Pause' : 'Play';
+    });
+
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const inDots = document.getElementById('inDots'), outDots = document.getElementById('outDots');
+    const inPaths = [...document.querySelectorAll('.box-svg g path')].slice(0, 5);
+    const outPath = document.getElementById('outPath');
+    const fly = (path, group, color, r, ms) => {
+      if (reduce) return;
+      const c = document.createElementNS(svgNS, 'circle');
+      c.setAttribute('r', r); c.setAttribute('fill', color);
+      group.appendChild(c);
+      const L = path.getTotalLength(), t0 = performance.now();
+      const tick = now => {
+        const p = Math.min(1, (now - t0) / ms), pt = path.getPointAtLength(L * p);
+        c.setAttribute('cx', pt.x); c.setAttribute('cy', pt.y);
+        c.setAttribute('opacity', p > .9 ? (1 - p) * 10 : 1);
+        if (p < 1) requestAnimationFrame(tick); else c.remove();
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const packetEl = document.getElementById('packet');
+    const time = () => new Date().toLocaleTimeString('en-GB');
+    const showPacket = (pk, status) => {
+      packetEl.innerHTML =
+`<span class="k">packet</span>   #${String(pk.seq).padStart(5, '0')} · ${pk.time}
+<span class="k">site</span>     Cooling tower CT-02
+<span class="k">readings</span> ${pk.count} sensors · ${pk.bytes} bytes
+<span class="k">flow</span>     ${fmt(pk.r.flow, 0)} m³/h   <span class="k">pH</span> ${fmt(pk.r.ph, 2)}
+<span class="k">cond</span>     ${fmt(pk.r.cond, 0)} µS/cm  <span class="k">vib</span> ${fmt(pk.r.vib, 1)}
+<span class="k">status</span>   ${status}`;
+    };
+
+    const alertsEl = document.getElementById('alerts'), dashStatus = document.getElementById('dashStatus');
+    let lastAlertKey = '';
+    const dashboard = r => {
+      const coc = r.cond / MAKEUP_COND;
+      const approach = r.tout - WET_BULB;
+      water += (coc > 4.5 ? .06 : .02);
+      let health = 100;
+      const alerts = [];
+      if (r.cond > 2900 || r.ph > 8.8) { health -= 28; alerts.push(['bad', 'ph-warning', 'Scaling risk · 74% · in 2–3 days', 'Recommended: increase blowdown and check dosing.']); }
+      if (r.vib > 6.5) { health -= 32; alerts.push(['bad', 'ph-fan', 'Fan bearing wear · 81% · in 12–24 h', 'Recommended: inspect fan bearings at next stop.']); }
+      if (approach > 6) { health -= 14; alerts.push(['mid', 'ph-thermometer-hot', `Approach high · ${fmt(approach, 1)} °C`, 'Cooling is slipping. Check fill and airflow.']); }
+      if (r.ph < 6.5) { health -= 20; alerts.push(['bad', 'ph-flask', 'Corrosion risk · low pH', 'Recommended: adjust chemical dosing.']); }
+      if (!alerts.length) alerts.push(['good', 'ph-check-circle', 'All systems normal', 'Cycles of concentration within target. Saving water as planned.']);
+      document.getElementById('kCoc').textContent = fmt(coc, 1);
+      document.getElementById('kApp').textContent = fmt(approach, 1);
+      document.getElementById('kWater').textContent = fmt(water, 1);
+      const kh = document.getElementById('kHealth');
+      kh.textContent = Math.max(0, health);
+      kh.style.color = health > 85 ? 'var(--green)' : health > 60 ? 'var(--amber)' : 'var(--alert)';
+      const key = alerts.map(a => a[2]).join('|');
+      if (key !== lastAlertKey) {
+        lastAlertKey = key;
+        alertsEl.innerHTML = alerts.map(([c, ic, t, s]) => `<div class="alert ${c}"><i class="ph ${ic}"></i><div><b>${t}</b><small>${s}</small></div></div>`).join('');
+      }
+    };
+
+    const readings = () => Object.fromEntries(SENSORS.map(s => [s.id, s.v]));
+
+    /* ---------- "test it with your data": replay an uploaded CSV ---------- */
+    let replay = null; // { rows, i, name }
+    const tryStatus = document.getElementById('tryStatus');
+    const status = (html, cls = '') => { tryStatus.className = 'try-status ' + cls; tryStatus.innerHTML = html; };
+    const MATCH = {
+      flow: /flow|m3|m³/i,
+      tin: /hot|in(let)?\b|t.?in|supply|return/i,
+      tout: /cold|out(let)?\b|t.?out|basin/i,
+      ph: /\bph\b|^ph/i,
+      cond: /cond|tds|µs|us\/cm|ec\b/i,
+      vib: /vib|mm\/s/i,
+    };
+    const parseCSV = text => {
+      const lines = text.replace(/\r/g, '').split('\n').filter(l => l.trim());
+      const sep = (lines[0].match(/;/g) || []).length > (lines[0].match(/,/g) || []).length ? ';' : ',';
+      const cells = l => l.split(sep).map(c => c.trim().replace(/^"|"$/g, ''));
+      const head = cells(lines[0]);
+      const map = {};
+      Object.entries(MATCH).forEach(([id, re]) => {
+        const idx = head.findIndex((h, j) => re.test(h) && !Object.values(map).includes(j));
+        if (idx >= 0) map[id] = idx;
+      });
+      const rows = lines.slice(1).map(cells).map(c => {
+        const r = {};
+        Object.entries(map).forEach(([id, j]) => { const v = parseFloat(c[j]); if (!isNaN(v)) r[id] = v; });
+        return r;
+      }).filter(r => Object.keys(r).length);
+      return { map, rows, head };
+    };
+    document.getElementById('dataFile').addEventListener('change', e => {
+      const file = e.target.files[0];
+      e.target.value = '';
+      if (!file) return;
+      if (file.size > 5e6) { status('That file is over 5 MB. Please upload a shorter log.', 'err'); return; }
+      file.text().then(text => {
+        const { map, rows } = parseCSV(text);
+        const found = Object.keys(map);
+        if (!rows.length || !found.length) {
+          status("We couldn't find sensor columns in that file. Try the sample file's layout, or send it to us and we'll set it up for you.", 'err');
+          return;
+        }
+        replay = { rows, i: 0, name: file.name };
+        if (!playing) playBtn.click();
+        setScenarioBtn(null);
+        const names = found.map(id => SENSORS.find(s => s.id === id).name).join(', ');
+        status(`Replaying <b>${file.name}</b>, <span id="replayPos">reading 1 of ${rows.length}</span>. Using ${names}.<button type="button" class="linkish" id="stopReplay">Back to the live demo</button>`, 'ok');
+        document.getElementById('stopReplay').addEventListener('click', () => { replay = null; status('Back to the live demo.', ''); scenBtns[0].click(); });
+        document.getElementById('simulator').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      }).catch(() => status("We couldn't read that file. Please upload a CSV.", 'err'));
+    });
+    document.getElementById('sampleBtn').addEventListener('click', () => {
+      const lines = ['timestamp,flow_m3h,hot_water_in_c,cold_water_out_c,ph,conductivity_us_cm,fan_vibration_mm_s'];
+      const t0 = Date.UTC(2026, 9, 1, 6, 0);
+      for (let i = 0; i < 60; i++) {
+        const drift = i / 59;
+        lines.push([
+          new Date(t0 + i * 600000).toISOString().slice(0, 16).replace('T', ' '),
+          (620 + Math.sin(i / 4) * 25).toFixed(0),
+          (38.2 + drift * 1.4).toFixed(1),
+          (30.4 + drift * 2.6).toFixed(1),
+          (7.7 + drift * 1.1).toFixed(2),
+          (2000 + drift * 1150).toFixed(0),
+          (2.3 + drift * drift * 5.5).toFixed(1),
+        ].join(','));
+      }
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/csv' }));
+      a.download = 'smaya-sample-readings.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+    const sentEl = document.getElementById('sentCount'), bufEl = document.getElementById('bufCount'), boxCount = document.getElementById('boxCount'), ledPkt = document.getElementById('ledPkt');
+
+    // sensors drift towards their target with a little noise
+    setInterval(() => {
+      if (!playing) return;
+      SENSORS.forEach(s => {
+        if (document.activeElement === s.input) return;
+        s.v += (s.target - s.v) * .18 + (replay ? 0 : (Math.random() - .5) * s.noise);
+        s.v = Math.min(s.max, Math.max(s.min, s.v));
+      });
+      render();
+      if (Math.random() < .7) fly(inPaths[Math.floor(Math.random() * 5)], inDots, '#1556C9', 3, 700);
+    }, 400);
+
+    // every 2s the box packages a packet and sends it (or holds it while offline)
+    const cycle = () => {
+      if (!playing) return;
+      if (replay) {
+        const row = replay.rows[replay.i];
+        SENSORS.forEach(s => { if (row[s.id] != null) { s.target = s.v = Math.min(s.max, Math.max(s.min, row[s.id])); } });
+        render();
+        replay.i++;
+        if (replay.i >= replay.rows.length) {
+          status(`Finished replaying <b>${replay.name}</b> (${replay.rows.length} readings). Upload another file or carry on with the live demo.`, 'ok');
+          replay = null;
+        } else {
+          const pos = document.getElementById('replayPos');
+          if (pos) pos.textContent = `reading ${replay.i} of ${replay.rows.length}`;
+        }
+      }
+      const r = readings();
+      const pk = { seq: ++seq, time: time(), r, count: SENSORS.length, bytes: 280 + Math.floor(Math.random() * 40) };
+      boxCount.textContent = String(seq % 1000).padStart(3, '0');
+      ledPkt.setAttribute('fill', '#7FB3FF'); setTimeout(() => ledPkt.setAttribute('fill', '#1F3B8A'), 250);
+      if (online) {
+        const flush = buffer.length;
+        buffer.forEach((b, i) => setTimeout(() => fly(outPath, outDots, '#F59E0B', 4, 650), i * 120));
+        sent += flush + 1; buffer = [];
+        fly(outPath, outDots, '#13894B', 5, 800);
+        showPacket(pk, flush ? `<span class="ok">sent ✓ signed · plus ${flush} held packet${flush > 1 ? 's' : ''} delivered</span>` : '<span class="ok">sent ✓ signed and delivered</span>');
+        dashboard(r);
+        dashStatus.className = 'dash-status';
+        dashStatus.textContent = flush ? `Live · ${flush} held reading${flush > 1 ? 's' : ''} caught up` : `Live · updated ${pk.time}`;
+      } else {
+        buffer.push(pk);
+        dashStatus.className = 'dash-status wait';
+        dashStatus.textContent = 'Waiting for data · nothing is lost, the box is holding it';
+        showPacket(pk, `<span style="color:var(--amber)">network down · held on the box (${buffer.length})</span>`);
+      }
+      sentEl.textContent = sent;
+      bufEl.textContent = buffer.length;
+      bufEl.classList.toggle('buffer', buffer.length > 0);
+    };
+    render(); cycle();
+    setInterval(cycle, 2000);
+  })();
+  </script>
+</body>
+</html>
