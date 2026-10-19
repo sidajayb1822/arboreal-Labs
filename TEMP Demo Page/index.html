@@ -63,7 +63,7 @@
     .hero h1 { font-size: clamp(2.8rem, 7.4vw, 6.2rem); line-height: .98; max-width: 14ch; }
     .hero h1 em { font-style: normal; color: var(--red); }
     .hero .lead { max-width: 640px; }
-    .chapters { list-style: none; padding: 0; margin: clamp(3rem, 6vw, 4.5rem) 0 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+    .chapters { list-style: none; padding: 0; margin: clamp(3rem, 6vw, 4.5rem) 0 0; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); }
     .chapters li { padding: 1.1rem 1.25rem 0 0; }
     .chapters a { text-decoration: none; display: block; }
     .chapters span { display: block; font-family: var(--display); font-size: .78rem; color: var(--red); letter-spacing: .1em; }
@@ -92,7 +92,11 @@
     .film-notes div { border-top: 2px solid var(--ink); padding-top: .9rem; font-size: .95rem; color: var(--ink-2); }
     .film-notes b { display: block; color: var(--ink); font-family: var(--display); font-size: 1.05rem; margin-bottom: .2rem; }
 
-    /* ---------- 03 simulator ---------- */
+    /* ---------- 03 active media filter ---------- */
+    .af-frame { border-radius: 18px; overflow: hidden; background: #f2f2ef; border: 1px solid var(--line); box-shadow: 0 30px 60px -36px rgba(11,31,94,.25); }
+    .af-frame iframe { display: block; width: 100%; height: 760px; border: 0; } /* JS measures the real content height on load/resize and overrides this inline; this is only the fallback before that runs (or if it can't). */
+
+    /* ---------- 04 simulator ---------- */
     .sim { margin-top: clamp(2.5rem, 5vw, 3.5rem); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .sim-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
     .sim-controls .label { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); margin-right: .4rem; }
@@ -242,6 +246,7 @@
       <nav aria-label="Sections">
         <a href="#interactive">Interactive views</a>
         <a href="#motion">Motion graphics</a>
+        <a href="#filter">Active media filter</a>
         <a href="#simulator">Simulator</a>
         <a href="#after-launch">After launch</a>
       </nav>
@@ -260,8 +265,9 @@
         <ol class="chapters reveal d3">
           <li><a href="#interactive"><span>01</span><b>Interactive views</b><small>Take the hardware apart</small></a></li>
           <li><a href="#motion"><span>02</span><b>Motion graphics</b><small>The story in 30 seconds</small></a></li>
-          <li><a href="#simulator"><span>03</span><b>SMAYA simulator</b><small>See the box at work</small></a></li>
-          <li><a href="#after-launch"><span>04</span><b>After launch</b><small>How we keep it growing</small></a></li>
+          <li><a href="#filter"><span>03</span><b>Active media filter</b><small>Click to switch modes</small></a></li>
+          <li><a href="#simulator"><span>04</span><b>SMAYA simulator</b><small>See the box at work</small></a></li>
+          <li><a href="#after-launch"><span>05</span><b>After launch</b><small>How we keep it growing</small></a></li>
         </ol>
       </div>
     </section>
@@ -310,10 +316,31 @@
 
     <hr class="rule">
 
-    <!-- ============ 03 SIMULATOR ============ -->
+    <!-- ============ 03 ACTIVE MEDIA FILTER ============ -->
+    <section id="filter">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow reveal">03 · Interactive diagrams</p>
+          <h2 class="reveal d1">Click to switch modes.</h2>
+          <p class="lead reveal d2">Not every explainer needs a video. This active media filter is drawn straight from the engineering drawing: click it, tap it, or press Space to flip between filtering and backwash, and watch the bed itself lift and reverse.</p>
+          <ul class="points reveal d3">
+            <li><i class="ph ph-cursor-click"></i><span><b>Click, tap, or press Space</b> to flip modes; 1 and 2 jump straight to filtering or backwash.</span></li>
+            <li><i class="ph ph-arrows-clockwise"></i><span><b>The bed itself lifts and reverses</b> in backwash, exactly as the real vessel does.</span></li>
+            <li><i class="ph ph-file-pdf"></i><span><b>A printable engineering drawing</b> sits one click away, inside the diagram itself.</span></li>
+          </ul>
+        </div>
+        <div class="af-frame reveal d1">
+          <iframe src="/TEMP%20Demo%20Page/active-media-filter-light" title="Yaha active media filter, interactive cutaway" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ============ 04 SIMULATOR ============ -->
     <section id="simulator">
       <div class="wrap">
-        <p class="eyebrow reveal">03 · SMAYA simulator</p>
+        <p class="eyebrow reveal">04 · SMAYA simulator</p>
         <h2 class="reveal d1">Watch the SMAYA box package your data.</h2>
         <p class="lead reveal d2">Sensors on the cooling tower feed the edge box. The box bundles every reading into a signed packet, holds it safely if the connection drops, and sends it on to the dashboard, where it turns into savings, predictions and actions. Move the sliders or trigger a scenario.</p>
 
@@ -540,7 +567,26 @@
       scrub();
     }
 
-    /* ---------- 03 SMAYA simulator ---------- */
+    /* ---------- 03 active media filter: fit the iframe to its real content, no scrollbar ---------- */
+    (() => {
+      const frame = document.querySelector('.af-frame iframe');
+      if (!frame) return;
+      let ro;
+      const fit = () => {
+        try {
+          const doc = frame.contentDocument;
+          const h = doc && Math.ceil(doc.documentElement.getBoundingClientRect().height);
+          if (h > 0) frame.style.height = h + 'px';
+        } catch (e) { /* not same-origin: keep the CSS fallback height */ }
+      };
+      frame.addEventListener('load', () => {
+        fit();
+        try { ro = new ResizeObserver(fit); ro.observe(frame.contentDocument.documentElement); } catch (e) {}
+      });
+      addEventListener('resize', fit, { passive: true });
+    })();
+
+    /* ---------- 04 SMAYA simulator ---------- */
     const SENSORS = [
       { id: 'flow', name: 'Flow', unit: 'm³/h', min: 300, max: 900, step: 1, d: 0, v: 620, noise: 6, bad: v => v < 400 },
       { id: 'tin', name: 'Hot water in', unit: '°C', min: 30, max: 48, step: .1, d: 1, v: 38.5, noise: .15 },

@@ -557,10 +557,18 @@ window.__scene = {
 // YouTube-style controls: click/tap the picture to play or pause, timeline at the bottom.
 (async () => {
   const TL = {"width":1920,"height":1080,"fps":60,"bpm":120,"beatsPerBar":4,"bars":15,"cuts":[0,8,20,32,44,52],"holds":[[55.5,60]],"audio":{"drumsFromBar":2,"bassFromBar":2,"pattern":{"kick":"x...x...x...x...","snare":"....x.......x...","hat":"..x...x...x...x.","openhat":""},"chords":[[50,57,60,64],[46,53,57,60],[48,55,59,62],[45,52,55,60]],"bass":[26,22,24,21],"whooshes":[6.5,14,25,29,38,46,53.5],"pings":[38],"clicks":[48],"ticks":[21,21.5,22,22.5,33,33.5,34,49,49.5,50]},"framesPerBeat":30,"totalBeats":60,"totalFrames":1800,"duration":30,"cutFrames":[0,240,600,960,1320,1560],"holdFrames":[[1665,1800]]};
+  const $ = id => document.getElementById(id);
+  // Scale/letterbox the 1920x1080 stage to fit the viewport. Done first, synchronously,
+  // so the stage is never shown at native (unscaled, cropped) size while setup/fonts load.
+  const stage = $('stage');
+  const fit = () => {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(${(innerWidth - 1920 * s) / 2}px, ${(innerHeight - 1080 * s) / 2}px) scale(${s})`;
+  };
+  addEventListener('resize', fit); fit();
   await window.__scene.setup(TL);
   await document.fonts.ready;
-  const $ = id => document.getElementById(id);
-  const stage = $('stage'), snd = $('snd'), bar = $('bar'), fill = $('fill'), knob = $('knob'), tip = $('tip');
+  const snd = $('snd'), bar = $('bar'), fill = $('fill'), knob = $('knob'), tip = $('tip');
   const pp = $('pp'), mute = $('mute'), tc = $('tc'), big = $('bigplay'), flash = $('flash');
   const ICON = {
     play: '<path d="M8 5v14l11-7z"/>',
@@ -571,11 +579,6 @@ window.__scene = {
   const DUR = TL.totalFrames / TL.fps;
   const mmss = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
   let last = -1, dragging = false;
-  const fit = () => {
-    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
-    stage.style.transform = `translate(${(innerWidth - 1920 * s) / 2}px, ${(innerHeight - 1080 * s) / 2}px) scale(${s})`;
-  };
-  addEventListener('resize', fit); fit();
   const show = f => {
     f = Math.max(0, Math.min(TL.totalFrames - 1, f));
     if (f !== last) { window.__scene.renderFrame(f); last = f; }
