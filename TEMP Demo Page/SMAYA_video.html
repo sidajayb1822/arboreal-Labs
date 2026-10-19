@@ -528,6 +528,16 @@ window.__scene = {
   #row svg { width: 22px; height: 22px; fill: #fff; }
   #tc { font-variant-numeric: tabular-nums; margin-left: 6px; opacity: .92; }
   #row .sp { flex: 1; }
+  @media (max-width: 520px) {
+    #ui { padding: 18px 6px 2px; font-size: 11px; }
+    #row { margin-top: 0; gap: 2px; }
+    #row button { padding: 4px; }
+    #row svg { width: 18px; height: 18px; }
+    #bigplay { width: 52px; height: 52px; margin: -26px 0 0 -26px; }
+    #bigplay svg { width: 24px; height: 24px; }
+    #bar { height: 14px; }
+    #knob { transform: scale(1); width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; }
+  }
 </style>
 <div id="hit" aria-label="Play or pause"></div>
 <div id="bigplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>

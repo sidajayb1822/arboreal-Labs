@@ -181,6 +181,11 @@
     footer { border-top: 1px solid var(--line); padding: 1.5rem 0; font-size: .8rem; color: var(--mute); }
     footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 
+    .if-touch { display: none; }
+    @media (hover: none) {
+      .if-hover { display: none; }
+      .if-touch { display: inline; }
+    }
     @media (max-width: 960px) {
       .split, .after { grid-template-columns: 1fr; }
       .after-intro { position: static; }
@@ -192,7 +197,34 @@
       .bar nav { display: none; }
     }
     @media (max-width: 600px) {
+      body { font-size: 16px; }
+      section { padding-block: 3.5rem; }
+      .hero { padding-block: 3.5rem 2.5rem; }
+      .hero .for { margin-bottom: 1.4rem; font-size: .85rem; flex-wrap: wrap; gap: .35rem .5rem; }
+      .bar .wrap { height: 58px; }
+      .bar img { height: 30px; }
+      /* the vessel sits small in a wide frame: crop the empty sides so it fills the screen */
+      .explode { overflow: hidden; margin-inline: -24px; }
+      .explode canvas { width: 150%; margin-left: -25%; }
+      .explode-meter { right: 24px; }
+      .film { border-radius: 12px; margin-inline: -8px; }
       .film-notes { grid-template-columns: 1fr; gap: 1.2rem; }
+      /* simulator: sensors two-up so the dashboard stays close to the sliders */
+      #sensors { display: grid; grid-template-columns: 1fr 1fr; column-gap: 1.1rem; }
+      .sensor:last-child { border-bottom: 0; }
+      .sensor-top { flex-direction: column; align-items: flex-start; gap: .1rem; font-size: .8rem; }
+      .sensor-top b { font-size: 1rem; }
+      .sim-controls { gap: .45rem; }
+      .sim-controls .label { width: 100%; }
+      .sim-controls .spacer { display: none; }
+      .btn { padding: .45rem .8rem; font-size: .8rem; }
+      .packet { font-size: .68rem; padding: .75rem .8rem; }
+      .queue { font-size: .75rem; }
+      .kpi b { font-size: 1.25rem; }
+      .try { padding: 1.4rem 0 1.4rem 1rem; }
+      .cta { width: 100%; justify-content: center; }
+      .services li { padding: 1.3rem 0; }
+      .close img { height: 34px; }
       .film iframe { aspect-ratio: 16 / 9; }
       .services li { grid-template-columns: 1fr; gap: .3rem; }
     }
@@ -241,18 +273,18 @@
       <div class="wrap split">
         <div>
           <p class="eyebrow reveal">01 · Interactive views</p>
-          <h2 class="reveal d1">Hover to take it apart.</h2>
-          <p class="lead reveal d2">Product footage becomes something visitors control. We split the video into frames and tie them to the cursor, so every part of the hardware can be inspected at the visitor's own pace.</p>
+          <h2 class="reveal d1"><span class="if-hover">Hover</span><span class="if-touch">Scroll</span> to take it apart.</h2>
+          <p class="lead reveal d2">Product footage becomes something visitors control. We split the video into frames and tie them to the visitor's hand: hover on a computer, scroll on a phone. Every part of the hardware can be inspected at their own pace.</p>
           <ul class="points reveal d3">
-            <li><i class="ph ph-cursor-click"></i><span><b>Hover to explode,</b> move away to reassemble. On phones, tap.</span></li>
+            <li><i class="ph ph-cursor-click"></i><span><b>Hover to explode,</b> move away to reassemble. On phones it comes apart as you scroll.</span></li>
             <li><i class="ph ph-film-strip"></i><span><b>Built from your own footage,</b> no plug-ins or heavy video players.</span></li>
             <li><i class="ph ph-gauge"></i><span><b>Loads only when it's needed,</b> so the page stays quick.</span></li>
           </ul>
         </div>
-        <div class="explode reveal d1" id="explode" role="img" aria-label="Exploded view of the filter vessel. Hover or tap to take it apart.">
+        <div class="explode reveal d1" id="explode" role="img" aria-label="Exploded view of the filter vessel. Hover, or scroll on a phone, to take it apart.">
           <span class="explode-meter" id="explodeMeter">ASSEMBLED</span>
           <canvas width="800" height="720"></canvas>
-          <span class="explode-hint"><i class="ph ph-hand-pointing"></i> Hover to take it apart</span>
+          <span class="explode-hint"><i class="ph ph-hand-pointing"></i> <span class="if-hover">Hover to take it apart</span><span class="if-touch">Keep scrolling to take it apart</span></span>
         </div>
       </div>
     </section>
@@ -264,7 +296,7 @@
       <div class="wrap">
         <p class="eyebrow reveal">02 · Motion graphics</p>
         <h2 class="reveal d1">The whole story, in thirty seconds.</h2>
-        <p class="lead reveal d2">Collect, calculate, predict, recommend. A short film that explains what SMAYA does before anyone reads a word. Press play.</p>
+        <p class="lead reveal d2">Collect, calculate, predict, recommend. A short film that explains what SMAYA does before anyone reads a word. Tap the video to play.</p>
         <div class="film reveal d2">
           <iframe src="/TEMP%20Demo%20Page/SMAYA_video" title="SMAYA motion graphic" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
@@ -494,8 +526,19 @@
     if (hover) {
       ex.addEventListener('mouseenter', () => go(true));
       ex.addEventListener('mouseleave', () => go(false));
+    } else {
+      // phones: scrub through the frames as the vessel moves up the screen
+      const scrub = () => {
+        const r = ex.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (innerHeight * .85 - r.top) / (innerHeight * .55)));
+        if (p > 0) loadAll();
+        target = Math.round(p * (N - 1));
+        ex.classList.toggle('open', p > .05);
+        if (!raf) raf = requestAnimationFrame(step);
+      };
+      addEventListener('scroll', scrub, { passive: true });
+      scrub();
     }
-    ex.addEventListener('click', () => { if (!hover) go(target === 0); });
 
     /* ---------- 03 SMAYA simulator ---------- */
     const SENSORS = [
