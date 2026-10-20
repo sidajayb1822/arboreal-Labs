@@ -1,0 +1,25 @@
+# Arboreal Labs
+
+> Arboreal Labs builds custom software, AI-powered business systems and high-performance websites for growing businesses, mostly in manufacturing, service and consultancy.
+
+We design, build and host each system as a fully managed service. Custom software is typically ready in 4 to 10 weeks, and clients keep full ownership of their data. Websites are custom-designed, set up for search from launch, and can be actively managed with SEO and content updates.
+
+## Services
+- [Custom software development](https://arboreallabs.com/custom-solutions): business systems with AI built in, designed around how a business works
+- [Website design and development](https://arboreallabs.com/website-solutions): custom websites and landing pages that bring in leads, with ongoing SEO and content
+
+## Custom software we have built
+- [Inventory Management System](https://arboreallabs.com/inventory-management): orders, inventory, BOMs, production planning, procurement and fulfilment for manufacturers
+- [B2B Sales Pipeline CRM](https://arboreallabs.com/sales-pipeline-crm): leads, deal milestones, tasks, meeting minutes and target dashboards
+- [Deal Pipeline & Firm Operations Platform](https://arboreallabs.com/deal-pipeline-platform): founder intake, fundraise tracking, investor CRM and firm operations for advisory firms
+- [Precision Variance Analysis](https://arboreallabs.com/precision-variance): checks jewellery quotes line by line against master rates
+- [GrowX CRM](https://arboreallabs.com/growx): project management and pipeline for agencies
+- [Athena LMS](https://arboreallabs.com/athenalms): learning platform for coaching businesses
+- [All custom software projects](https://arboreallabs.com/projects)
+
+## Websites
+- [Website portfolio](https://arboreallabs.com/websites): live sites we have built, sites built with partners, concepts, and sites we actively manage
+
+## Contact
+- [Start a project](https://arboreallabs.com/contact)
+- Email: founders@arboreallabs.com

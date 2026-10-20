@@ -1,132 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://arboreallabs.com/</loc>
-    <lastmod>2026-10-12</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://arboreallabs.com/custom-solutions</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/projects</loc>
-    <lastmod>2026-10-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://arboreallabs.com/website-solutions</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/projects</loc>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arboreallabs.com/growx</loc>
-    <lastmod>2026-04-02</lastmod>
+    <loc>https://arboreallabs.com/websites</loc>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://arboreallabs.com/athenalms</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/inventory-management</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/sales-pipeline-crm</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://arboreallabs.com/deal-pipeline-platform</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/growx</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/inventory-management</loc>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://arboreallabs.com/precision-variance</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://arboreallabs.com/contact</loc>
-    <lastmod>2026-04-02</lastmod>
+    <loc>https://arboreallabs.com/sales-pipeline-crm</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/aquila-learning</loc>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://arboreallabs.com/websites/arboreal-labs</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/audio-arcade</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/earlyseed-ventures</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/gym-demo</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/hereafter</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/hotel-ashray</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/intsys-technologies</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/iris-speciality</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/prasan-solutions</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/prologue</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/shaayaree</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/siddhants-world</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/spirits-demo</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/websites/webber-electrocorp</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arboreallabs.com/contact</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://arboreallabs.com/privacy-policy</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://arboreallabs.com/terms</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/arboreal-labs</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/siddhants-world</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/webber-electrocorp</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/aquila-learning</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/hotel-ashray</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/spirits-demo</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/iris-speciality</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/shaayaree</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/audio-arcade</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/intsys-technologies</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/earlyseed-ventures</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/hereafter</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/prasan-solutions</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/prologue</loc>
-  </url>
-  <url>
-    <loc>https://arboreallabs.com/websites/gym-demo</loc>
   </url>
 </urlset>

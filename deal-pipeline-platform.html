@@ -22,8 +22,11 @@
   <meta name="twitter:image" content="https://arboreallabs.com/assets/images/ECOSYSTEM%20-esv/deal-platform-infographic.jpg">
 
   <link rel="icon" href="assets/images/Arboreal logo/Light favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 
   <!-- Schema.org SoftwareApplication -->
   <script type="application/ld+json">
@@ -40,16 +43,80 @@
     }
   }
   </script>
-  <!-- Schema.org Organization -->
+  <!-- SEO:SCHEMA (tools/seo/apply_seo.py) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Arboreal Labs",
-    "url": "https://arboreallabs.com/",
-    "logo": "https://arboreallabs.com/assets/images/Arboreal%20logo/Light%20whole%20logo.png"
-  }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://arboreallabs.com/#organization",
+      "name": "Arboreal Labs",
+      "url": "https://arboreallabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://arboreallabs.com/assets/images/Arboreal%20logo/Light%20whole%20logo.png"
+      },
+      "description": "Arboreal Labs builds custom software, AI-powered business systems and high-performance websites.",
+      "email": "founders@arboreallabs.com",
+      "sameAs": [
+        "https://www.linkedin.com/company/arboreal-labs",
+        "https://x.com/arboreallabs",
+        "https://www.instagram.com/arboreallabs/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "founders@arboreallabs.com",
+        "url": "https://arboreallabs.com/contact"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://arboreallabs.com/deal-pipeline-platform#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://arboreallabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Custom Software Projects",
+          "item": "https://arboreallabs.com/projects"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Deal Pipeline & Firm Operations Platform",
+          "item": "https://arboreallabs.com/deal-pipeline-platform"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://arboreallabs.com/deal-pipeline-platform#webpage",
+      "url": "https://arboreallabs.com/deal-pipeline-platform",
+      "name": "Deal Pipeline & Firm Operations Platform | Arboreal Labs",
+      "description": "One platform for advisory and investment banking firms: intake forms, deal pipelines, fundraise tracking, investor CRM, tasks, partners and HR.",
+      "isPartOf": {
+        "@id": "https://arboreallabs.com/#website"
+      },
+      "publisher": {
+        "@id": "https://arboreallabs.com/#organization"
+      },
+      "inLanguage": "en",
+      "dateModified": "2026-10-20",
+      "breadcrumb": {
+        "@id": "https://arboreallabs.com/deal-pipeline-platform#breadcrumb"
+      }
+    }
+  ]
+}
   </script>
+  <!-- /SEO:SCHEMA -->
 </head>
 <body>
 
@@ -514,6 +581,13 @@
             <h4>Services</h4>
             <a href="/custom-solutions">Custom Software</a>
             <a href="/website-solutions">Web Deployment</a>
+          </div>
+          <div class="footer-col">
+            <h4>Solutions</h4>
+            <a href="/inventory-management">Inventory Management</a>
+            <a href="/sales-pipeline-crm">Sales Pipeline CRM</a>
+            <a href="/deal-pipeline-platform">Deal Pipeline Platform</a>
+            <a href="/precision-variance">Precision Variance</a>
           </div>
           <div class="footer-col">
             <h4>Company</h4>

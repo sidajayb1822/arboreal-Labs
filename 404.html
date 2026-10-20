@@ -9,8 +9,11 @@
   <meta name="description" content="The route you requested does not exist in our architecture. Navigate back to Arboreal Labs.">
   <meta name="robots" content="noindex, follow">
   <link rel="icon" href="/assets/images/Arboreal logo/Light favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <style>
     .err-code {
       font-family: var(--font-display); font-weight: 700;
@@ -31,16 +34,38 @@
     .err-links a.glass-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
     .err-links a.glass-card p { font-size: 0.85rem; margin: 0; }
   </style>
-  <!-- Schema.org Organization -->
+  <!-- SEO:SCHEMA (tools/seo/apply_seo.py) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Arboreal Labs",
-    "url": "https://arboreallabs.com/",
-    "logo": "https://arboreallabs.com/assets/images/Arboreal%20logo/Light%20whole%20logo.png"
-  }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://arboreallabs.com/#organization",
+      "name": "Arboreal Labs",
+      "url": "https://arboreallabs.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://arboreallabs.com/assets/images/Arboreal%20logo/Light%20whole%20logo.png"
+      },
+      "description": "Arboreal Labs builds custom software, AI-powered business systems and high-performance websites.",
+      "email": "founders@arboreallabs.com",
+      "sameAs": [
+        "https://www.linkedin.com/company/arboreal-labs",
+        "https://x.com/arboreallabs",
+        "https://www.instagram.com/arboreallabs/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "founders@arboreallabs.com",
+        "url": "https://arboreallabs.com/contact"
+      }
+    }
+  ]
+}
   </script>
+  <!-- /SEO:SCHEMA -->
 </head>
 
 <body>
@@ -122,6 +147,13 @@
             <h4>Services</h4>
             <a href="/custom-solutions">Custom Software</a>
             <a href="/website-solutions">Web Deployment</a>
+          </div>
+          <div class="footer-col">
+            <h4>Solutions</h4>
+            <a href="/inventory-management">Inventory Management</a>
+            <a href="/sales-pipeline-crm">Sales Pipeline CRM</a>
+            <a href="/deal-pipeline-platform">Deal Pipeline Platform</a>
+            <a href="/precision-variance">Precision Variance</a>
           </div>
           <div class="footer-col">
             <h4>Company</h4>
