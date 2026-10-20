@@ -7,6 +7,11 @@
       "permanent": true
     },
     {
+      "source": "/company",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/websites/kevin-portfolio",
       "destination": "/websites/siddhants-world",
       "permanent": true

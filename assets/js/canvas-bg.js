@@ -27,6 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
         getThermoDensity: () => 0
     };
 
+    // Phones and tablets: no mouse to react to and far less CPU/GPU to spare,
+    // so the aurora renders at half resolution and ~30fps, and the dot grid is
+    // only redrawn when something on it changes.
+    const lowPower = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 768;
+    const FRAME_MS = lowPower ? 33 : 0;
+
     // Shared theme awareness — toggled via the footer switch (see assets/js/script.js)
     const isLightMode = () => document.documentElement.getAttribute('data-theme') === 'light';
 
@@ -188,13 +194,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Expose Aurora Density via JS Raymarcher subset
         fontTracker.getAuroraDensity = (screenX, screenY) => {
-            const mx = mousePos.x > 0 ? mousePos.x / canvas.width : 0.5;
-            const my = mousePos.y > 0 ? mousePos.y / canvas.height : 0.5;
+            const vw = window.innerWidth, vh = window.innerHeight;
+            const mx = mousePos.x > 0 ? mousePos.x / vw : 0.5;
+            const my = mousePos.y > 0 ? mousePos.y / vh : 0.5;
             const iTime = (performance.now() - startTime) / 1000.0;
             
-            let uvx = (screenX - 0.5 * canvas.width) / canvas.height;
-            let fragY = canvas.height - screenY; 
-            let uvy = (fragY - 0.5 * canvas.height) / canvas.height;
+            let uvx = (screenX - 0.5 * vw) / vh;
+            let fragY = vh - screenY; 
+            let uvy = (fragY - 0.5 * vh) / vh;
             
             let rdLength = Math.sqrt(uvx*uvx + uvy*uvy + 1.0);
             let rdx = uvx / rdLength, rdy = uvy / rdLength, rdz = 1.0 / rdLength;
@@ -235,17 +242,22 @@ document.addEventListener("DOMContentLoaded", () => {
             return totalDensity;
         };
 
+        const renderScale = lowPower ? 0.5 : 1;
         const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.width = Math.round(window.innerWidth * renderScale);
+            canvas.height = Math.round(window.innerHeight * renderScale);
             gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
             gl.uniform2f(locations.iResolution, gl.canvas.width, gl.canvas.height);
         };
         window.addEventListener("resize", resizeCanvas);
         resizeCanvas();
 
-        const renderLoop = () => {
+        let lastFrame = 0;
+        const renderLoop = (now = 0) => {
             if (gl.isContextLost()) return;
+            requestAnimationFrame(renderLoop);
+            if (document.hidden || now - lastFrame < FRAME_MS) return;
+            lastFrame = now;
             const currentTime = performance.now();
             gl.uniform1f(locations.iTime, (currentTime - startTime) / 1000.0);
             
@@ -261,7 +273,6 @@ document.addEventListener("DOMContentLoaded", () => {
             gl.uniform1f(locations.uLightMode, isLightMode() ? 1.0 : 0.0);
 
             gl.drawArrays(gl.TRIANGLES, 0, 6);
-            requestAnimationFrame(renderLoop);
         };
         renderLoop();
     };
@@ -282,6 +293,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         let grid;
         let cols = 0, rows = 0, width = 0, height = 0;
+        // Redraw only while something is warm, or after a resize/theme change
+        let dirty = true, warm = false, lastLight = null;
 
         fontTracker.getThermoDensity = (screenX, screenY) => {
             if (!grid) return 0;
@@ -302,16 +315,24 @@ document.addEventListener("DOMContentLoaded", () => {
             cols = Math.ceil(width / resolution);
             rows = Math.ceil(height / resolution);
             grid = new Float32Array(cols * rows).fill(0);
+            dirty = true;
         };
 
         window.addEventListener("resize", resize);
         resize();
 
         const update = () => {
+            requestAnimationFrame(update);
             const light = isLightMode();
+            if (light !== lastLight) { lastLight = light; dirty = true; }
+            const moving = mousePos.active && mousePos.prevX > 0 &&
+                (mousePos.x !== mousePos.prevX || mousePos.y !== mousePos.prevY);
+            if (!moving && !warm && !dirty) return;
+            dirty = false;
+            warm = false;
 
             // Inject Heat
-            if (mousePos.active && mousePos.prevX > 0) {
+            if (moving) {
                 const dx = mousePos.x - mousePos.prevX;
                 const dy = mousePos.y - mousePos.prevY;
                 const dist = Math.sqrt(dx*dx + dy*dy);
@@ -353,6 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     grid[idx] *= coolingFactor; // Apply cooling
 
                     if (temp > 0.02) {
+                        warm = true;
                         // Hot spots: Organic Mars Red blooms
                         const x = c * resolution + resolution / 2;
                         const y = r * resolution + resolution / 2;
@@ -379,7 +401,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             }
-            requestAnimationFrame(update);
         };
         
         update();
@@ -398,10 +419,10 @@ document.addEventListener("DOMContentLoaded", () => {
         redElements = document.querySelectorAll('.span-red, .logo-icon, [style*="color: var(--mars-red)"], .tagline, .glass-card i, label');
     });
 
-    const TRACK_INTERVAL_MS = 100;
+    const TRACK_INTERVAL_MS = lowPower ? 250 : 100;
     let lastTrackTime = 0;
     const trackRedFonts = (now) => {
-        if (now - lastTrackTime >= TRACK_INTERVAL_MS) {
+        if (!document.hidden && now - lastTrackTime >= TRACK_INTERVAL_MS) {
             lastTrackTime = now;
             redElements.forEach(el => {
                 const rect = el.getBoundingClientRect();

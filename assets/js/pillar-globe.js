@@ -175,15 +175,21 @@
   }
 
   // Animation loop — only runs while visible
-  let raf = 0, visible = true;
-  function frame() {
-    if (!drag.active && !reduceMotion) rotY += 0.0022;
-    time += 0.015;
-    draw();
+  // Phones draw at ~30fps; steps scale with elapsed time so the speed is unchanged.
+  const lowPower = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 768;
+  const FRAME_MS = lowPower ? 33 : 0;
+  let raf = 0, visible = true, last = 0;
+  function frame(now) {
     raf = requestAnimationFrame(frame);
+    if (now - last < FRAME_MS) return;
+    const steps = FRAME_MS && last ? Math.min((now - last) / 16.7, 3) : 1;
+    last = now;
+    if (!drag.active && !reduceMotion) rotY += 0.0022 * steps;
+    time += 0.015 * steps;
+    draw();
   }
   function start() { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame); }
-  function stop() { cancelAnimationFrame(raf); raf = 0; }
+  function stop() { cancelAnimationFrame(raf); raf = 0; last = 0; }
 
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; visible ? start() : stop(); }).observe(canvas);
