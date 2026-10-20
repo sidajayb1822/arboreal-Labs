@@ -1131,3 +1131,11 @@ button.nav-drop-toggle.span-red { color: var(--mars-red); }
   .faq-head { position: static; }
   .faq-cta { grid-column: 1; }
 }
+
+/* Homepage: "What we do" intro */
+.what-we-do { padding-block: 6rem 2rem; }
+.what-we-do .eyebrow { margin: 0 0 1.5rem; font-size: .72rem; }
+.what-we-do-copy { max-width: 1000px; margin: 0; font-family: var(--font-display); font-size: clamp(1.3rem, 2.3vw, 1.95rem); line-height: 1.4; letter-spacing: -.01em; color: var(--lunar-white); }
+.what-we-do-copy a { color: inherit; text-decoration: underline; text-decoration-color: var(--mars-red); text-decoration-thickness: 2px; text-underline-offset: .2em; transition: color .3s ease; }
+.what-we-do-copy a:hover { color: var(--mars-red); }
+@media (max-width: 768px) { .what-we-do { padding-block: 4rem 1rem; } }
