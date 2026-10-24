@@ -44,7 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const nav = document.querySelector('nav');
-  const syncNavState = () => nav?.classList.toggle('is-scrolled', window.scrollY > 40);
+  // Phones: hide the header after a deliberate scroll down, bring it back after a short scroll up
+  let lastNavY = window.scrollY, navDir = 0, navTurnY = lastNavY;
+  const syncNavState = () => {
+    const y = window.scrollY, dir = Math.sign(y - lastNavY);
+    nav?.classList.toggle('is-scrolled', y > 40);
+    if (dir && dir !== navDir) { navDir = dir; navTurnY = lastNavY; }
+    lastNavY = y;
+    const menuOpen = document.querySelector('.nav-links.active');
+    if (window.innerWidth > 768 || menuOpen || y < 80) nav?.classList.remove('is-tucked');
+    else if (navDir > 0 && y - navTurnY > 48) nav?.classList.add('is-tucked');
+    else if (navDir < 0 && navTurnY - y > 24) nav?.classList.remove('is-tucked');
+  };
   syncNavState();
   window.addEventListener('scroll', syncNavState, { passive: true });
 
