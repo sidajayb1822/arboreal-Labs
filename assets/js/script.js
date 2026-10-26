@@ -153,7 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.setProperty('--mouse-x', `${x}px`);
       card.style.setProperty('--mouse-y', `${y}px`);
 
-      if (!isTouchDevice) {
+      // Wide panels stay flat: in perspective their far edge swings out and they look stretched
+      if (!isTouchDevice && rect.width <= 640) {
         // Compute 3D tilt
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;

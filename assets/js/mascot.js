@@ -90,6 +90,8 @@
     if (path === '/websites') return { text: touch ? 'Tap any card to read the story behind the site. The buttons at the top sort them by type.' : 'Hover over any card to see the site live. The buttons at the top sort them by type.' };
     if (path.startsWith('/websites/')) return { text: 'Use the Desktop, Tablet and Mobile buttons to see this site on any screen.' };
     if (PRODUCTS.includes(path)) return { text: 'Every system we build is shaped around how your team already works. Happy to talk through yours.', links: [['Talk to the team', '/contact']] };
+    if (path === '/blog') return { text: 'Pick a topic with the buttons at the top, or start with the featured guide.' };
+    if (path.startsWith('/blog/')) return { text: 'My antenna fills up as you read. If this sounds like your business, the team is happy to talk it through.', links: [['Talk to the team', '/contact?from=sprout-blog']] };
     if (path === '/contact') return { text: 'Tell us a little about your project. The form goes straight to the founders.' };
     return { text: 'I can point you to the right place. What would you like to know?' };
   }
@@ -125,6 +127,12 @@
     };
     return { setLook, lookAt, get look() { return look; } };
   }
+
+  // ---------- Tips inside articles: the same character, glancing at what it says ----------
+  document.querySelectorAll('[data-sprout-tip]').forEach((slot) => {
+    slot.innerHTML = `<span class="sprout-bot${reduceMotion ? '' : ' is-alive'}">${botSVG(CUTOUT)}</span>`;
+    animate(slot.firstElementChild).setLook(9, 1);
+  });
 
   // ---------- 404: a bigger Sprout looking for the page ----------
   const lostSlot = document.querySelector('[data-sprout-lost]');

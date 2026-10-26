@@ -122,7 +122,7 @@
         "@id": "https://arboreallabs.com/#organization"
       },
       "inLanguage": "en",
-      "dateModified": "2026-10-24",
+      "dateModified": "2026-10-25",
       "breadcrumb": {
         "@id": "https://arboreallabs.com/contact#breadcrumb"
       }
@@ -160,6 +160,7 @@
           <a href="/websites"><i class="ph ph-browsers"></i><span><b>Websites</b><small>Live sites, concepts and sites we manage</small></span></a>
         </div>
       </div>
+      <a href="/blog">Blog</a>
       <a href="/contact" class="btn-primary magnetic" style="box-shadow: 0 0 30px rgba(255, 59, 59, 0.4);">Initialize</a>
     </div>
   </nav>
@@ -231,6 +232,7 @@
             <h4>Company</h4>
             <a href="/projects">Projects</a>
             <a href="/websites">Websites</a>
+            <a href="/blog">Blog</a>
             <a href="/contact">Contact</a>
           </div>
           <div class="footer-col">
@@ -263,6 +265,18 @@
   </footer>
 
   <script>
+    // Visitors arriving from an article: preselect what they were reading about, and tell the team which page sent them
+    (function () {
+      const q = new URLSearchParams(location.search);
+      const interest = { software: 'Custom Solutions', websites: 'Web Development' }[q.get('interest')];
+      if (interest) document.getElementById('interest').value = interest;
+      const from = (q.get('from') || '').replace(/[^a-z0-9-]/gi, '').slice(0, 80);
+      if (!from) return;
+      const field = document.createElement('input');
+      field.type = 'hidden'; field.name = 'Came from'; field.value = from;
+      document.getElementById('contact-form').appendChild(field);
+    })();
+
     async function handleSubmit(e) {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');

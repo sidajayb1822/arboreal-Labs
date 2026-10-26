@@ -20,6 +20,13 @@ We design, build and host each system as a fully managed service. Custom softwar
 ## Websites
 - [Website portfolio](https://arboreallabs.com/websites): live sites we have built, sites built with partners, concepts, and sites we actively manage
 
+## Guides from our blog
+- [Custom Software vs Off-the-Shelf: How to Decide for Your Business](https://arboreallabs.com/blog/custom-software-vs-off-the-shelf): Choose off-the-shelf software for work every business shares, like email, accounting and payroll. Choose custom software when the process is specific to how you operate, your team relies on spreadsheets or re-typing to fill gaps, and mistakes in that process cost you money or customers.
+- [How Long Does It Take to Build Custom Software?](https://arboreallabs.com/blog/how-long-does-custom-software-take): Most custom business software, such as an inventory system, sales CRM or approval workflow, takes 4 to 10 weeks to build. That covers about a week of discovery, a week of planning, 2 to 6 weeks of building with weekly demos, and a few days to launch and train your team.
+- [7 Signs Your Business Has Outgrown Spreadsheets](https://arboreallabs.com/blog/signs-you-have-outgrown-spreadsheets): You have outgrown spreadsheets when nobody is sure which file is current, one person is the only one who understands it, the same data is typed into several places, customers find your mistakes, simple questions take hours, anyone can edit anything, or the file is slow and fragile.
+- [Template vs Custom Website: What You Really Get for Your Money](https://arboreallabs.com/blog/template-vs-custom-website): A template website is cheaper and can launch in days, but it looks like many other sites and is harder to grow. A custom website costs more and takes a few weeks, but it fits your brand, is built to turn visitors into enquiries, and grows with your business. Choose based on the job the site must do.
+- [What Makes a Business Website Actually Bring In Leads](https://arboreallabs.com/blog/website-that-brings-in-leads): A business website brings in leads when visitors understand what you do within five seconds, see one clear next step, find real proof they can trust you, get a fast page on their phone, read copy about their problem, can find you on Google and AI tools, and face a short contact form.
+
 ## Contact
 - [Start a project](https://arboreallabs.com/contact)
 - Email: founders@arboreallabs.com
