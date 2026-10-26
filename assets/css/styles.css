@@ -1434,6 +1434,18 @@ button.nav-drop-toggle.span-red { color: var(--mars-red); }
 .bv-check-mark path { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .bv-check-mark { transform-box: fill-box; transform-origin: center; transition: transform .45s cubic-bezier(.3,1.6,.5,1) 2.2s, opacity .3s ease 2.2s; }
 
+/* Airbrain: many businesses through one AI vs AI inside each business's own process */
+.bv-brain-line { fill: none; stroke: rgba(var(--lunar-white-rgb), .3); stroke-width: 2; stroke-dasharray: 100; stroke-dashoffset: 0; transition: stroke-dashoffset .9s ease calc(var(--i) * .1s); }
+.bv-brain-in { fill: rgba(var(--lunar-white-rgb), .78); }
+.bv-brain-hub circle { fill: rgba(var(--lunar-white-rgb), .08); stroke: rgba(var(--lunar-white-rgb), .45); stroke-width: 2; }
+.bv-brain-hub text, .bv-brain-chip text { font: 700 13px var(--font-display); fill: var(--lunar-white); }
+.bv-brain-chip rect { fill: var(--bv-soft); stroke: rgba(var(--lunar-white-rgb), .35); stroke-width: 1.5; }
+.bv-brain-chip text { font-size: 10px; }
+.bv-brain-out { fill: rgba(var(--lunar-white-rgb), .3); transform-box: fill-box; transform-origin: center; transition: transform .45s cubic-bezier(.3,1.6,.5,1) calc(1s + var(--i) * .12s), opacity .3s ease calc(1s + var(--i) * .12s); }
+.bv-brain-out.is-own { fill: var(--mars-red); }
+.bv-brain-tag { font: 600 11px var(--font-body); fill: var(--bv-muted); transition: opacity .4s ease 1.6s; }
+.bv-brain-tag.is-own { fill: var(--mars-red); }
+
 /* Checklists */
 .bv-check-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
 .bv-check-list label { display: flex; align-items: flex-start; gap: .8rem; padding: .8rem .95rem; border-radius: 12px; border: 1px solid var(--bv-line); background: var(--bv-soft); cursor: pointer; font-size: 1rem; line-height: 1.45; color: rgba(var(--lunar-white-rgb), .85); transition: border-color .25s ease, background .25s ease; }
@@ -1587,6 +1599,9 @@ button.nav-drop-toggle.span-red { color: var(--mars-red); }
   .bv-armed:not(.is-in) .bv-thumbs span { opacity: 0; transform: scale(.9); }
   .bv-armed:not(.is-in) .bv-thumbs em { opacity: 0; }
   .bv-armed:not(.is-in) .bv-rate::after { width: 0; }
+  .bv-armed:not(.is-in) .bv-brain-line { stroke-dashoffset: 100; }
+  .bv-armed:not(.is-in) .bv-brain-out { opacity: 0; transform: scale(.3); }
+  .bv-armed:not(.is-in) .bv-brain-tag { opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bv-five-wait { display: none; }
