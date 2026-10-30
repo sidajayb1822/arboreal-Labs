@@ -1,5 +1,10 @@
+# Private working files: brand masters, Search Console exports, recordings, drafts, notes,
+# reference libraries. Kept on this computer only, never committed or deployed.
+_private/
+
 # Development and Context Documents
 *.md
+!README.md
 
 # AI Skills and Submodules
 marketingskills/
@@ -20,11 +25,9 @@ yarn-error.log*
 # IDE/Editor folders
 .vscode/
 .idea/
+*.code-workspace
 *.swp
 *.swo
-
-# Local asset library (third-party repos for reference; never deployed)
-asset-library/
 
 # Product briefs generated from client codebases (contain internal notes; never deploy)
 product-brief*.html

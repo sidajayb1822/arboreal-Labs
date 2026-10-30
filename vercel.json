@@ -15,12 +15,17 @@
       "source": "/websites/kevin-portfolio",
       "destination": "/websites/siddhants-world",
       "permanent": true
+    },
+    {
+      "source": "/TEMP%20Demo%20Page/:path*",
+      "destination": "/smaya",
+      "permanent": true
     }
   ],
   "rewrites": [
     {
       "source": "/smaya",
-      "destination": "/TEMP%20Demo%20Page/"
+      "destination": "/proposals/smaya/"
     }
   ],
   "headers": [
@@ -34,7 +39,7 @@
       ]
     },
     {
-      "source": "/TEMP%20Demo%20Page/(.*)",
+      "source": "/proposals/(.*)",
       "headers": [
         {
           "key": "X-Robots-Tag",

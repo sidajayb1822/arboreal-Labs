@@ -3,7 +3,7 @@
    cursor with its eyes, notices links and buttons, and opens a page-aware help
    bubble. On the contact page it reacts to the form; on the 404 page it looks
    around for the missing page. The drawing is the master SVG from the brand
-   guidelines (output/arboreal-mascot.html), only wrapped in groups so the eyes
+   guidelines (_private/brand/arboreal-mascot.html, kept off the site), only wrapped in groups so the eyes
    and antenna can move. Nothing loops: it only reacts to events. */
 (function () {
   if (window.__sprout) return;
