@@ -8,7 +8,7 @@
   <link rel="icon" href="/assets/images/Arboreal%20logo/Dark%20Favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@400&family=Space+Grotesk:wght@500;600;700&display=swap">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <style>
     :root {
@@ -236,6 +236,25 @@
       .reveal { opacity: 1; transform: none; transition: none; }
       html { scroll-behavior: auto; }
     }
+
+    /* ---------- opener: the SMAYAA logo animation, first thing on the page ---------- */
+    .opener { display: grid; place-items: center; min-height: calc(100svh - 68px); padding-block: 2rem; }
+    .opener-row { display: flex; align-items: center; justify-content: center; gap: clamp(2rem, 5vw, 4.5rem); }
+    .opener svg { width: min(72vmin, 520px); height: auto; aspect-ratio: 1400 / 1440; cursor: pointer; flex: none; }
+    .op-controls { display: flex; flex-direction: column; gap: .9rem; min-width: 200px; padding-left: clamp(1.5rem, 3vw, 2.5rem); border-left: 1px solid var(--line); }
+    .op-controls .label { font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+    .op-controls .btns { display: flex; gap: .5rem; }
+    .op-controls .btn i { font-size: 1rem; }
+    .op-check, .op-speed { display: flex; align-items: center; gap: .55rem; font-size: .88rem; color: var(--ink-2); cursor: pointer; }
+    .op-check input { accent-color: #13a6bd; width: 16px; height: 16px; margin: 0; }
+    .op-speed { flex-wrap: wrap; }
+    .op-speed input { width: 130px; accent-color: #13a6bd; }
+    .op-speed output { min-width: 3em; font-family: var(--display); font-variant-numeric: tabular-nums; color: var(--ink); }
+    @media (max-width: 760px) {
+      .opener-row { flex-direction: column; gap: 1.5rem; }
+      .op-controls { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; min-width: 0; padding: 1rem 0 0; border-left: 0; border-top: 1px solid var(--line); gap: .75rem 1.1rem; }
+      .op-controls .label { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -255,6 +274,209 @@
   </header>
 
   <main>
+    <!-- ============ OPENER: SMAYAA logo animation ============ -->
+    <section class="opener" aria-label="SMAYAA">
+      <div class="opener-row">
+      <svg id="opener" viewBox="0 0 1400 1440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SMAYAA logo">
+        <defs>
+          <linearGradient id="gTeal" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="850" y2="0">
+            <stop offset="0" stop-color="#34b3c8"/><stop offset="1" stop-color="#009db6"/>
+          </linearGradient>
+          <linearGradient id="gDark" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="500" y2="0">
+            <stop offset="0" stop-color="#006d88"/><stop offset="1" stop-color="#0a88a4"/>
+          </linearGradient>
+          <linearGradient id="gRing" gradientUnits="userSpaceOnUse" x1="135" y1="708" x2="1265" y2="708">
+            <stop offset="0" stop-color="#0a7f9f"/><stop offset="0.55" stop-color="#5fcbd8"/><stop offset="1" stop-color="#b0eff2"/>
+          </linearGradient>
+          <clipPath id="clipU"><path id="clipUPath"/></clipPath>
+          <clipPath id="clipL"><path id="clipLPath"/></clipPath>
+          <mask id="ringMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1400" height="1440">
+            <rect x="0" y="0" width="1400" height="1440" fill="#fff"/>
+            <rect id="gap" x="0" y="708" width="1400" height="0" fill="#000"/>
+          </mask>
+          <g id="shade">
+            <circle cx="700" cy="708" r="572" fill="#75d8e0"/>
+            <g id="shadeShift">
+              <path fill="url(#gTeal)" d="M-300 0 L1700 0 L1700 425 L1180 425 C1000 395 900 385 830 392 C700 410 640 490 615 580 C595 660 585 760 560 860 C530 970 450 1028 320 1026 L-300 1022 Z"/>
+              <path fill="url(#gDark)" d="M-300 0 L497 0 C488 260 492 400 490 470 C488 560 430 620 360 665 C300 700 200 722 -300 730 Z"/>
+              <path id="darkest" fill="#00586e" d="M-300 0 L345 0 C340 220 290 320 160 335 L-300 335 Z"/>
+            </g>
+          </g>
+        </defs>
+        <g id="sphere">
+          <g clip-path="url(#clipU)"><g id="uScale"><use href="#shade"/></g></g>
+          <g clip-path="url(#clipL)"><g id="lScale"><use href="#shade"/></g></g>
+          <g id="lines" fill="none" stroke="#b6eff2" stroke-width="4" stroke-linecap="round"></g>
+          <g id="dots" fill="#b6eff2"></g>
+          <circle id="outline" cx="700" cy="708" r="565" fill="none" stroke="#b0edf0" stroke-width="5"/>
+        </g>
+        <circle id="ring" cx="700" cy="708" r="565" fill="none" stroke="url(#gRing)" stroke-width="11" mask="url(#ringMask)" opacity="0"/>
+        <g id="wordWrap">
+          <text x="700" y="786" text-anchor="middle" font-family="Jost, Futura, 'Century Gothic', sans-serif"
+                font-size="225" textLength="1360" lengthAdjust="spacing" fill="#0e4a5c">SMAYAA</text>
+        </g>
+      </svg>
+      <div class="op-controls" role="group" aria-label="Logo animation controls">
+        <span class="label">Logo animation</span>
+        <div class="btns">
+          <button type="button" class="btn" id="opReplay"><i class="ph ph-arrow-counter-clockwise"></i>Replay</button>
+          <button type="button" class="btn" id="opPause"><i class="ph ph-pause"></i><span>Pause</span></button>
+        </div>
+        <label class="op-check"><input type="checkbox" id="opLoop"> Loop</label>
+        <label class="op-speed" title="Double-click to reset to 1×">Speed
+          <input type="range" id="opSpeed" min="0.25" max="3" step="0.05" value="1">
+          <output id="opSpeedVal">1×</output>
+        </label>
+      </div>
+      </div>
+    </section>
+    <script>
+    // Plays as the page opens and holds on the finished logo; the controls beside it replay, pause, loop and change speed
+    (() => {
+      const CX = 700, CY = 708, R = 565, N = 12;
+      const $ = id => document.getElementById(id);
+      const NS = 'http://www.w3.org/2000/svg';
+  
+      // Lines (N per hemisphere; i=0 is the lens edge / equator)
+      const lineEls = { u: [], l: [] };
+      for (const side of ['u','l']) for (let i = 0; i < N; i++) {
+        const p = document.createElementNS(NS, 'path');
+        $('lines').appendChild(p); lineEls[side].push(p);
+      }
+  
+      // Dots, snapped onto the lines
+      const raw = { u: [[965,285],[889,357],[568,349],[370,533],[268,601]],
+                    l: [[288,926],[512,1110],[1050,1040],[909,1150]] };
+      const dots = [];
+      for (const side of ['u','l']) for (const [x,y] of raw[side]) {
+        const lam = Math.asin((x - CX) / R);
+        const f = Math.min(N-1, Math.max(1, Math.round(Math.abs(y - CY) / (R * Math.cos(lam)) * N))) / N;
+        const c = document.createElementNS(NS, 'circle');
+        c.setAttribute('r', 15); $('dots').appendChild(c);
+        dots.push({ side, lam, f, el: c });
+      }
+  
+      // One continuous motion keyed on progress p (0 to 1); when looping it holds, fades and starts again
+      const MOTION = 7.5, HOLD = 2.5, FADE = 0.6, GAPT = 0.3;
+      const DUR = MOTION + HOLD + FADE + GAPT;
+      const keys = {
+        sphereA: [[0,0],[0.12,1]],
+        dx:      [[0,140],[0.28,30],[0.48,-55],[0.66,-95]],
+        dl:      [[0,15],[0.28,3],[0.48,-8],[0.66,-17]],
+        darkest: [[0,1],[0.26,0]],
+        o:       [[0,0],[0.22,0.012],[0.38,0.115],[0.55,0.37],[0.88,1]],
+        dotA:    [[0,1],[0.4,1],[0.56,0]],
+        textA:   [[0,0],[0.42,0],[0.58,1]],
+        textS:   [[0,0.28],[0.54,0.28],[0.97,1]],
+        outA:    [[0,1],[0.6,1],[0.86,0]],
+        ringA:   [[0,0],[0.6,0],[0.86,1]],
+        gap:     [[0,0],[0.64,0],[0.97,320]],
+      };
+      // Monotone cubic (Fritsch-Carlson) so velocity is continuous through every key
+      function makeTrack(pts) {
+        const n = pts.length, xs = pts.map(p=>p[0]), ys = pts.map(p=>p[1]);
+        const d = [], m = new Array(n).fill(0);
+        for (let i = 0; i < n-1; i++) d.push((ys[i+1]-ys[i]) / (xs[i+1]-xs[i]));
+        for (let i = 1; i < n-1; i++) m[i] = d[i-1]*d[i] <= 0 ? 0 : (d[i-1]+d[i]) / 2;
+        for (let i = 0; i < n-1; i++) {
+          if (d[i] === 0) { m[i] = 0; m[i+1] = 0; continue; }
+          const a = m[i]/d[i], b = m[i+1]/d[i], h = a*a + b*b;
+          if (h > 9) { const t = 3/Math.sqrt(h); m[i] = t*a*d[i]; m[i+1] = t*b*d[i]; }
+        }
+        return x => {
+          if (x <= xs[0]) return ys[0];
+          if (x >= xs[n-1]) return ys[n-1];
+          let i = 0; while (x > xs[i+1]) i++;
+          const hgt = xs[i+1]-xs[i], t = (x-xs[i])/hgt, t2 = t*t, t3 = t2*t;
+          return (2*t3-3*t2+1)*ys[i] + (t3-2*t2+t)*hgt*m[i] + (-2*t3+3*t2)*ys[i+1] + (t3-t2)*hgt*m[i+1];
+        };
+      }
+      const tracks = {}; for (const k in keys) tracks[k] = makeTrack(keys[k]);
+      const sm = x => Math.max(0, Math.min(1, x));
+  
+      function render(t) {
+        const u = sm(t / MOTION), p = 0.5 - 0.5 * Math.cos(Math.PI * u);
+        const s = {}; for (const k in tracks) s[k] = tracks[k](p);
+        const endFade = 1 - sm((t - MOTION - HOLD) / FADE);
+        s.textA *= endFade; s.ringA *= endFade;
+        const lensRy = s.o * R, k = 1 - s.o;
+  
+        const sc = 0.92 + 0.08 * s.sphereA;
+        $('sphere').setAttribute('opacity', s.sphereA);
+        $('sphere').setAttribute('transform', `translate(${CX} ${CY}) scale(${sc}) translate(${-CX} ${-CY})`);
+  
+        $('shadeShift').setAttribute('transform', `translate(${s.dx} 0)`);
+        $('darkest').setAttribute('opacity', s.darkest);
+        $('uScale').setAttribute('transform', `translate(0 ${CY-R}) scale(1 ${k}) translate(0 ${-(CY-R)})`);
+        $('lScale').setAttribute('transform', `translate(0 ${CY+R}) scale(1 ${k}) translate(0 ${-(CY+R)})`);
+        $('clipUPath').setAttribute('d', `M${CX-R} ${CY} A${R} ${R} 0 0 1 ${CX+R} ${CY} A${R} ${lensRy} 0 0 0 ${CX-R} ${CY} Z`);
+        $('clipLPath').setAttribute('d', `M${CX-R} ${CY} A${R} ${R} 0 0 0 ${CX+R} ${CY} A${R} ${lensRy} 0 0 1 ${CX-R} ${CY} Z`);
+  
+        const lineFade = sm((1 - s.o) / 0.25);
+        const oddFade = 1 - sm(s.o / 0.3);
+        for (const side of ['u','l']) lineEls[side].forEach((path, i) => {
+          const ry = R * (s.o + k * i / N);
+          path.setAttribute('d', `M${CX-R} ${CY} A${R} ${ry} 0 0 ${side==='u'?1:0} ${CX+R} ${CY}`);
+          path.setAttribute('opacity', lineFade * (i % 2 ? oddFade : 1));
+        });
+  
+        const dl = s.dl * Math.PI / 180;
+        for (const d of dots) {
+          const lam = d.lam + dl, ry = R * (s.o + k * d.f);
+          const edge = sm((Math.PI/2 - Math.abs(lam)) / 0.25);
+          d.el.setAttribute('cx', CX + R * Math.sin(lam));
+          d.el.setAttribute('cy', CY + (d.side==='u' ? -1 : 1) * ry * Math.cos(Math.max(-Math.PI/2, Math.min(Math.PI/2, lam))));
+          d.el.setAttribute('opacity', s.dotA * edge);
+        }
+  
+        $('outline').setAttribute('opacity', s.outA);
+        $('ring').setAttribute('opacity', s.ringA);
+        $('gap').setAttribute('y', CY - s.gap / 2);
+        $('gap').setAttribute('height', s.gap);
+  
+        const ty = 724 + (708 - 724) * sm((s.textS - 0.28) / 0.72);
+        $('wordWrap').setAttribute('opacity', s.textA);
+        $('wordWrap').setAttribute('transform', `translate(${CX} ${ty}) scale(${s.textS}) translate(${-CX} ${-CY})`);
+      }
+  
+      // Time advances by real elapsed time × speed, so speed can change mid-play without jumps
+      let t = 0, last = null, raf = null, paused = false, speed = 1;
+      const loopBox = $('opLoop'), speedEl = $('opSpeed'), pauseBtn = $('opPause');
+      const setSpeed = v => { speed = v; $('opSpeedVal').textContent = String(+v.toFixed(2)) + '×'; };
+      const setPaused = v => {
+        paused = v;
+        pauseBtn.querySelector('span').textContent = v ? 'Resume' : 'Pause';
+        pauseBtn.querySelector('i').className = 'ph ' + (v ? 'ph-play' : 'ph-pause');
+      };
+      function tick(now) {
+        if (last === null) last = now;
+        t += Math.min(0.1, (now - last) / 1000) * speed;
+        last = now;
+        // without looping it stops on the finished logo, before the fade
+        if (!loopBox.checked && t >= MOTION) { render(MOTION); raf = null; return; }
+        if (t >= DUR) t = 0;
+        render(t);
+        raf = requestAnimationFrame(tick);
+      }
+      function run() { cancelAnimationFrame(raf); last = null; raf = requestAnimationFrame(tick); }
+      function play() { t = 0; setPaused(false); run(); }
+
+      $('opener').addEventListener('click', play);
+      $('opReplay').addEventListener('click', play);
+      pauseBtn.addEventListener('click', () => {
+        if (!paused) { setPaused(true); cancelAnimationFrame(raf); raf = null; }
+        else { setPaused(false); run(); }
+      });
+      loopBox.addEventListener('change', () => { if (loopBox.checked && !paused && raf === null) { if (t >= MOTION) t = MOTION; run(); } });
+      speedEl.addEventListener('input', () => setSpeed(parseFloat(speedEl.value)));
+      speedEl.addEventListener('dblclick', () => { speedEl.value = 1; setSpeed(1); });
+      setSpeed(parseFloat(speedEl.value));
+
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { t = MOTION; render(MOTION); }
+      else { render(0); (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(play); }
+    })();
+    </script>
+  
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="wrap">
