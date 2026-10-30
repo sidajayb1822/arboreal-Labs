@@ -17,7 +17,7 @@
       "permanent": true
     },
     {
-      "source": "/TEMP%20Demo%20Page/:path*",
+      "source": "/TEMP(.*)",
       "destination": "/smaya",
       "permanent": true
     }
