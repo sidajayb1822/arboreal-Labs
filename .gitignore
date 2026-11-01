@@ -39,3 +39,8 @@ assets/images/Variation tool -creation jewles/Info - creation jw.png
 
 # Local build tools (portfolio generator + data)
 tools/
+
+# Environment files with real secrets (the empty template is committed)
+.env
+.env.*
+!.env.example

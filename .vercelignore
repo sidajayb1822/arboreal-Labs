@@ -1,3 +1,4 @@
 # Repo files that are not part of the website
 README.md
 .gitignore
+.env.example

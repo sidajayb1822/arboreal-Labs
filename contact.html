@@ -198,6 +198,11 @@
             <option value="General Consultation" style="color: #11131A">General Consultation</option>
           </select>
         </div>
+        <!-- Honeypot: hidden from people, so only bots fill it in -->
+        <div aria-hidden="true" style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
         <button id="submit-btn" type="submit" class="btn-primary magnetic" style="margin-top: 1rem; width: 100%;">Submit Request</button>
       </form>
     </div>
@@ -285,6 +290,12 @@
 
       const form = document.getElementById('contact-form');
 
+      // Honeypot filled: a bot, so look successful but send nothing
+      if (form.elements.website.value) {
+        setTimeout(() => showSuccess(btn), 600);
+        return;
+      }
+
       // Localhost bypass: FormSubmit blocks local origins
       const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
       if (isLocal) {
@@ -293,6 +304,8 @@
       }
 
       const data = new FormData(form);
+      data.delete('website');
+      sendToCrm(form);
       try {
         const res = await fetch('https://formsubmit.co/ajax/founders@arboreallabs.com', {
           method: 'POST',
@@ -312,6 +325,23 @@
         btn.textContent = 'Submit Request';
         alert('Network error. Please try again.');
       }
+    }
+
+    // Copies the lead to the CRM through our own server alongside the email; never awaited, and
+    // any failure is ignored so the email and the visitor's confirmation are unaffected
+    function sendToCrm(form) {
+      const f = form.elements;
+      try {
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          keepalive: true,
+          body: JSON.stringify({
+            name: f['Full Name'].value, company: f['Company'].value, email: f['Email'].value,
+            phone: f['Phone'].value, interest: f['Interest'].value, website: f.website.value
+          })
+        }).catch(() => {});
+      } catch (err) {}
     }
 
     function showSuccess(btn) {
