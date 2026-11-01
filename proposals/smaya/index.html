@@ -250,10 +250,19 @@
     .op-speed { flex-wrap: wrap; }
     .op-speed input { width: 130px; accent-color: #13a6bd; }
     .op-speed output { min-width: 3em; font-family: var(--display); font-variant-numeric: tabular-nums; color: var(--ink); }
+    .opener iframe { display: block; width: min(72vmin, 520px); aspect-ratio: 720 / 800; height: auto; border: 0; border-radius: 18px; flex: none; }
+    .opener iframe[hidden], .opener svg[hidden] { display: none; }
+    .op-options { display: flex; flex-direction: column; align-items: flex-start; gap: .3rem; margin-bottom: .4rem; }
+    .op-opt { font: 500 .86rem var(--body); color: var(--ink-2); background: none; border: 1px solid transparent; border-radius: 100px; padding: .3rem .75rem; margin-left: -.75rem; cursor: pointer; text-align: left; transition: color .2s, border-color .2s; }
+    .op-opt:hover { color: var(--ink); }
+    .op-opt[aria-pressed="true"] { color: var(--ink); border-color: #13a6bd; }
+    .op-opt small { color: var(--mute); font-size: .74rem; margin-right: .35rem; font-variant-numeric: tabular-nums; }
     @media (max-width: 760px) {
       .opener-row { flex-direction: column; gap: 1.5rem; }
       .op-controls { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; min-width: 0; padding: 1rem 0 0; border-left: 0; border-top: 1px solid var(--line); gap: .75rem 1.1rem; }
       .op-controls .label { display: none; }
+      .op-options { flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; margin-bottom: 0; }
+      .op-opt { margin-left: 0; }
     }
   </style>
 </head>
@@ -316,7 +325,17 @@
                 font-size="225" textLength="1360" lengthAdjust="spacing" fill="#0e4a5c">SMAYAA</text>
         </g>
       </svg>
+      <iframe id="opFrame" title="SMAYAA logo option" hidden></iframe>
       <div class="op-controls" role="group" aria-label="Logo animation controls">
+        <span class="label">Logo options</span>
+        <div class="op-options" id="opOptions">
+          <button type="button" class="op-opt" aria-pressed="true" data-src=""><small>01</small>Current</button>
+          <button type="button" class="op-opt" aria-pressed="false" data-src="/proposals/smaya/logos/droplet-circuit.html"><small>02</small>Droplet Circuit</button>
+          <button type="button" class="op-opt" aria-pressed="false" data-src="/proposals/smaya/logos/glass-orb.html"><small>03</small>Glass Orb</button>
+          <button type="button" class="op-opt" aria-pressed="false" data-src="/proposals/smaya/logos/iso-chip-drop.html"><small>04</small>Iso Chip + Drop</button>
+          <button type="button" class="op-opt" aria-pressed="false" data-src="/proposals/smaya/logos/faceted-drop.html"><small>05</small>Faceted Drop</button>
+          <button type="button" class="op-opt" aria-pressed="false" data-src="/proposals/smaya/logos/data-drop.html"><small>06</small>Data Drop</button>
+        </div>
         <span class="label">Logo animation</span>
         <div class="btns">
           <button type="button" class="btn" id="opReplay"><i class="ph ph-arrow-counter-clockwise"></i>Replay</button>
@@ -449,8 +468,10 @@
   
       // Time advances by real elapsed time × speed, so speed can change mid-play without jumps
       let t = 0, last = null, raf = null, paused = false, speed = 2;
-      const loopBox = $('opLoop'), speedEl = $('opSpeed'), pauseBtn = $('opPause');
-      const setSpeed = v => { speed = v; $('opSpeedVal').textContent = String(+v.toFixed(2)) + '×'; };
+      const loopBox = $('opLoop'), speedEl = $('opSpeed'), pauseBtn = $('opPause'), frame = $('opFrame');
+      // the other logo options play in the frame and take the same controls
+      const other = () => !frame.hidden && frame.contentWindow && frame.contentWindow.logo;
+      const setSpeed = v => { speed = v; $('opSpeedVal').textContent = String(+v.toFixed(2)) + '×'; if (other()) other().setSpeed(v); };
       const setPaused = v => {
         paused = v;
         pauseBtn.querySelector('span').textContent = v ? 'Resume' : 'Pause';
@@ -470,12 +491,28 @@
       function play() { t = 0; setPaused(false); run(); }
 
       $('opener').addEventListener('click', play);
-      $('opReplay').addEventListener('click', play);
+      $('opReplay').addEventListener('click', () => { if (other()) { setPaused(false); other().replay(); } else play(); });
       pauseBtn.addEventListener('click', () => {
-        if (!paused) { setPaused(true); cancelAnimationFrame(raf); raf = null; }
+        if (other()) { setPaused(!paused); other().pause(paused); }
+        else if (!paused) { setPaused(true); cancelAnimationFrame(raf); raf = null; }
         else { setPaused(false); run(); }
       });
-      loopBox.addEventListener('change', () => { if (loopBox.checked && !paused && raf === null) { if (t >= MOTION) t = MOTION; run(); } });
+      loopBox.addEventListener('change', () => {
+        if (other()) other().setLoop(loopBox.checked);
+        else if (loopBox.checked && !paused && raf === null) { if (t >= MOTION) t = MOTION; run(); }
+      });
+      frame.addEventListener('load', () => {
+        const o = frame.contentWindow.logo; if (!o) return;
+        o.setSpeed(speed); o.setLoop(loopBox.checked); setPaused(false); o.replay();
+      });
+      $('opOptions').addEventListener('click', e => {
+        const b = e.target.closest('.op-opt'); if (!b) return;
+        for (const x of $('opOptions').children) x.setAttribute('aria-pressed', x === b);
+        const src = b.dataset.src;
+        if (!src) { frame.hidden = true; frame.removeAttribute('src'); $('opener').removeAttribute('hidden'); play(); return; }
+        cancelAnimationFrame(raf); raf = null;
+        $('opener').setAttribute('hidden', ''); frame.hidden = false; frame.src = src;
+      });
       speedEl.addEventListener('input', () => setSpeed(parseFloat(speedEl.value)));
       speedEl.addEventListener('dblclick', () => { speedEl.value = 2; setSpeed(2); });
       setSpeed(parseFloat(speedEl.value));
