@@ -8,7 +8,7 @@
   <link rel="icon" href="/assets/images/Arboreal%20logo/Dark%20Favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@400&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <style>
     :root {
@@ -240,7 +240,7 @@
     /* ---------- opener: the SMAYAA logo animation, first thing on the page ---------- */
     .opener { display: grid; place-items: center; min-height: calc(100svh - 68px); padding-block: 2rem; }
     .opener-row { display: flex; align-items: center; justify-content: center; gap: clamp(2rem, 5vw, 4.5rem); }
-    .opener svg { width: min(72vmin, 520px); height: auto; aspect-ratio: 1400 / 1440; cursor: pointer; flex: none; }
+    .opener svg { width: min(92.6vmin, 669px); height: auto; aspect-ratio: 1800 / 1440; cursor: pointer; flex: none; }
     .op-controls { display: flex; flex-direction: column; gap: .9rem; min-width: 200px; padding-left: clamp(1.5rem, 3vw, 2.5rem); border-left: 1px solid var(--line); }
     .op-controls .label { font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
     .op-controls .btns { display: flex; gap: .5rem; }
@@ -286,7 +286,7 @@
     <!-- ============ OPENER: SMAYAA logo animation ============ -->
     <section class="opener" aria-label="SMAYAA">
       <div class="opener-row">
-      <svg id="opener" viewBox="0 0 1400 1440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SMAYAA.ai logo">
+      <svg id="opener" viewBox="-200 0 1800 1440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SMAYAA.ai logo">
         <defs>
           <linearGradient id="gTeal" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="850" y2="0">
             <stop offset="0" stop-color="#34b3c8"/><stop offset="1" stop-color="#009db6"/>
@@ -296,6 +296,10 @@
           </linearGradient>
           <linearGradient id="gRing" gradientUnits="userSpaceOnUse" x1="135" y1="708" x2="1265" y2="708">
             <stop offset="0" stop-color="#0a7f9f"/><stop offset="0.55" stop-color="#5fcbd8"/><stop offset="1" stop-color="#b0eff2"/>
+          </linearGradient>
+          <!-- the ring's gradient in deeper tones, so the name stays readable as the colour flows through it -->
+          <linearGradient id="gText" gradientUnits="userSpaceOnUse" x1="-60" y1="708" x2="1460" y2="708">
+            <stop offset="0" stop-color="#0a5f7a"/><stop offset="0.55" stop-color="#1497b3"/><stop offset="1" stop-color="#4cc3d3"/>
           </linearGradient>
           <clipPath id="clipU"><path id="clipUPath"/></clipPath>
           <clipPath id="clipL"><path id="clipLPath"/></clipPath>
@@ -317,12 +321,12 @@
           <g clip-path="url(#clipL)"><use href="#shade"/></g>
           <g id="lines" fill="none" stroke="#b6eff2" stroke-width="4" stroke-linecap="round"></g>
           <g id="dots" fill="#b6eff2"></g>
-          <circle id="outline" cx="700" cy="708" r="565" fill="none" stroke="#b0edf0" stroke-width="10"/>
+          <circle id="outline" cx="700" cy="708" r="565" fill="none" stroke="#b0edf0" stroke-width="16"/>
         </g>
-        <circle id="ring" cx="700" cy="708" r="565" fill="none" stroke="url(#gRing)" stroke-width="22" mask="url(#ringMask)" opacity="0"/>
+        <circle id="ring" cx="700" cy="708" r="565" fill="none" stroke="url(#gRing)" stroke-width="36" mask="url(#ringMask)" opacity="0"/>
         <g id="wordWrap">
-          <text x="700" y="786" text-anchor="middle" font-family="Jost, Futura, 'Century Gothic', sans-serif"
-                font-size="225" textLength="1360" lengthAdjust="spacing" fill="#0e4a5c">SMAYAA<tspan fill="#13a6bd">.ai</tspan></text>
+          <text x="700" y="814" text-anchor="middle" font-family="Jost, Futura, 'Century Gothic', sans-serif"
+                font-size="300" font-weight="600" textLength="1760" lengthAdjust="spacing" fill="url(#gText)">SMAYAA.ai</text>
         </g>
       </svg>
       <iframe id="opFrame" title="SMAYAA logo option" hidden></iframe>
@@ -390,7 +394,7 @@
         textS:   [[0,0.28],[0.54,0.28],[0.97,1]],
         outA:    [[0,1],[0.6,1],[0.86,0]],
         ringA:   [[0,0],[0.6,0],[0.86,1]],
-        gap:     [[0,0],[0.64,0],[0.97,320]],
+        gap:     [[0,0],[0.64,0],[0.97,400]],
       };
       // Monotone cubic (Fritsch-Carlson) so velocity is continuous through every key
       function makeTrack(pts) {
@@ -422,7 +426,8 @@
         const lensRy = s.o * R, k = 1 - s.o;
   
         const sc = 0.92 + 0.08 * s.sphereA;
-        $('sphere').setAttribute('opacity', s.sphereA);
+        // once the lens has closed, hide the sphere so its zero-width edges don't leave hairlines beside the text
+        $('sphere').setAttribute('opacity', s.o > 0.995 ? 0 : s.sphereA);
         $('sphere').setAttribute('transform', `translate(${CX} ${CY}) scale(${sc}) translate(${-CX} ${-CY})`);
   
         $('shadeShift').setAttribute('transform', `translate(${s.dx} 0)`);
@@ -514,6 +519,20 @@
       speedEl.addEventListener('input', () => setSpeed(parseFloat(speedEl.value)));
       speedEl.addEventListener('dblclick', () => { speedEl.value = 2; setSpeed(2); });
       setSpeed(parseFloat(speedEl.value));
+
+      // the ring's colour keeps flowing round the circle, even on the finished logo
+      let flowT = 0, flowLast = null;
+      function flow(now) {
+        if (flowLast !== null && !paused && !$('opener').hasAttribute('hidden')) {
+          flowT += Math.min(0.1, (now - flowLast) / 1000) * speed;
+          const spin = `rotate(${(flowT * 24 % 360).toFixed(2)} ${CX} ${CY})`;
+          $('gRing').setAttribute('gradientTransform', spin);
+          $('gText').setAttribute('gradientTransform', spin);
+        }
+        flowLast = now;
+        requestAnimationFrame(flow);
+      }
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(flow);
 
       if (matchMedia('(prefers-reduced-motion: reduce)').matches) { t = MOTION; render(MOTION); }
       else { render(0); (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(play); }
