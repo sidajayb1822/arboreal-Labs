@@ -7,14 +7,14 @@
 <title>Celestial Circuit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&display=swap">
 <style>
 html,body{margin:0;height:100%;background:transparent;overflow:hidden}
 svg{display:block;width:100%;height:100%}
 </style>
 </head>
 <body>
-<svg id="opener" viewBox="-200 100 1800 1220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SMAYAA.ai logo">
+<svg id="opener" viewBox="30 120 1340 1180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SMAYAA.ai logo">
         <defs>
           <linearGradient id="gTeal" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="850" y2="0">
             <stop offset="0" stop-color="#34b3c8"/><stop offset="1" stop-color="#009db6"/>
@@ -22,12 +22,9 @@ svg{display:block;width:100%;height:100%}
           <linearGradient id="gDark" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="500" y2="0">
             <stop offset="0" stop-color="#006d88"/><stop offset="1" stop-color="#0a88a4"/>
           </linearGradient>
-          <linearGradient id="gRing" gradientUnits="userSpaceOnUse" x1="135" y1="708" x2="1265" y2="708">
-            <stop offset="0" stop-color="#0a7f9f"/><stop offset="0.55" stop-color="#5fcbd8"/><stop offset="1" stop-color="#b0eff2"/>
-          </linearGradient>
-          <!-- the ring's gradient in deeper tones, so the name stays readable as the colour flows through it -->
-          <linearGradient id="gText" gradientUnits="userSpaceOnUse" x1="-60" y1="708" x2="1460" y2="708">
-            <stop offset="0" stop-color="#0a5f7a"/><stop offset="0.55" stop-color="#1497b3"/><stop offset="1" stop-color="#4cc3d3"/>
+          <!-- pale cyan at the top left, deepening to blue-teal at the bottom right -->
+          <linearGradient id="gRing" gradientUnits="userSpaceOnUse" x1="300" y1="308" x2="1100" y2="1108">
+            <stop offset="0" stop-color="#b3eef3"/><stop offset="0.5" stop-color="#5cc4d6"/><stop offset="1" stop-color="#0b7a98"/>
           </linearGradient>
           <clipPath id="clipU"><path id="clipUPath"/></clipPath>
           <clipPath id="clipL"><path id="clipLPath"/></clipPath>
@@ -51,14 +48,13 @@ svg{display:block;width:100%;height:100%}
           <g id="dots" fill="#b6eff2"></g>
           <circle id="outline" cx="700" cy="708" r="565" fill="none" stroke="#b0edf0" stroke-width="16"/>
         </g>
-        <circle id="ring" cx="700" cy="708" r="565" fill="none" stroke="url(#gRing)" stroke-width="36" mask="url(#ringMask)" opacity="0"/>
+        <circle id="ring" cx="700" cy="708" r="565" fill="none" stroke="url(#gRing)" stroke-width="18" mask="url(#ringMask)" opacity="0"/>
         <g id="wordWrap">
-          <text x="700" y="814" text-anchor="middle" font-family="Jost, Futura, 'Century Gothic', sans-serif"
-                font-size="300" font-weight="600" textLength="1760" lengthAdjust="spacing" fill="url(#gText)">SMAYAA.ai</text>
+          <text x="700" y="768" text-anchor="middle" font-family="'Century Gothic', Jost, Futura, sans-serif" font-size="166" font-weight="700"><tspan fill="#0d4f66" letter-spacing="40">SMAYAA.</tspan><tspan fill="#1fb6cb" letter-spacing="6">ai</tspan></text>
         </g>
       </svg>
 <script>
-// The Celestial Circuit logo on its own: plays once as the page opens, then rests on the finished logo with the ring colour flowing
+// The Celestial Circuit logo on its own: plays once as the page opens, settles into the horizontal lockup, and the ring colour keeps flowing
 (() => {
       const CX = 700, CY = 708, R = 565, N = 12;
       const $ = id => document.getElementById(id);
@@ -88,6 +84,18 @@ svg{display:block;width:100%;height:100%}
   
       // One continuous motion keyed on progress p (0 to 1); when looping it holds, fades and starts again
       const MOTION = 7.5, HOLD = 2.5, FADE = 0.6, GAPT = 0.3;
+      // After the logo opens: the ring shrinks to the left and the name slides out of it into a horizontal lockup.
+      // Sizes follow the name's measured width, so the lockup keeps its proportions whatever font loads.
+      const SHIFT = 2.4, END = MOTION + SHIFT;
+      function lockup(t) {
+        const u = sm((t - MOTION) / SHIFT), q = 0.5 - 0.5 * Math.cos(Math.PI * u);
+        const W = $('wordWrap').getBBox().width || 1277;
+        const r = W / 6.6, sc = r / R;                      // final ring radius and scale
+        const cx = CX + (1.21 * r - W) / 2;                 // centres the ring + name lockup on the canvas
+        const dx = cx - 0.21 * r + W / 2 - CX;              // the name starts just inside the ring
+        return { q, r, sc, cx, dx, W };
+      }
+
       const DUR = MOTION + HOLD + FADE + GAPT;
       const keys = {
         sphereA: [[0,0],[0.12,1]],
@@ -100,7 +108,7 @@ svg{display:block;width:100%;height:100%}
         textS:   [[0,0.28],[0.54,0.28],[0.97,1]],
         outA:    [[0,1],[0.6,1],[0.86,0]],
         ringA:   [[0,0],[0.6,0],[0.86,1]],
-        gap:     [[0,0],[0.64,0],[0.97,400]],
+        gap:     [[0,0],[0.64,0],[0.97,290]],
       };
       // Monotone cubic (Fritsch-Carlson) so velocity is continuous through every key
       function makeTrack(pts) {
@@ -167,12 +175,23 @@ svg{display:block;width:100%;height:100%}
   
         $('outline').setAttribute('opacity', s.outA);
         $('ring').setAttribute('opacity', s.ringA);
-        $('gap').setAttribute('y', CY - s.gap / 2);
-        $('gap').setAttribute('height', s.gap);
+        const L = lockup(t);
+        // the ring shrinks and moves left; its thin line stays about the same weight on screen
+        $('ring').setAttribute('transform', `translate(${CX + (L.cx - CX) * L.q} ${CY}) scale(${1 + (L.sc - 1) * L.q}) translate(${-CX} ${-CY})`);
+        $('ring').setAttribute('stroke-width', 18 + (14 / L.sc - 18) * L.q);
+        // the gap closes on the left and stays open on the right, where the name passes through
+        const gapH = s.gap + (250 / L.sc - s.gap) * L.q;
+        $('gap').setAttribute('x', CX * L.q);
+        $('gap').setAttribute('y', CY - gapH / 2);
+        $('gap').setAttribute('height', gapH);
   
         const ty = 724 + (708 - 724) * sm((s.textS - 0.28) / 0.72);
         $('wordWrap').setAttribute('opacity', s.textA);
-        $('wordWrap').setAttribute('transform', `translate(${CX} ${ty}) scale(${s.textS}) translate(${-CX} ${-CY})`);
+        $('wordWrap').setAttribute('transform', `translate(${CX + L.dx * L.q} ${ty}) scale(${s.textS}) translate(${-CX} ${-CY})`);
+        // the view narrows from the full circle to the horizontal lockup
+        const from = [30, 120, 1340, 1180], pad = 30;
+        const to = [L.cx - L.r - pad, CY - L.r - pad, (CX + L.dx + L.W / 2) - (L.cx - L.r) + 2 * pad, 2 * L.r + 2 * pad];
+        $('opener').setAttribute('viewBox', from.map((v, i) => (v + (to[i] - v) * L.q).toFixed(1)).join(' '));
       }
 
       const SPEED = 2;
@@ -181,14 +200,12 @@ svg{display:block;width:100%;height:100%}
       function tick(now) {
         if (last !== null) t += Math.min(0.1, (now - last) / 1000) * SPEED;
         last = now;
-        render(Math.min(t, MOTION));
-        // the ring keeps flowing round the circle once the logo has settled
-        const spin = `rotate(${(t * 24 % 360).toFixed(2)} ${CX} ${CY})`;
-        $('gRing').setAttribute('gradientTransform', spin);
-        $('gText').setAttribute('gradientTransform', spin);
+        render(Math.min(t, END));
+        // the ring's colour keeps flowing gently once the logo has settled, swaying around its resting direction
+        $('gRing').setAttribute('gradientTransform', `rotate(${(35 * Math.sin(t * 0.35)).toFixed(2)} ${CX} ${CY})`);
         requestAnimationFrame(tick);
       }
-      if (reduced) render(MOTION);
+      if (reduced) render(END);
       else { render(0); (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(tick)); }
       document.addEventListener('click', () => { t = 0; });
 })();
