@@ -44,3 +44,6 @@ tools/
 .env
 .env.*
 !.env.example
+
+# SMAYA proposal: kept on this computer only, no longer committed or deployed
+proposals/smaya/

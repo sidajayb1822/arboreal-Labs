@@ -15,29 +15,9 @@
       "source": "/websites/kevin-portfolio",
       "destination": "/websites/siddhants-world",
       "permanent": true
-    },
-    {
-      "source": "/TEMP(.*)",
-      "destination": "/smaya",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/smaya",
-      "destination": "/proposals/smaya/"
     }
   ],
   "headers": [
-    {
-      "source": "/smaya",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
     {
       "source": "/proposals/(.*)",
       "headers": [
